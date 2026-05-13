@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kever gevonden! - Wildzoekers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="insect-page">
+    <div class="forest-background"></div>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="#2d5016" stroke-width="2"/>
+                    <path d="M20 5 Q25 12 20 18 Q15 12 20 5" fill="#4a7c2e"/>
+                    <path d="M10 20 Q15 15 18 20 Q15 25 10 20" fill="#2d5016" opacity="0.7"/>
+                    <path d="M30 20 Q25 15 22 20 Q25 25 30 20" fill="#6fa342" opacity="0.8"/>
+                </svg>
+                <h1>Wildzoekers</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Concept</a></li>
+                    <li><a href="meedoen.html">Meedoen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="feedback-banner">
+        <p>Deze pagina is een prototype en wordt getest. Geef alstublieft <a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">feedback</a></p>
+    </div>
+
+    <main class="insect-main">
+        <!-- CELEBRATION SECTION -->
+        <section class="celebration">
+            <div class="celebration-content">
+                <div class="confetti-container" id="confetti"></div>
+                
+                <h2 class="celebration-title">🎉 Gefeliciteerd! 🎉</h2>
+                <p class="celebration-subtitle">Je hebt een <strong>kever</strong> gevonden!</p>
+                
+                <div class="insect-showcase">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&fmt=png&bg=transparent" alt="Kever" class="insect-image">
+                </div>
+                
+                <div class="celebration-message">
+                    <p>Wat een fantastische ontdekking! Deze kever is een belangrijk onderdeel van het ecosysteem in Spoorpark. Door goed op te letten, heb je een van de vele verborgen schatten van onze stad opgemerkt.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCATION INFO -->
+        <section class="location-info">
+            <h2>Waar heb je dit gevonden?</h2>
+            <div class="location-card">
+                <div class="location-header">
+                    <span class="location-badge">📍 Spoorpark, Tilburg</span>
+                    <p class="location-date" id="found-date"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HABITAT EXPLORER -->
+        <section class="habitat-explorer">
+            <h2>Waar leven kevers het liefst?</h2>
+            <p class="section-intro">Kevers zijn ongelooflijk divers en voelen zich thuis op bijna elke plek! Maar ze houden vooral van één ding:</p>
+            
+            <div class="habitat-showcase">
+                <div class="habitat-card">
+                    <div class="habitat-image">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80" alt="Dood hout" class="habitat-photo">
+                    </div>
+                    <div class="habitat-content">
+                        <h3>💀 Dood Hout</h3>
+                        <p>Dit is het thuisbasis van de kever! Dood hout (van omgevallen bomen, takken en oude stammen) is een echte luxehotel voor kevers.</p>
+                        
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleSection(this)">
+                                <span>➕ Waarom houden kevers van dood hout?</span>
+                            </button>
+                            <div class="expand-content" style="display: none;">
+                                <ul>
+                                    <li><strong>Voedsel:</strong> Veel kevers eten wood-decay fungi en het hout zelf</li>
+                                    <li><strong>Schuilplaats:</strong> De kronkels en gaten bieden perfecte beschutting</li>
+                                    <li><strong>Nesten:</strong> Ideaal voor het leggen van eitjes</li>
+                                    <li><strong>Microhabitat:</strong> Kleine mosjes en schimmels groeien erop - voedsel voor anderen</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleSection(this)">
+                                <span>🌍 Waarom is dood hout belangrijk voor biodiversiteit?</span>
+                            </button>
+                            <div class="expand-content" style="display: none;">
+                                <p>Dood hout ondersteunt meer soorten dan levend hout! Het is een <strong>supermarkt</strong> voor:</p>
+                                <ul>
+                                    <li>Duizenden insectensoorten</li>
+                                    <li>Schimmels en bacteriën die nutriënten terugbrengen in de bodem</li>
+                                    <li>Vogels en kleine zoogdieren</li>
+                                    <li>Planten die erin groeien</li>
+                                </ul>
+                                <p>In een gezond bos kan tot <strong>25% van alle diersoorten</strong> van dood hout afhangen!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleSection(this)">
+                                <span>🌱 Waarom moeten we dood hout NIET opruimen?</span>
+                            </button>
+                            <div class="expand-content" style="display: none;">
+                                <p>Veel mensen willen "nette" bossen en verwijderen dood hout. Dit is schadelijk!</p>
+                                <ul>
+                                    <li><strong>Verlies van thuis:</strong> Duizenden soorten verliezen hun habitat</li>
+                                    <li><strong>Minder nutriënten:</strong> Het hout kan niet terugkeren naar de bodem</li>
+                                    <li><strong>Armere biodiversiteit:</strong> Bossen met dood hout hebben meer leven</li>
+                                    <li><strong>Zwakker ecosysteem:</strong> Zonder ontbinding kunnen bossen niet gezond groeien</li>
+                                </ul>
+                                <p>Door dood hout met rust te laten, laten we de natuur doen wat ze het best kan: zichzelf herstellen en versterken.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRESS TRACKER -->
+        <section class="progress-tracker">
+            <h2>Hoeveel heb je gevonden?</h2>
+            <div class="progress-grid">
+                <div class="progress-item found">
+                    <div class="progress-icon">✓</div>
+                    <h3>Kever</h3>
+                    <p class="progress-status">Gevonden!</p>
+                </div>
+                <div class="progress-item" id="butterfly-progress">
+                    <div class="progress-icon">?</div>
+                    <h3>Citroenvlinder</h3>
+                    <p class="progress-status">Nog te vinden</p>
+                </div>
+                <div class="progress-item" id="ladybug-progress">
+                    <div class="progress-icon">?</div>
+                    <h3>Lieveheersbeestje</h3>
+                    <p class="progress-status">Nog te vinden</p>
+                </div>
+            </div>
+            <p class="progress-message">Scan de QR-code op het bord in Spoorpark om de andere dieren te vinden!</p>
+        </section>
+
+        <!-- COUNTING & CONTRIBUTION -->
+        <section class="contribution-section">
+            <h2>Jij bent een wetenschapper!</h2>
+            <p class="section-intro">Help ons meer over deze kevers leren door je waarnemingen te delen.</p>
+            
+            <div class="contribution-grid">
+                <!-- My Count -->
+                <div class="contribution-card">
+                    <h3>🔍 Jouw waarnemingen</h3>
+                    <p>Hoeveel kevers heb JIJ vandaag gezien?</p>
+                    <div class="counter">
+                        <button onclick="decreaseCounter('personal')">−</button>
+                        <input type="number" id="personal-counter" value="1" min="0" readonly>
+                        <button onclick="increaseCounter('personal')">+</button>
+                    </div>
+                    <button class="submit-btn" onclick="submitPersonalCount()">Verstuur mijn waarneming</button>
+                    <p class="counter-note">Dit helpt wetenschappers de populatie beter te begrijpen!</p>
+                </div>
+                
+                <!-- Community Count -->
+                <div class="contribution-card">
+                    <h3>👥 Gemeenschapstotaal</h3>
+                    <p>Dit is hoeveel kevers <strong>alle andere Wildzoekers</strong> hebben gezien:</p>
+                    <div class="community-counter">
+                        <p class="big-number" id="community-total">47</p>
+                        <p class="counter-label">kevers gezien in totaal</p>
+                    </div>
+                    <p class="community-note">Door samen te werken, krijgen we een volledig beeld van het dierenleven in onze stad!</p>
+                </div>
+            </div>
+
+            <div class="photo-upload-section">
+                <h3>📸 Deel je foto</h3>
+                <p>Heb je een foto van deze kever gemaakt? Deel hem met de Wildzoekers-gemeenschap!</p>
+                <div class="upload-area" onclick="document.getElementById('photo-input').click()">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
+                        <path d="M8 40h32M24 4v24M16 16l8-8 8 8M4 32l10-10m20 10l-10-10"/>
+                    </svg>
+                    <p>Klik om een foto te uploaden</p>
+                    <p class="upload-note">of sleep hier een afbeelding naartoe</p>
+                </div>
+                <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="handlePhotoUpload(this)">
+                <div id="photo-preview" style="display: none;">
+                    <img id="preview-img" src="" alt="Preview">
+                    <button onclick="removePhoto()">Verwijderen</button>
+                    <button class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEEDBACK FORM -->
+        <section class="feedback-section">
+            <h2>Wat vind jij ervan?</h2>
+            <p>Jouw feedback helpt ons Wildzoekers beter te maken! Neem even de tijd om te vertellen wat je ervan denkt.</p>
+            <div class="form-container">
+                <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=VrIhf4ycV0Kq8ZbGKpR-kA" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" style="border: none; background: rgba(74, 124, 46, 0.05); border-radius: 12px;"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Wildzoekers</h4>
+                <p>Ontdek wilde natuur in je stad.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Snelle links</h4>
+                <ul>
+                    <li><a href="index.html">Concept</a></li>
+                    <li><a href="meedoen.html">Meedoen</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Dit is een prototype. Feedback is welkom!</p>
+                <p><a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">Geef feedback</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize beetle page
+        document.addEventListener('DOMContentLoaded', function() {
+            setFoundDate();
+            updateProgressTrackers();
+            initializeCounters();
+            createConfetti();
+        });
+    </script>
+</body>
+</html>

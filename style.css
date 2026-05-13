@@ -1,0 +1,1015 @@
+/* ===== ROOT & VARIABLES ===== */
+:root {
+    --primary-green: #2d5016;
+    --light-green: #4a7c2e;
+    --bright-green: #6fa342;
+    --pale-green: #a8c686;
+    --light-bg: #f5f7f1;
+    --cream: #faf9f6;
+    --text-dark: #2c2c2c;
+    --text-light: #666;
+    --accent-yellow: #e8d565;
+    --accent-brown: #8b6f47;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* ===== GENERAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--cream);
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Forest Background with Leaves */
+.forest-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(135deg, #faf9f6 0%, #f5f7f1 50%, #e8f1e0 100%);
+    pointer-events: none;
+}
+
+.forest-background::before,
+.forest-background::after {
+    content: '';
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* Leaf decorations (CSS-based) */
+body::before {
+    content: '🍂';
+    position: fixed;
+    font-size: 60px;
+    top: 10%;
+    right: 5%;
+    opacity: 0.15;
+    z-index: 0;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+body::after {
+    content: '🍃';
+    position: fixed;
+    font-size: 50px;
+    bottom: 20%;
+    left: 5%;
+    opacity: 0.12;
+    z-index: 0;
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+header {
+    background: linear-gradient(135deg, rgba(45, 80, 22, 0.95) 0%, rgba(74, 124, 46, 0.93) 100%);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(45, 80, 22, 0.2);
+    border-bottom: 2px solid var(--bright-green);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+header nav a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: var(--transition);
+    position: relative;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-yellow);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+    width: calc(100% - 2rem);
+}
+
+header nav a.active {
+    color: var(--accent-yellow);
+}
+
+/* ===== FEEDBACK BANNER ===== */
+.feedback-banner {
+    background: linear-gradient(90deg, rgba(232, 213, 101, 0.15) 0%, rgba(168, 198, 134, 0.15) 100%);
+    border-top: 2px solid var(--accent-yellow);
+    border-bottom: 2px solid var(--light-green);
+    padding: 1rem 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.feedback-banner p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.feedback-banner a {
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--primary-green);
+}
+
+.feedback-banner a:hover {
+    color: var(--bright-green);
+    border-bottom-color: var(--bright-green);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    margin-bottom: 4rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid rgba(168, 198, 134, 0.3);
+    box-shadow: 0 8px 32px rgba(45, 80, 22, 0.08);
+    position: relative;
+}
+
+section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-green);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--bright-green), var(--pale-green));
+    border-radius: 2px;
+}
+
+section h3 {
+    font-size: 1.3rem;
+    color: var(--light-green);
+    margin: 1.5rem 0 0.75rem;
+}
+
+/* ===== CONCEPT PAGE ===== */
+.concept-page main {
+    padding: 2rem;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.hero-image {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(45, 80, 22, 0.15);
+    object-fit: cover;
+    max-height: 400px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.step {
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.05) 0%, rgba(168, 198, 134, 0.05) 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--bright-green);
+    transition: var(--transition);
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(45, 80, 22, 0.1);
+}
+
+.step-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-yellow);
+    margin-bottom: 0.5rem;
+}
+
+.step-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.mission-item {
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.08) 0%, rgba(168, 198, 134, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.mission-item:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.12) 0%, rgba(168, 198, 134, 0.08) 100%);
+}
+
+.mission-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.mission-image {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.project-info {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(232, 213, 101, 0.1) 0%, rgba(168, 198, 134, 0.1) 100%);
+}
+
+.project-info a {
+    color: var(--light-green);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid var(--light-green);
+}
+
+.project-info a:hover {
+    color: var(--bright-green);
+    border-bottom-color: var(--bright-green);
+}
+
+/* ===== INSECT PAGE ===== */
+.celebration {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(232, 213, 101, 0.2) 0%, rgba(107, 163, 66, 0.1) 100%);
+    border: 2px solid var(--accent-yellow);
+    animation: slideInDown 0.6s ease;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.celebration-title {
+    font-size: 3rem;
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.celebration-subtitle {
+    font-size: 1.5rem;
+    color: var(--light-green);
+    margin-bottom: 2rem;
+}
+
+.insect-showcase {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.insect-image {
+    max-width: 400px;
+    max-height: 400px;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 30px rgba(45, 80, 22, 0.15));
+    animation: float 3s ease-in-out infinite;
+}
+
+.celebration-message {
+    background: rgba(45, 80, 22, 0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* ===== LOCATION INFO ===== */
+.location-info {
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.08) 0%, rgba(168, 198, 134, 0.05) 100%);
+}
+
+.location-card {
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px dashed var(--pale-green);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.location-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.location-badge {
+    background: linear-gradient(135deg, var(--bright-green), var(--light-green));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.location-date {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* ===== HABITAT EXPLORER ===== */
+.habitat-explorer {
+    background: linear-gradient(135deg, rgba(235, 245, 220, 0.4) 0%, rgba(200, 220, 170, 0.2) 100%);
+}
+
+.section-intro {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.habitat-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.habitat-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--pale-green);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.habitat-image {
+    position: relative;
+}
+
+.habitat-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.1);
+}
+
+.habitat-content h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.habitat-content p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.expandable-section {
+    margin: 1.5rem 0;
+}
+
+.expand-btn {
+    background: linear-gradient(135deg, var(--light-green), var(--bright-green));
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.expand-btn:hover {
+    background: linear-gradient(135deg, var(--bright-green), var(--light-green));
+    transform: translateX(5px);
+}
+
+.expand-content {
+    background: rgba(74, 124, 46, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    border-left: 4px solid var(--light-green);
+    overflow: hidden;
+    animation: expandDown 0.3s ease;
+}
+
+@keyframes expandDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+.expand-content ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.expand-content li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    color: var(--text-light);
+}
+
+.expand-content li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--bright-green);
+    font-weight: bold;
+}
+
+/* ===== PROGRESS TRACKER ===== */
+.progress-tracker {
+    background: linear-gradient(135deg, rgba(200, 220, 170, 0.15) 0%, rgba(168, 198, 134, 0.1) 100%);
+}
+
+.progress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.progress-item {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--pale-green);
+    transition: var(--transition);
+    position: relative;
+}
+
+.progress-item.found {
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.15) 0%, rgba(168, 198, 134, 0.1) 100%);
+    border-color: var(--bright-green);
+}
+
+.progress-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(45, 80, 22, 0.1);
+}
+
+.progress-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.progress-item h3 {
+    margin: 0.5rem 0;
+}
+
+.progress-status {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.progress-message {
+    text-align: center;
+    color: var(--text-light);
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+/* ===== CONTRIBUTION SECTION ===== */
+.contribution-section {
+    background: linear-gradient(135deg, rgba(232, 213, 101, 0.1) 0%, rgba(107, 163, 66, 0.08) 100%);
+}
+
+.contribution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.contribution-card {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--pale-green);
+    transition: var(--transition);
+}
+
+.contribution-card:hover {
+    box-shadow: 0 12px 30px rgba(45, 80, 22, 0.12);
+    transform: translateY(-5px);
+}
+
+.contribution-card h3 {
+    margin-top: 0;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    background: rgba(74, 124, 46, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.counter button {
+    background: var(--light-green);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: bold;
+}
+
+.counter button:hover {
+    background: var(--bright-green);
+    transform: scale(1.1);
+}
+
+.counter input {
+    width: 60px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 2px solid var(--light-green);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    background: white;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--bright-green), var(--light-green));
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    transition: var(--transition);
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, var(--light-green), var(--primary-green));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(45, 80, 22, 0.2);
+}
+
+.counter-note {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+.community-counter {
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.1), rgba(168, 198, 134, 0.08));
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.big-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--bright-green);
+    margin: 0;
+}
+
+.counter-label {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0.5rem 0 0;
+}
+
+.community-note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 1rem;
+}
+
+/* ===== PHOTO UPLOAD ===== */
+.photo-upload-section {
+    background: linear-gradient(135deg, rgba(168, 198, 134, 0.08) 0%, rgba(200, 220, 170, 0.05) 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px dashed var(--pale-green);
+    margin-top: 2rem;
+}
+
+.photo-upload-section h3 {
+    margin-top: 0;
+}
+
+.upload-area {
+    background: rgba(255, 255, 255, 0.6);
+    border: 3px dashed var(--light-green);
+    border-radius: 10px;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 1.5rem 0;
+}
+
+.upload-area:hover {
+    background: rgba(107, 163, 66, 0.05);
+    border-color: var(--bright-green);
+}
+
+.upload-area svg {
+    margin-bottom: 1rem;
+}
+
+.upload-area p {
+    margin: 0.5rem 0;
+}
+
+.upload-note {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+#photo-preview {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+#preview-img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(45, 80, 22, 0.1);
+    margin-bottom: 1rem;
+}
+
+/* ===== FEEDBACK SECTION ===== */
+.feedback-section {
+    background: linear-gradient(135deg, rgba(200, 220, 170, 0.1) 0%, rgba(168, 198, 134, 0.08) 100%);
+}
+
+.form-container {
+    margin-top: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: linear-gradient(135deg, rgba(45, 80, 22, 0.95) 0%, rgba(74, 124, 46, 0.93) 100%);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 3rem 2rem 1.5rem;
+    margin-top: 4rem;
+    border-top: 2px solid var(--bright-green);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--accent-yellow);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--accent-yellow);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* ===== MEEDOEN PAGE ===== */
+.how-to-start {
+    background: linear-gradient(135deg, rgba(235, 245, 220, 0.4) 0%, rgba(200, 220, 170, 0.2) 100%);
+}
+
+.step-card {
+    background: linear-gradient(135deg, rgba(107, 163, 66, 0.08) 0%, rgba(168, 198, 134, 0.05) 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--bright-green);
+    transition: var(--transition);
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(45, 80, 22, 0.1);
+}
+
+.contact-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(232, 213, 101, 0.1) 0%, rgba(168, 198, 134, 0.1) 100%);
+}
+
+.contact-section a {
+    color: var(--light-green);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid var(--light-green);
+}
+
+.contact-section a:hover {
+    color: var(--bright-green);
+    border-bottom-color: var(--bright-green);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    header nav ul {
+        gap: 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .hero-image {
+        max-height: 300px;
+    }
+
+    .habitat-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .celebration-title {
+        font-size: 2rem;
+    }
+
+    .insect-image {
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+    .big-number {
+        font-size: 2.5rem;
+    }
+
+    .counter input {
+        width: 50px;
+        font-size: 1.2rem;
+    }
+
+    body::before {
+        font-size: 40px;
+        top: 15%;
+        right: 2%;
+    }
+
+    body::after {
+        font-size: 35px;
+        bottom: 25%;
+        left: 2%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.5rem 0;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .celebration-title {
+        font-size: 1.5rem;
+    }
+
+    .celebration-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .progress-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contribution-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
