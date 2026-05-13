@@ -46,7 +46,7 @@ function setFoundDate() {
     const formattedDate = today.toLocaleDateString('nl-NL', options);
     const dateElement = document.getElementById('found-date');
     if (dateElement) {
-        dateElement.textContent = `Gevonden op: ${formattedDate}`;
+        dateElement.textContent = formattedDate;
     }
 }
 
@@ -84,17 +84,21 @@ function toggleSection(button) {
     document.querySelectorAll('.expand-content').forEach(section => {
         if (section !== content) {
             section.style.display = 'none';
-            section.previousElementSibling.textContent = section.previousElementSibling.textContent.replace('➖', '➕');
+            const btn = section.previousElementSibling.querySelector('span');
+            if (btn) {
+                btn.textContent = btn.textContent.replace('➖', '➕');
+            }
         }
     });
     
     // Toggle current section
+    const span = button.querySelector('span');
     if (isVisible) {
         content.style.display = 'none';
-        button.innerHTML = button.innerHTML.replace('➖', '➕');
+        if (span) span.textContent = span.textContent.replace('➖', '➕');
     } else {
         content.style.display = 'block';
-        button.innerHTML = button.innerHTML.replace('➕', '➖');
+        if (span) span.textContent = span.textContent.replace('➕', '➖');
     }
 }
 
@@ -151,7 +155,7 @@ function handlePhotoUpload(input) {
             const preview = document.getElementById('photo-preview');
             const previewImg = document.getElementById('preview-img');
             previewImg.src = e.target.result;
-            preview.style.display = 'block';
+            preview.style.display = 'flex';
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -163,7 +167,21 @@ function removePhoto() {
 }
 
 function submitPhoto() {
-    showNotification('📸 Dank je wel! Je foto is ingediend en zal binnenkort zichtbaar zijn.');
+    const previewImg = document.getElementById('preview-img').src;
+    
+    // Add to timeline
+    const timeline = document.getElementById('photo-timeline');
+    const newItem = document.createElement('div');
+    newItem.className = 'timeline-item';
+    newItem.innerHTML = `
+        <div class="timeline-image">
+            <img src="${previewImg}" alt="Gedeelde foto">
+        </div>
+        <p class="timeline-date">Door jou • Zojuist</p>
+    `;
+    timeline.appendChild(newItem);
+    
+    showNotification('📸 Dank je wel! Je foto is ingediend en zichtbaar in de tijdlijn.');
     removePhoto();
 }
 
@@ -184,6 +202,7 @@ function showNotification(message) {
         z-index: 1000;
         animation: slideInUp 0.4s ease;
         font-weight: 500;
+        font-family: 'Poppins', sans-serif;
     `;
     document.body.appendChild(notification);
     
@@ -217,12 +236,54 @@ function createConfetti() {
     }
 }
 
-// ===== ANIMATIONS (CSS WILL HANDLE MOST) =====
+// ===== FEEDBACK MODAL =====
 
-// Add CSS animations dynamically
-if (!document.querySelector('style[data-confetti-animations]')) {
+function initializeFeedbackModal() {
+    let scrolledEnough = false;
+    const feedbackModal = document.getElementById('feedbackModal');
+    const feedbackBookmark = document.getElementById('feedbackBookmark');
+    
+    // Show bookmark after scrolling 50% of page
+    window.addEventListener('scroll', () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        
+        if (scrollPercent > 50 && !scrolledEnough) {
+            scrolledEnough = true;
+            if (feedbackBookmark) {
+                feedbackBookmark.classList.add('visible');
+            }
+        }
+    });
+    
+    // Close modal when clicking outside
+    if (feedbackModal) {
+        window.addEventListener('click', (event) => {
+            if (event.target === feedbackModal) {
+                closeFeedbackModal();
+            }
+        });
+    }
+}
+
+function openFeedbackModal() {
+    const feedbackModal = document.getElementById('feedbackModal');
+    if (feedbackModal) {
+        feedbackModal.style.display = 'block';
+    }
+}
+
+function closeFeedbackModal() {
+    const feedbackModal = document.getElementById('feedbackModal');
+    if (feedbackModal) {
+        feedbackModal.style.display = 'none';
+    }
+}
+
+// ===== ANIMATIONS (CSS) =====
+
+if (!document.querySelector('style[data-animations]')) {
     const style = document.createElement('style');
-    style.setAttribute('data-confetti-animations', 'true');
+    style.setAttribute('data-animations', 'true');
     style.textContent = `
         @keyframes fall {
             0% {
