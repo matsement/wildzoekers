@@ -6,6 +6,8 @@ const INSECTS = {
     lieveheersbeestje: 'lieveheersbeestje'
 };
 
+const MAX_SUBMISSIONS = 5;
+
 function markInsectAsFound(insect) {
     const found = getFoundInsects();
     if (!found.includes(insect)) {
@@ -54,22 +56,30 @@ function updateProgressTrackers() {
     const found = getFoundInsects();
     
     // Update butterfly progress
-    const butterflyElement = document.getElementById('butterfly-progress');
-    if (butterflyElement) {
+    const butterflyCard = document.getElementById('butterfly-card');
+    if (butterflyCard) {
         if (found.includes(INSECTS.citroenvlinder)) {
-            butterflyElement.classList.add('found');
-            butterflyElement.querySelector('.progress-icon').textContent = '✓';
-            butterflyElement.querySelector('.progress-status').textContent = 'Gevonden!';
+            butterflyCard.classList.add('found-insect');
+            butterflyCard.querySelector('.card-medal').style.display = 'inline-block';
+            butterflyCard.querySelector('.card-silhouette').style.display = 'none';
+            butterflyCard.querySelector('.card-name').classList.remove('blurred');
+            butterflyCard.querySelector('.card-name').textContent = 'Citroenvlinder';
+            butterflyCard.querySelector('.card-status').textContent = '✓ GEVONDEN!';
+            butterflyCard.querySelector('.card-points').style.display = 'block';
         }
     }
     
     // Update ladybug progress
-    const ladybugElement = document.getElementById('ladybug-progress');
-    if (ladybugElement) {
+    const ladybugCard = document.getElementById('ladybug-card');
+    if (ladybugCard) {
         if (found.includes(INSECTS.lieveheersbeestje)) {
-            ladybugElement.classList.add('found');
-            ladybugElement.querySelector('.progress-icon').textContent = '✓';
-            ladybugElement.querySelector('.progress-status').textContent = 'Gevonden!';
+            ladybugCard.classList.add('found-insect');
+            ladybugCard.querySelector('.card-medal').style.display = 'inline-block';
+            ladybugCard.querySelector('.card-silhouette').style.display = 'none';
+            ladybugCard.querySelector('.card-name').classList.remove('blurred');
+            ladybugCard.querySelector('.card-name').textContent = 'Lieveheersbeestje';
+            ladybugCard.querySelector('.card-status').textContent = '✓ GEVONDEN!';
+            ladybugCard.querySelector('.card-points').style.display = 'block';
         }
     }
 }
@@ -104,6 +114,34 @@ function toggleSection(button) {
 
 // ===== COUNTER FUNCTIONALITY =====
 
+function getSubmissionCount() {
+    const count = localStorage.getItem('submission-count');
+    return count ? parseInt(count) : 0;
+}
+
+function incrementSubmissionCount() {
+    const current = getSubmissionCount();
+    if (current < MAX_SUBMISSIONS) {
+        localStorage.setItem('submission-count', (current + 1).toString());
+        return true;
+    }
+    return false;
+}
+
+function updateSubmissionCount() {
+    const count = getSubmissionCount();
+    const countDisplay = document.getElementById('submission-count');
+    const limitFill = document.getElementById('limit-fill');
+    const percentage = (count / MAX_SUBMISSIONS) * 100;
+    
+    if (countDisplay) {
+        countDisplay.textContent = count;
+    }
+    if (limitFill) {
+        limitFill.style.width = percentage + '%';
+    }
+}
+
 function initializeCounters() {
     // Load personal counter from localStorage
     const savedCount = localStorage.getItem('personal-beetle-count');
@@ -111,14 +149,15 @@ function initializeCounters() {
         document.getElementById('personal-counter').value = savedCount;
     }
     
-    // Load community total from localStorage (simulated)
+    // Load community total from localStorage
     const savedCommunity = localStorage.getItem('community-beetle-count');
     if (savedCommunity) {
         document.getElementById('community-total').textContent = savedCommunity;
     } else {
-        // Start with default if no data
         localStorage.setItem('community-beetle-count', '47');
     }
+    
+    updateSubmissionCount();
 }
 
 function increaseCounter(type) {
@@ -134,19 +173,46 @@ function decreaseCounter(type) {
 }
 
 function submitPersonalCount() {
-    const count = document.getElementById('personal-counter').value;
-    localStorage.setItem('personal-beetle-count', count);
+    const count = parseInt(document.getElementById('personal-counter').value);
     
-    // Simulate adding to community count
+    if (count === 0) {
+        showNotification('⚠️ Voer alstublieft een getal groter dan 0 in!');
+        return;
+    }
+    
+    if (!incrementSubmissionCount()) {
+        showNotification('❌ Je hebt je maximum van 5 waarnemingen bereikt voor vandaag!');
+        return;
+    }
+    
+    // Update community total
     const currentCommunity = parseInt(localStorage.getItem('community-beetle-count') || '47');
-    const newCommunity = currentCommunity + parseInt(count);
+    const newCommunity = currentCommunity + count;
     localStorage.setItem('community-beetle-count', newCommunity);
     document.getElementById('community-total').textContent = newCommunity;
     
-    showNotification('✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.');
+    // Reset personal counter
+    document.getElementById('personal-counter').value = '1';
+    
+    // Update submission count display
+    updateSubmissionCount();
+    
+    // Show success message
+    showSuccessMessage(`🎉 Geweldig! Je hebt ${count} kever${count > 1 ? 's' : ''} gemeld! Je helpt het onderzoek vooruit!`);
 }
 
-// ===== PHOTO UPLOAD =====
+function showSuccessMessage(message) {
+    const msgElement = document.getElementById('submission-message');
+    const msgText = document.getElementById('message-text');
+    msgText.textContent = message;
+    msgElement.style.display = 'block';
+    
+    setTimeout(() => {
+        msgElement.style.display = 'none';
+    }, 4000);
+}
+
+// ===== PHOTO UPLOAD & STORAGE =====
 
 function handlePhotoUpload(input) {
     if (input.files && input.files[0]) {
@@ -168,21 +234,76 @@ function removePhoto() {
 
 function submitPhoto() {
     const previewImg = document.getElementById('preview-img').src;
+    const userName = document.getElementById('user-name').value.trim();
+    
+    if (!userName) {
+        showNotification('⚠️ Voer alstublieft je voornaam in!');
+        return;
+    }
+    
+    if (!previewImg || previewImg === '') {
+        showNotification('⚠️ Upload alstublieft een foto!');
+        return;
+    }
+    
+    // Store photo in localStorage
+    const photos = JSON.parse(localStorage.getItem('user-photos') || '[]');
+    const newPhoto = {
+        id: Date.now(),
+        image: previewImg,
+        name: userName,
+        date: new Date().toLocaleDateString('nl-NL')
+    };
+    photos.push(newPhoto);
+    localStorage.setItem('user-photos', JSON.stringify(photos));
     
     // Add to timeline
+    addPhotoToTimeline(newPhoto);
+    
+    showNotification('📸 Dank je wel! Je waarneming is opgeslagen!');
+    removePhoto();
+    document.getElementById('user-name').value = '';
+}
+
+function addPhotoToTimeline(photo) {
     const timeline = document.getElementById('photo-timeline');
     const newItem = document.createElement('div');
     newItem.className = 'timeline-item';
     newItem.innerHTML = `
         <div class="timeline-image">
-            <img src="${previewImg}" alt="Gedeelde foto">
+            <img src="${photo.image}" alt="Foto van ${photo.name}">
         </div>
-        <p class="timeline-date">Door jou • Zojuist</p>
+        <div class="timeline-info">
+            <p class="timeline-user">🧑 ${photo.name}</p>
+            <p class="timeline-date">Zojuist</p>
+        </div>
     `;
-    timeline.appendChild(newItem);
+    timeline.insertBefore(newItem, timeline.firstChild);
+}
+
+function loadUserPhotos() {
+    const photos = JSON.parse(localStorage.getItem('user-photos') || '[]');
+    const timeline = document.getElementById('photo-timeline');
     
-    showNotification('📸 Dank je wel! Je foto is ingediend en zichtbaar in de tijdlijn.');
-    removePhoto();
+    // Add user photos to the beginning of timeline (after existing items)
+    photos.forEach(photo => {
+        const existingItem = timeline.querySelector(`img[src="${photo.image}"]`);
+        if (!existingItem) {
+            // Find position to insert (after sample observations but before adding new ones)
+            const newItem = document.createElement('div');
+            newItem.className = 'timeline-item';
+            newItem.innerHTML = `
+                <div class="timeline-image">
+                    <img src="${photo.image}" alt="Foto van ${photo.name}">
+                </div>
+                <div class="timeline-info">
+                    <p class="timeline-user">🧑 ${photo.name}</p>
+                    <p class="timeline-date">${photo.date}</p>
+                </div>
+            `;
+            timeline.appendChild(newItem);
+        }
+    });
 }
 
 // ===== NOTIFICATIONS =====
@@ -198,18 +319,19 @@ function showNotification(message) {
         color: white;
         padding: 1.5rem 2rem;
         border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(45, 80, 22, 0.2);
+        box-shadow: 0 8px 24px rgba(45, 80, 22, 0.3);
         z-index: 1000;
         animation: slideInUp 0.4s ease;
         font-weight: 500;
         font-family: 'Poppins', sans-serif;
+        max-width: 300px;
     `;
     document.body.appendChild(notification);
     
     setTimeout(() => {
         notification.style.animation = 'slideOutDown 0.4s ease';
         setTimeout(() => notification.remove(), 400);
-    }, 3500);
+    }, 3000);
 }
 
 // ===== CONFETTI ANIMATION =====
@@ -218,9 +340,9 @@ function createConfetti() {
     const confettiContainer = document.getElementById('confetti');
     if (!confettiContainer) return;
     
-    const confettiPieces = ['🎉', '🎊', '🌟', '✨', '🍃', '🌿', '🦗', '🐛'];
+    const confettiPieces = ['🎉', '🎊', '🌟', '✨', '🍃', '🌿', '🦗', '🐛', '🏆', '⭐'];
     
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
         const confetti = document.createElement('span');
         confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
         confetti.style.cssText = `
@@ -229,31 +351,41 @@ function createConfetti() {
             left: ${Math.random() * 100}%;
             top: -10px;
             opacity: 1;
-            animation: fall ${Math.random() * 3 + 2}s linear forwards;
+            animation: fall ${Math.random() * 3 + 2.5}s linear forwards;
             z-index: 10;
+            pointer-events: none;
         `;
         confettiContainer.appendChild(confetti);
     }
 }
 
-// ===== FEEDBACK MODAL =====
+// ===== FEEDBACK MODAL & BOOKMARK =====
 
 function initializeFeedbackModal() {
-    let scrolledEnough = false;
     const feedbackModal = document.getElementById('feedbackModal');
     const feedbackBookmark = document.getElementById('feedbackBookmark');
     
-    // Show bookmark after scrolling 50% of page
+    let timeScrolled = 0;
+    let scrollThreshold = 15000; // 15 seconds
+    let scrollPercentThreshold = 30; // 30% of page
+    
+    // Show bookmark after time OR scrolling
     window.addEventListener('scroll', () => {
         const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
         
-        if (scrollPercent > 50 && !scrolledEnough) {
-            scrolledEnough = true;
-            if (feedbackBookmark) {
-                feedbackBookmark.classList.add('visible');
-            }
+        if ((timeScrolled > scrollThreshold || scrollPercent > scrollPercentThreshold) && feedbackBookmark) {
+            feedbackBookmark.classList.add('visible');
         }
     });
+    
+    // Timer for scroll threshold
+    let scrollTimer = setInterval(() => {
+        timeScrolled += 1000;
+        if (timeScrolled > scrollThreshold && feedbackBookmark) {
+            feedbackBookmark.classList.add('visible');
+            clearInterval(scrollTimer);
+        }
+    }, 1000);
     
     // Close modal when clicking outside
     if (feedbackModal) {
@@ -269,6 +401,7 @@ function openFeedbackModal() {
     const feedbackModal = document.getElementById('feedbackModal');
     if (feedbackModal) {
         feedbackModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 }
 
@@ -276,6 +409,7 @@ function closeFeedbackModal() {
     const feedbackModal = document.getElementById('feedbackModal');
     if (feedbackModal) {
         feedbackModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 
@@ -322,7 +456,7 @@ if (!document.querySelector('style[data-animations]')) {
 // ===== INITIALIZATION =====
 
 function initializeBeetlePage() {
-    // All beetle page specific init functions are already called in kever.html
+    // All beetle page specific init functions
 }
 
 // Initialize on page load
