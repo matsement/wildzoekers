@@ -6,28 +6,31 @@ const INSECTS = {
     lieveheersbeestje: 'lieveheersbeestje'
 };
 
+const STORAGE_KEYS = {
+    foundInsects: 'foundInsects',
+    communityCount: 'community-beetle-count',
+    uploadedPhotos: 'wildzoekers-uploaded-photos'
+};
+
 function markInsectAsFound(insect) {
     const found = getFoundInsects();
+
     if (!found.includes(insect)) {
         found.push(insect);
-        localStorage.setItem('foundInsects', JSON.stringify(found));
+        localStorage.setItem(STORAGE_KEYS.foundInsects, JSON.stringify(found));
     }
 }
 
 function getFoundInsects() {
-    const found = localStorage.getItem('foundInsects');
+    const found = localStorage.getItem(STORAGE_KEYS.foundInsects);
     return found ? JSON.parse(found) : [];
-}
-
-function isInsectFound(insect) {
-    return getFoundInsects().includes(insect);
 }
 
 // ===== PAGE INITIALIZATION =====
 
 function initializePage() {
     const path = window.location.pathname;
-    
+
     if (path.includes('kever')) {
         markInsectAsFound(INSECTS.kever);
         initializeBeetlePage();
@@ -38,224 +41,318 @@ function initializePage() {
     }
 }
 
-// ===== BEETLE PAGE SPECIFIC =====
+function initializeBeetlePage() {
+    setFoundDate();
+    updateProgressTrackers();
+    initializeCounters();
+    initializeFeedbackModal();
+    createConfetti();
+    loadStoredPhotos();
+}
+
+// ===== FOUND DATE =====
 
 function setFoundDate() {
     const today = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
     const formattedDate = today.toLocaleDateString('nl-NL', options);
+
     const dateElement = document.getElementById('found-date');
+
     if (dateElement) {
         dateElement.textContent = formattedDate;
     }
 }
 
-function updateProgressTrackers() {
-    const found = getFoundInsects();
-    
-    // Update butterfly progress
-    const butterflyElement = document.getElementById('butterfly-progress');
-    if (butterflyElement) {
-        if (found.includes(INSECTS.citroenvlinder)) {
-            butterflyElement.classList.add('found');
-            butterflyElement.querySelector('.progress-icon').textContent = '✓';
-            butterflyElement.querySelector('.progress-status').textContent = 'Gevonden!';
-        }
-    }
-    
-    // Update ladybug progress
-    const ladybugElement = document.getElementById('ladybug-progress');
-    if (ladybugElement) {
-        if (found.includes(INSECTS.lieveheersbeestje)) {
-            ladybugElement.classList.add('found');
-            ladybugElement.querySelector('.progress-icon').textContent = '✓';
-            ladybugElement.querySelector('.progress-status').textContent = 'Gevonden!';
-        }
-    }
+// ===== INTERACTIVE INFO CARDS =====
+
+function toggleCard(card) {
+    card.classList.toggle('flipped');
 }
 
-// ===== EXPANDABLE SECTIONS =====
+// ===== PROGRESS TRACKER =====
 
-function toggleSection(button) {
-    const content = button.nextElementSibling;
-    const isVisible = content.style.display !== 'none';
-    
-    // Close all other sections
-    document.querySelectorAll('.expand-content').forEach(section => {
-        if (section !== content) {
-            section.style.display = 'none';
-            const btn = section.previousElementSibling.querySelector('span');
-            if (btn) {
-                btn.textContent = btn.textContent.replace('➖', '➕');
-            }
-        }
-    });
-    
-    // Toggle current section
-    const span = button.querySelector('span');
-    if (isVisible) {
-        content.style.display = 'none';
-        if (span) span.textContent = span.textContent.replace('➖', '➕');
+function updateProgressTrackers() {
+    const found = getFoundInsects();
+
+    updateSingleTracker({
+        insect: INSECTS.citroenvlinder,
+        elementId: 'butterfly-progress',
+        imgId: 'butterfly-img',
+        wrapId: 'butterfly-photo-wrap',
+        nameId: 'butterfly-name',
+        statusId: 'butterfly-status'
+    }, found);
+
+    updateSingleTracker({
+        insect: INSECTS.lieveheersbeestje,
+        elementId: 'ladybug-progress',
+        imgId: 'ladybug-img',
+        wrapId: 'ladybug-photo-wrap',
+        nameId: 'ladybug-name',
+        statusId: 'ladybug-status'
+    }, found);
+}
+
+function updateSingleTracker(config, foundList) {
+    const isFound = foundList.includes(config.insect);
+
+    const progressElement = document.getElementById(config.elementId);
+    const image = document.getElementById(config.imgId);
+    const wrap = document.getElementById(config.wrapId);
+    const name = document.getElementById(config.nameId);
+    const status = document.getElementById(config.statusId);
+
+    if (!progressElement || !image || !wrap || !name || !status) return;
+
+    if (isFound) {
+        progressElement.classList.add('found');
+
+        image.classList.remove('silhouette');
+
+        wrap.classList.remove('not-found-wrap');
+        wrap.classList.add('found-wrap');
+
+        name.classList.remove('blurred-name');
+
+        status.textContent = '✓ Gevonden!';
     } else {
-        content.style.display = 'block';
-        if (span) span.textContent = span.textContent.replace('➕', '➖');
+        progressElement.classList.remove('found');
+
+        image.classList.add('silhouette');
+
+        wrap.classList.add('not-found-wrap');
+        wrap.classList.remove('found-wrap');
+
+        name.classList.add('blurred-name');
+
+        status.textContent = 'Nog te vinden';
     }
 }
 
 // ===== COUNTER FUNCTIONALITY =====
 
 function initializeCounters() {
-    // Load personal counter from localStorage
-    const savedCount = localStorage.getItem('personal-beetle-count');
-    if (savedCount) {
-        document.getElementById('personal-counter').value = savedCount;
+    const personalCounter = document.getElementById('personal-counter');
+    const communityTotal = document.getElementById('community-total');
+
+    if (personalCounter) {
+        personalCounter.value = 1;
     }
-    
-    // Load community total from localStorage (simulated)
-    const savedCommunity = localStorage.getItem('community-beetle-count');
-    if (savedCommunity) {
-        document.getElementById('community-total').textContent = savedCommunity;
-    } else {
-        // Start with default if no data
-        localStorage.setItem('community-beetle-count', '47');
+
+    let communityCount = localStorage.getItem(STORAGE_KEYS.communityCount);
+
+    if (!communityCount) {
+        communityCount = '47';
+        localStorage.setItem(STORAGE_KEYS.communityCount, communityCount);
+    }
+
+    if (communityTotal) {
+        communityTotal.textContent = communityCount;
     }
 }
 
 function increaseCounter(type) {
     const input = document.getElementById(type + '-counter');
-    input.value = parseInt(input.value) + 1;
+
+    if (!input) return;
+
+    let currentValue = parseInt(input.value);
+
+    if (currentValue < 5) {
+        input.value = currentValue + 1;
+    } else {
+        showNotification('🐞 Je kunt maximaal 5 kevers tegelijk doorgeven.');
+    }
 }
 
 function decreaseCounter(type) {
     const input = document.getElementById(type + '-counter');
-    if (parseInt(input.value) > 0) {
-        input.value = parseInt(input.value) - 1;
+
+    if (!input) return;
+
+    let currentValue = parseInt(input.value);
+
+    if (currentValue > 0) {
+        input.value = currentValue - 1;
     }
 }
 
 function submitPersonalCount() {
-    const count = document.getElementById('personal-counter').value;
-    localStorage.setItem('personal-beetle-count', count);
-    
-    // Simulate adding to community count
-    const currentCommunity = parseInt(localStorage.getItem('community-beetle-count') || '47');
-    const newCommunity = currentCommunity + parseInt(count);
-    localStorage.setItem('community-beetle-count', newCommunity);
-    document.getElementById('community-total').textContent = newCommunity;
-    
-    showNotification('✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.');
+    const input = document.getElementById('personal-counter');
+    const successMessage = document.getElementById('submit-success');
+
+    if (!input) return;
+
+    const count = parseInt(input.value);
+
+    if (count <= 0) {
+        showNotification('🪲 Voeg eerst minimaal 1 kever toe.');
+        return;
+    }
+
+    const currentCommunity = parseInt(localStorage.getItem(STORAGE_KEYS.communityCount) || '47');
+
+    const newCommunity = currentCommunity + count;
+
+    localStorage.setItem(STORAGE_KEYS.communityCount, newCommunity);
+
+    const communityElement = document.getElementById('community-total');
+
+    if (communityElement) {
+        communityElement.textContent = newCommunity;
+    }
+
+    // reset teller na verzenden
+    input.value = 0;
+
+    if (successMessage) {
+        successMessage.style.display = 'block';
+
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 4000);
+    }
+
+    createMiniConfetti();
 }
 
 // ===== PHOTO UPLOAD =====
 
 function handlePhotoUpload(input) {
     if (input.files && input.files[0]) {
+        const file = input.files[0];
+
         const reader = new FileReader();
-        reader.onload = function(e) {
+
+        reader.onload = function (e) {
             const preview = document.getElementById('photo-preview');
             const previewImg = document.getElementById('preview-img');
+
             previewImg.src = e.target.result;
             preview.style.display = 'flex';
         };
-        reader.readAsDataURL(input.files[0]);
+
+        reader.readAsDataURL(file);
     }
 }
 
 function removePhoto() {
-    document.getElementById('photo-input').value = '';
-    document.getElementById('photo-preview').style.display = 'none';
+    const input = document.getElementById('photo-input');
+    const preview = document.getElementById('photo-preview');
+
+    if (input) {
+        input.value = '';
+    }
+
+    if (preview) {
+        preview.style.display = 'none';
+    }
 }
 
 function submitPhoto() {
-    const previewImg = document.getElementById('preview-img').src;
-    
-    // Add to timeline
-    const timeline = document.getElementById('photo-timeline');
-    const newItem = document.createElement('div');
-    newItem.className = 'timeline-item';
-    newItem.innerHTML = `
-        <div class="timeline-image">
-            <img src="${previewImg}" alt="Gedeelde foto">
-        </div>
-        <p class="timeline-date">Door jou • Zojuist</p>
-    `;
-    timeline.appendChild(newItem);
-    
-    showNotification('📸 Dank je wel! Je foto is ingediend en zichtbaar in de tijdlijn.');
+    const previewImg = document.getElementById('preview-img');
+    const uploaderNameInput = document.getElementById('uploader-name');
+
+    if (!previewImg || !previewImg.src) {
+        showNotification('📸 Upload eerst een foto.');
+        return;
+    }
+
+    let uploaderName = uploaderNameInput.value.trim();
+
+    if (!uploaderName) {
+        uploaderName = 'Anoniem';
+    }
+
+    const photoData = {
+        image: previewImg.src,
+        name: uploaderName,
+        timestamp: new Date().toISOString()
+    };
+
+    savePhotoToStorage(photoData);
+    addPhotoToTimeline(photoData, true);
+
+    showNotification('🌿 Jouw keverfoto staat nu tussen de waarnemingen!');
+
+    uploaderNameInput.value = '';
+
     removePhoto();
 }
 
-// ===== NOTIFICATIONS =====
+function savePhotoToStorage(photoData) {
+    const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
 
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #4a7c2e, #6fa342);
-        color: white;
-        padding: 1.5rem 2rem;
-        border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(45, 80, 22, 0.2);
-        z-index: 1000;
-        animation: slideInUp 0.4s ease;
-        font-weight: 500;
-        font-family: 'Poppins', sans-serif;
-    `;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOutDown 0.4s ease';
-        setTimeout(() => notification.remove(), 400);
-    }, 3500);
+    storedPhotos.unshift(photoData);
+
+    localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
 }
 
-// ===== CONFETTI ANIMATION =====
+function loadStoredPhotos() {
+    const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
 
-function createConfetti() {
-    const confettiContainer = document.getElementById('confetti');
-    if (!confettiContainer) return;
-    
-    const confettiPieces = ['🎉', '🎊', '🌟', '✨', '🍃', '🌿', '🦗', '🐛'];
-    
-    for (let i = 0; i < 30; i++) {
-        const confetti = document.createElement('span');
-        confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
-        confetti.style.cssText = `
-            position: absolute;
-            font-size: ${Math.random() * 1.5 + 1}rem;
-            left: ${Math.random() * 100}%;
-            top: -10px;
-            opacity: 1;
-            animation: fall ${Math.random() * 3 + 2}s linear forwards;
-            z-index: 10;
-        `;
-        confettiContainer.appendChild(confetti);
+    storedPhotos.reverse().forEach(photo => {
+        addPhotoToTimeline(photo, false);
+    });
+}
+
+function addPhotoToTimeline(photoData, prepend = false) {
+    const timeline = document.getElementById('photo-timeline');
+
+    if (!timeline) return;
+
+    const item = document.createElement('div');
+    item.className = 'timeline-item';
+
+    item.innerHTML = `
+        <div class="timeline-image">
+            <img src="${photoData.image}" alt="Kever waarneming" class="timeline-photo">
+        </div>
+        <p class="timeline-date">Door <strong>${photoData.name}</strong> • Zojuist</p>
+    `;
+
+    if (prepend) {
+        timeline.prepend(item);
+    } else {
+        timeline.appendChild(item);
     }
 }
 
 // ===== FEEDBACK MODAL =====
 
 function initializeFeedbackModal() {
-    let scrolledEnough = false;
-    const feedbackModal = document.getElementById('feedbackModal');
     const feedbackBookmark = document.getElementById('feedbackBookmark');
-    
-    // Show bookmark after scrolling 50% of page
+    const feedbackModal = document.getElementById('feedbackModal');
+
+    if (!feedbackBookmark) return;
+
+    // knop altijd zichtbaar
+    feedbackBookmark.style.display = 'block';
+
+    // na 8 seconden uitklappen
+    setTimeout(() => {
+        feedbackBookmark.classList.add('expanded');
+    }, 8000);
+
+    // of na 40% scroll
     window.addEventListener('scroll', () => {
-        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        
-        if (scrollPercent > 50 && !scrolledEnough) {
-            scrolledEnough = true;
-            if (feedbackBookmark) {
-                feedbackBookmark.classList.add('visible');
-            }
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+        const scrollPercent = (window.scrollY / scrollHeight) * 100;
+
+        if (scrollPercent > 40) {
+            feedbackBookmark.classList.add('expanded');
         }
     });
-    
-    // Close modal when clicking outside
+
     if (feedbackModal) {
         window.addEventListener('click', (event) => {
             if (event.target === feedbackModal) {
@@ -267,37 +364,131 @@ function initializeFeedbackModal() {
 
 function openFeedbackModal() {
     const feedbackModal = document.getElementById('feedbackModal');
+
     if (feedbackModal) {
         feedbackModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 }
 
 function closeFeedbackModal() {
     const feedbackModal = document.getElementById('feedbackModal');
+
     if (feedbackModal) {
         feedbackModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 
-// ===== ANIMATIONS (CSS) =====
+// ===== NOTIFICATIONS =====
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+
+    notification.textContent = message;
+
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #4a7c2e, #6fa342);
+        color: white;
+        padding: 1rem 1.4rem;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(45, 80, 22, 0.2);
+        z-index: 1000;
+        animation: slideInUp 0.4s ease;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        max-width: 320px;
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'slideOutDown 0.4s ease';
+
+        setTimeout(() => {
+            notification.remove();
+        }, 400);
+    }, 3200);
+}
+
+// ===== CONFETTI =====
+
+function createConfetti() {
+    const confettiContainer = document.getElementById('confetti');
+
+    if (!confettiContainer) return;
+
+    const confettiPieces = ['🍃', '🌿', '✨', '🐞', '🪲'];
+
+    for (let i = 0; i < 24; i++) {
+        const confetti = document.createElement('span');
+
+        confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+
+        confetti.style.cssText = `
+            position: absolute;
+            font-size: ${Math.random() * 1.2 + 1}rem;
+            left: ${Math.random() * 100}%;
+            top: -10px;
+            animation: fall ${Math.random() * 3 + 2}s linear forwards;
+            z-index: 10;
+        `;
+
+        confettiContainer.appendChild(confetti);
+    }
+}
+
+function createMiniConfetti() {
+    const emojis = ['🪲', '🍃', '✨'];
+
+    for (let i = 0; i < 12; i++) {
+        const piece = document.createElement('div');
+
+        piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+        piece.style.cssText = `
+            position: fixed;
+            left: ${50 + (Math.random() * 20 - 10)}%;
+            top: 55%;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 9999;
+            animation: burst 1.8s ease forwards;
+        `;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 1800);
+    }
+}
+
+// ===== EXTRA ANIMATIONS =====
 
 if (!document.querySelector('style[data-animations]')) {
     const style = document.createElement('style');
+
     style.setAttribute('data-animations', 'true');
+
     style.textContent = `
         @keyframes fall {
             0% {
-                transform: translateY(0) rotateZ(0deg);
+                transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotateZ(360deg);
+                transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
         }
+
         @keyframes slideInUp {
             from {
-                transform: translateY(100px);
+                transform: translateY(80px);
                 opacity: 0;
             }
             to {
@@ -305,27 +496,35 @@ if (!document.querySelector('style[data-animations]')) {
                 opacity: 1;
             }
         }
+
         @keyframes slideOutDown {
             from {
                 transform: translateY(0);
                 opacity: 1;
             }
             to {
-                transform: translateY(100px);
+                transform: translateY(80px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes burst {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120px) rotate(180deg) scale(0.6);
                 opacity: 0;
             }
         }
     `;
+
     document.head.appendChild(style);
 }
 
 // ===== INITIALIZATION =====
 
-function initializeBeetlePage() {
-    // All beetle page specific init functions are already called in kever.html
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     initializePage();
 });
