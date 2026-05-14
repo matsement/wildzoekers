@@ -10,16 +10,38 @@
 <body class="insect-page">
     <div class="forest-background"></div>
     
+    <!-- Floating leaves with transparent backgrounds -->
+    <div class="leaves-overlay">
+        <svg class="leaf leaf-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 Q70 30 75 50 Q70 70 50 90 Q30 70 25 50 Q30 30 50 10" fill="#4a7c2e" opacity="0.6"/>
+            <path d="M50 30 Q60 45 50 60 Q40 45 50 30" fill="#2d5016" opacity="0.4"/>
+        </svg>
+        <svg class="leaf leaf-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 Q70 30 75 50 Q70 70 50 90 Q30 70 25 50 Q30 30 50 10" fill="#6fa342" opacity="0.5"/>
+            <path d="M50 35 Q58 48 50 60 Q42 48 50 35" fill="#4a7c2e" opacity="0.3"/>
+        </svg>
+        <svg class="leaf leaf-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 Q70 30 75 50 Q70 70 50 90 Q30 70 25 50 Q30 30 50 10" fill="#a8c686" opacity="0.4"/>
+            <path d="M50 32 Q62 46 50 62 Q38 46 50 32" fill="#6fa342" opacity="0.3"/>
+        </svg>
+        <svg class="leaf leaf-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 Q70 30 75 50 Q70 70 50 90 Q30 70 25 50 Q30 30 50 10" fill="#4a7c2e" opacity="0.55"/>
+            <path d="M50 28 Q65 45 50 65 Q35 45 50 28" fill="#2d5016" opacity="0.35"/>
+        </svg>
+        <svg class="leaf leaf-5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 Q70 30 75 50 Q70 70 50 90 Q30 70 25 50 Q30 30 50 10" fill="#6fa342" opacity="0.48"/>
+            <path d="M50 33 Q60 47 50 61 Q40 47 50 33" fill="#4a7c2e" opacity="0.32"/>
+        </svg>
+    </div>
+    
     <header>
         <a href="index.html" class="header-logo">
             <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="display: none;">
                     <circle cx="20" cy="20" r="18" stroke="#2d5016" stroke-width="2"/>
                     <path d="M20 5 Q25 12 20 18 Q15 12 20 5" fill="#4a7c2e"/>
-                    <path d="M10 20 Q15 15 18 20 Q15 25 10 20" fill="#2d5016" opacity="0.7"/>
-                    <path d="M30 20 Q25 15 22 20 Q25 25 30 20" fill="#6fa342" opacity="0.8"/>
                 </svg>
-                <h1>Wildzoekers</h1>
+                <h1>wildzoekers</h1>
             </div>
         </a>
     </header>
@@ -39,11 +61,10 @@
                 
                 <div class="insect-showcase">
                     <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&q=80&fmt=png" alt="Kever" class="insect-image">
-                    <p class="image-credit">Bron: Unsplash - Egor Kamelev</p>
                 </div>
                 
                 <div class="discovery-message">
-                    <p>Wat een fantastische ontdekking! Deze kever is een belangrijk onderdeel van het ecosysteem hier. Door goed op te letten, heb je een van de vele verborgen schatten van onze buurt gevonden.</p>
+                    <p>Wat een fantastische ontdekking! Deze kever is een belangrijk onderdeel van het ecosysteem hier. Door goed op te letten, heb je een van de vele verborgen schatten van onze buurt gevonden!</p>
                 </div>
             </div>
         </section>
@@ -51,102 +72,85 @@
         <!-- HABITAT EXPLORER -->
         <section class="habitat-explorer">
             <h2>Waar leven kevers het liefst?</h2>
-            <p class="section-intro">Kevers zijn ongelooflijk divers en voelen zich thuis op bijna elke plek. Maar ze houden vooral van één ding: dood hout.</p>
+            <p class="section-intro">Kevers zijn ongelooflijk divers. Maar ze houden vooral van één ding: dood hout in de stad!</p>
             
             <div class="habitat-showcase">
                 <div class="habitat-card">
                     <div class="habitat-image">
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80" alt="Dood hout" class="habitat-photo">
-                        <p class="image-credit">Bron: Unsplash - Erol Ahmed</p>
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80" alt="Dood hout in de stad" class="habitat-photo">
                     </div>
                     <div class="habitat-content">
-                        <h3>Dood Hout: Het thuisbasis van kevers</h3>
-                        <p>Dood hout (van omgevallen bomen, takken en oude stammen) is een echte luxehotel voor kevers. Het is niet alleen een thuis, maar ook een voedingsbron en een plaats om te groeien.</p>
+                        <h3>Dood hout: Thuis voor kevers</h3>
+                        <p>Dood hout is een echte luxehotel voor kevers. Het biedt voedsel, schuilplaats en een plek om te nestelen.</p>
                         
-                        <div class="expandable-section">
+                        <div class="expandable-buttons-group">
                             <button class="expand-btn" onclick="toggleSection(this)">
-                                <span>➕ Waarom houden kevers van dood hout?</span>
+                                <span>➕ Waarom?</span>
                             </button>
-                            <div class="expand-content" style="display: none;">
-                                <div class="content-grid">
-                                    <div class="content-item">
-                                        <div class="item-icon">🍽️</div>
-                                        <h4>Voedsel</h4>
-                                        <p>Veel kevers eten wood-decay fungi en het hout zelf. Een echte buffet!</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="item-icon">🏠</div>
-                                        <h4>Schuilplaats</h4>
-                                        <p>De kronkels en gaten bieden perfecte beschutting tegen regen en predators.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="item-icon">👶</div>
-                                        <h4>Nesten</h4>
-                                        <p>Ideaal voor het leggen van eitjes en het groot brengen van larven.</p>
-                                    </div>
-                                    <div class="content-item">
-                                        <div class="item-icon">🌍</div>
-                                        <h4>Microhabitat</h4>
-                                        <p>Kleine mosjes en schimmels groeien erop - voedsel voor anderen.</p>
-                                    </div>
+                            <button class="expand-btn" onclick="toggleSection(this)">
+                                <span>➕ Biodiversiteit</span>
+                            </button>
+                            <button class="expand-btn" onclick="toggleSection(this)">
+                                <span>➕ Behoud</span>
+                            </button>
+                        </div>
+                        
+                        <div class="expand-content" style="display: none;">
+                            <div class="content-grid">
+                                <div class="content-item">
+                                    <div class="item-icon">🍽️</div>
+                                    <h4>Voedsel</h4>
+                                    <p>Schimmels & hout voor kevers</p>
+                                </div>
+                                <div class="content-item">
+                                    <div class="item-icon">🏠</div>
+                                    <h4>Schuilplaats</h4>
+                                    <p>Bescherming tegen weer</p>
+                                </div>
+                                <div class="content-item">
+                                    <div class="item-icon">👶</div>
+                                    <h4>Nesten</h4>
+                                    <p>Ideaal voor eitjes</p>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="expandable-section">
-                            <button class="expand-btn" onclick="toggleSection(this)">
-                                <span>➕ Waarom is dood hout belangrijk voor biodiversiteit?</span>
-                            </button>
-                            <div class="expand-content" style="display: none;">
-                                <p>Dood hout ondersteunt meer soorten dan levend hout! Het is een <strong>supermarkt</strong> voor:</p>
-                                <div class="content-list">
-                                    <div class="list-item">
-                                        <div class="list-icon">🐛</div>
-                                        <div><strong>Duizenden insectensoorten</strong> - Kevers, vlinders, mieren en meer</div>
-                                    </div>
-                                    <div class="list-item">
-                                        <div class="list-icon">🍄</div>
-                                        <div><strong>Schimmels en bacteriën</strong> - Zij brengen nutriënten terug naar de bodem</div>
-                                    </div>
-                                    <div class="list-item">
-                                        <div class="list-icon">🦅</div>
-                                        <div><strong>Vogels en zoogdieren</strong> - Die zich voeden met die insecten</div>
-                                    </div>
-                                    <div class="list-item">
-                                        <div class="list-icon">🌱</div>
-                                        <div><strong>Planten</strong> - Die erin groeien en voeding uit krijgen</div>
-                                    </div>
+                        <div class="expand-content" style="display: none;">
+                            <p><strong>Dood hout ondersteunt meer soorten dan levend hout!</strong></p>
+                            <div class="content-list">
+                                <div class="list-item">
+                                    <div class="list-icon">🐛</div>
+                                    <div><strong>Duizenden insecten</strong> - Kevers, vlinders, mieren</div>
                                 </div>
-                                <p class="highlight">In een gezond bos kan tot <strong>25% van alle diersoorten</strong> van dood hout afhangen!</p>
+                                <div class="list-item">
+                                    <div class="list-icon">🍄</div>
+                                    <div><strong>Schimmels</strong> - Brengen nutriënten terug</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="list-icon">🦅</div>
+                                    <div><strong>Vogels</strong> - Voeden zich met insecten</div>
+                                </div>
                             </div>
+                            <p class="highlight">Tot <strong>25% van alle diersoorten</strong> hangt af van dood hout!</p>
                         </div>
                         
-                        <div class="expandable-section">
-                            <button class="expand-btn" onclick="toggleSection(this)">
-                                <span>➕ Waarom moeten we dood hout NIET opruimen?</span>
-                            </button>
-                            <div class="expand-content" style="display: none;">
-                                <p>Veel mensen willen "nette" bossen en verwijderen dood hout. Dit is schadelijk!</p>
-                                <div class="warning-box">
-                                    <div class="warning-item">
-                                        <div class="warn-icon">❌</div>
-                                        <strong>Verlies van thuis:</strong> Duizenden soorten verliezen hun habitat
-                                    </div>
-                                    <div class="warning-item">
-                                        <div class="warn-icon">❌</div>
-                                        <strong>Minder nutriënten:</strong> Het hout kan niet terugkeren naar de bodem
-                                    </div>
-                                    <div class="warning-item">
-                                        <div class="warn-icon">❌</div>
-                                        <strong>Armere biodiversiteit:</strong> Bossen zonder dood hout hebben veel minder leven
-                                    </div>
-                                    <div class="warning-item">
-                                        <div class="warn-icon">❌</div>
-                                        <strong>Zwakker ecosysteem:</strong> Zonder ontbinding kunnen bossen niet gezond groeien
-                                    </div>
+                        <div class="expand-content" style="display: none;">
+                            <p>Veel mensen ruimen dood hout op. Dit is schadelijk!</p>
+                            <div class="warning-box">
+                                <div class="warning-item">
+                                    <div class="warn-icon">❌</div>
+                                    <strong>Habitat verlies</strong>
                                 </div>
-                                <p class="callout">Door dood hout met rust te laten, laten we de natuur doen wat ze het best kan: zichzelf herstellen en versterken.</p>
+                                <div class="warning-item">
+                                    <div class="warn-icon">❌</div>
+                                    <strong>Minder biodiversiteit</strong>
+                                </div>
+                                <div class="warning-item">
+                                    <div class="warn-icon">❌</div>
+                                    <strong>Zwakker ecosysteem</strong>
+                                </div>
                             </div>
+                            <p class="callout">Door dood hout met rust te laten, laten we de natuur zichzelf herstellen! 🌿</p>
                         </div>
                     </div>
                 </div>
@@ -157,56 +161,95 @@
         <section class="progress-tracker">
             <h2>Hoeveel heb je gevonden?</h2>
             <div class="progress-grid">
-                <div class="progress-item found">
-                    <div class="progress-icon">✓</div>
-                    <h3>Kever</h3>
-                    <p class="progress-status">Gevonden!</p>
+                <div class="progress-card found-insect">
+                    <div class="card-medal">⭐</div>
+                    <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=150&q=80" alt="Kever" class="card-image">
+                    <h3 class="card-name">Kever</h3>
+                    <p class="card-status">✓ GEVONDEN!</p>
+                    <p class="card-points">+25 punten</p>
                 </div>
-                <div class="progress-item" id="butterfly-progress">
-                    <div class="progress-icon">?</div>
-                    <h3>Citroenvlinder</h3>
-                    <p class="progress-status">Nog te vinden</p>
+                
+                <div class="progress-card" id="butterfly-card">
+                    <div class="card-medal" style="display: none;">⭐</div>
+                    <svg class="card-silhouette" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="40" rx="15" ry="25" fill="#333" opacity="0.4"/>
+                        <ellipse cx="35" cy="30" rx="12" ry="18" fill="#333" opacity="0.4"/>
+                        <ellipse cx="65" cy="30" rx="12" ry="18" fill="#333" opacity="0.4"/>
+                        <ellipse cx="30" cy="55" rx="10" ry="15" fill="#333" opacity="0.4"/>
+                        <ellipse cx="70" cy="55" rx="10" ry="15" fill="#333" opacity="0.4"/>
+                    </svg>
+                    <h3 class="card-name blurred">Citroenvlinder</h3>
+                    <p class="card-status">Nog te vinden</p>
+                    <p class="card-points" style="display: none;">+20 punten</p>
                 </div>
-                <div class="progress-item" id="ladybug-progress">
-                    <div class="progress-icon">?</div>
-                    <h3>Lieveheersbeestje</h3>
-                    <p class="progress-status">Nog te vinden</p>
+                
+                <div class="progress-card" id="ladybug-card">
+                    <div class="card-medal" style="display: none;">⭐</div>
+                    <svg class="card-silhouette" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="50" rx="30" ry="35" fill="#333" opacity="0.4"/>
+                        <circle cx="50" cy="35" r="12" fill="#333" opacity="0.4"/>
+                        <circle cx="35" cy="55" r="5" fill="#333" opacity="0.4"/>
+                        <circle cx="50" cy="65" r="5" fill="#333" opacity="0.4"/>
+                        <circle cx="65" cy="55" r="5" fill="#333" opacity="0.4"/>
+                    </svg>
+                    <h3 class="card-name blurred">Lieveheersbeestje</h3>
+                    <p class="card-status">Nog te vinden</p>
+                    <p class="card-points" style="display: none;">+20 punten</p>
                 </div>
             </div>
-            <p class="progress-message">Scan de QR-code op het bord in Spoorpark om de andere dieren te vinden!</p>
+            <p class="progress-message">🎯 Scan de QR-code in Spoorpark om de andere dieren te vinden!</p>
         </section>
 
         <!-- COUNTING & CONTRIBUTION -->
         <section class="contribution-section">
             <h2>Help met onderzoek</h2>
-            <p class="section-intro">Jij bent een wetenschapper! Help ons meer over deze kevers leren door je waarnemingen te delen.</p>
+            <p class="section-intro">Jij bent een wetenschapper! Help ons door je waarnemingen te delen.</p>
             
             <div class="fauna-counter-card">
                 <div class="fauna-header">
-                    <h3>Kevertellingen</h3>
-                    <p>Werk samen met andere Wildzoekers aan ons onderzoek</p>
+                    <svg class="fauna-header-image" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="45" rx="25" ry="30" fill="#4a7c2e"/>
+                        <circle cx="50" cy="30" r="15" fill="#4a7c2e"/>
+                        <circle cx="38" cy="50" r="6" fill="#2d5016"/>
+                        <circle cx="62" cy="50" r="6" fill="#2d5016"/>
+                        <path d="M45 70 L40 85 M55 70 L60 85 M50 70 L50 85" stroke="#4a7c2e" stroke-width="2"/>
+                    </svg>
+                    <div>
+                        <h3>Kevertellingen</h3>
+                        <p>Werk samen met andere Wildzoekers aan ons onderzoek</p>
+                    </div>
                 </div>
                 
                 <div class="counter-grid">
                     <div class="counter-box">
-                        <p class="counter-label">Jouw waarnemingen</p>
+                        <p class="counter-label">🔍 Jouw waarnemingen</p>
                         <div class="counter">
                             <button onclick="decreaseCounter('personal')">−</button>
                             <input type="number" id="personal-counter" value="1" min="0" readonly>
                             <button onclick="increaseCounter('personal')">+</button>
                         </div>
+                        <p class="submission-limit">Versuurd: <span id="submission-count">0</span>/5</p>
+                        <div class="limit-bar">
+                            <div id="limit-fill"></div>
+                        </div>
                         <button class="submit-btn" onclick="submitPersonalCount()">Verstuur mijn waarneming</button>
-                        <p class="counter-note">Dit helpt wetenschappers de populatie beter begrijpen!</p>
+                        <p class="counter-note">Dit helpt het onderzoek! 🔬</p>
                     </div>
                     
                     <div class="counter-box">
-                        <p class="counter-label">Gemeenschapstotaal</p>
+                        <p class="counter-label">👥 Gemeenschapstotaal</p>
                         <div class="community-display">
+                            <p>Totaal zijn er</p>
                             <p class="big-number" id="community-total">47</p>
-                            <p>kevers gezien</p>
+                            <p><strong>kevers gezien</strong></p>
+                            <p style="font-weight: 700; color: var(--light-green); margin-top: 0.5rem;">in het Spoorpark! 🌿</p>
                         </div>
-                        <p class="community-note">Door samen te werken krijgen we een volledig beeld van het dierenleven in onze stad!</p>
+                        <p class="community-note">Door samen te werken krijgen we een volledig beeld!</p>
                     </div>
+                </div>
+                
+                <div id="submission-message" style="display: none;">
+                    <p id="message-text"></p>
                 </div>
             </div>
 
@@ -214,27 +257,45 @@
                 <h3>Gedeelde waarnemingen</h3>
                 <p>Foto's van andere Wildzoekers die kevers hebben gezien</p>
                 <div class="timeline" id="photo-timeline">
-                    <div class="timeline-item sample">
+                    <div class="timeline-item">
                         <div class="timeline-image">
-                            <div class="placeholder">Foto 1</div>
+                            <img src="https://images.unsplash.com/photo-1538070173563-5eac5f47b91f?w=200&q=80" alt="Kever foto">
                         </div>
-                        <p class="timeline-date">Door gebruiker • 2 weken geleden</p>
+                        <div class="timeline-info">
+                            <p class="timeline-user">🧑 Jan</p>
+                            <p class="timeline-date">3 weken geleden</p>
+                        </div>
                     </div>
-                    <div class="timeline-item sample">
+                    <div class="timeline-item">
                         <div class="timeline-image">
-                            <div class="placeholder">Foto 2</div>
+                            <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=200&q=80" alt="Kever foto">
                         </div>
-                        <p class="timeline-date">Door gebruiker • 1 week geleden</p>
+                        <div class="timeline-info">
+                            <p class="timeline-user">👩 Maria</p>
+                            <p class="timeline-date">2 weken geleden</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-image">
+                            <img src="https://images.unsplash.com/photo-1538070173563-5eac5f47b91f?w=200&q=80" alt="Kever foto">
+                        </div>
+                        <div class="timeline-info">
+                            <p class="timeline-user">🧔 Pieter</p>
+                            <p class="timeline-date">1 week geleden</p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="photo-upload-area">
                     <h4>Deel jouw foto</h4>
+                    <input type="text" id="user-name" class="user-name-input" placeholder="Voer je voornaam in" maxlength="20">
                     <div class="upload-box" onclick="document.getElementById('photo-input').click()">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
-                            <path d="M8 40h32M24 4v24M16 16l8-8 8 8M4 32l10-10m20 10l-10-10"/>
+                            <rect x="6" y="6" width="36" height="36" rx="2"/>
+                            <circle cx="24" cy="24" r="8"/>
+                            <circle cx="36" cy="12" r="2"/>
                         </svg>
-                        <p>Klik om een foto te uploaden</p>
+                        <p><strong>Klik om een foto te uploaden</strong></p>
                         <p class="upload-note">of sleep hier een afbeelding naartoe</p>
                     </div>
                     <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="handlePhotoUpload(this)">
@@ -256,7 +317,7 @@
             <button class="close-btn" onclick="closeFeedbackModal()">&times;</button>
             <h2>Wat vind jij van Wildzoekers?</h2>
             <p>Jouw feedback helpt ons dit project beter te maken!</p>
-            <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=VrIhf4ycV0Kq8ZbGKpR-kA" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" style="border: none; border-radius: 8px;"></iframe>
+            <iframe width="100%" height="600" src="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u&embed=true" frameborder="0" marginheight="0" marginwidth="0" style="border: none"></iframe>
         </div>
     </div>
 
@@ -298,6 +359,7 @@
             initializeCounters();
             createConfetti();
             initializeFeedbackModal();
+            loadUserPhotos();
         });
     </script>
 </body>
