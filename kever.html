@@ -25,7 +25,7 @@
             </a>
         </header>
         <div class="feedback-banner">
-            <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackModal(); return false;">feedback</a></p>
+            <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
         </div>
     </div>
 
@@ -215,7 +215,7 @@
                     </div>
                     <div class="timeline-item sample">
                         <div class="timeline-image">
-                            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Kevers waarneming door Denise" class="timeline-photo">
+                            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Kever waarneming door Denise" class="timeline-photo">
                         </div>
                         <p class="timeline-date">Door <strong>Denise</strong> • 1 week geleden</p>
                         <!-- Bron: Dreamstime – twee zwarte kevers -->
@@ -226,7 +226,7 @@
                     <h4>Deel jouw foto</h4>
                     <div class="name-input-row">
                         <label for="uploader-name">Jouw voornaam:</label>
-                        <input type="text" id="uploader-name" placeholder="Bijv. Emma" class="name-input">
+                        <input type="text" id="uploader-name" class="name-input">
                     </div>
                     <div class="upload-box" onclick="document.getElementById('photo-input').click()">
                         <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
@@ -250,25 +250,10 @@
 
     <!-- FEEDBACK BOOKMARK (altijd zichtbaar, groeit na 8s of 40% scroll) -->
     <div id="feedbackBookmark" class="feedback-bookmark">
-        <button onclick="openFeedbackModal()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
+        <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
             <span class="fb-icon">💬</span>
             <span class="fb-label">Feedback</span>
         </button>
-    </div>
-
-    <!-- FEEDBACK MODAL -->
-    <div id="feedbackModal" class="feedback-modal">
-        <div class="feedback-modal-content">
-            <button class="close-btn" onclick="closeFeedbackModal()">&times;</button>
-            <h2>Wat vind jij van Wildzoekers?</h2>
-            <p>Jouw feedback helpt ons dit project beter te maken!</p>
-            <iframe width="100%" height="500px"
-                src="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u&embed=true"
-                frameborder="0" marginwidth="0" marginheight="0"
-                style="border: none; max-width:100%; max-height:100vh; border-radius:8px;"
-                allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
-            </iframe>
-        </div>
     </div>
 
     <footer>
@@ -287,7 +272,7 @@
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>Dit is een prototype. <a href="#" onclick="openFeedbackModal(); return false;">Geef feedback</a></p>
+                <p>Dit is een prototype. <a href="#" onclick="openFeedbackForm(); return false;">Geef feedback</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -303,7 +288,7 @@
             updateProgressTrackers();
             initializeCounters();
             createConfetti();
-            initializeFeedbackModal();
+            initializeFeedbackBookmark();
             loadStoredPhotos();
         });
     </script>
