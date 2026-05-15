@@ -1144,11 +1144,9 @@ footer {
 
     .deco-leaf-topright {
         width: 180px;
+        top: 10%;
     }
 
-    .deco-leaf-mid, .deco-leaf-bottom {
-        display: none;
-    }
 }
 
 @media (max-width: 400px) {
