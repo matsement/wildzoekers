@@ -12,6 +12,8 @@ const STORAGE_KEYS = {
     uploadedPhotos: 'wildzoekers-uploaded-photos'
 };
 
+const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u';
+
 function markInsectAsFound(insect) {
     const found = getFoundInsects();
 
@@ -45,7 +47,7 @@ function initializeBeetlePage() {
     setFoundDate();
     updateProgressTrackers();
     initializeCounters();
-    initializeFeedbackModal();
+    initializeFeedbackBookmark();
     createConfetti();
     loadStoredPhotos();
 }
@@ -326,11 +328,10 @@ function addPhotoToTimeline(photoData, prepend = false) {
     }
 }
 
-// ===== FEEDBACK MODAL =====
+// ===== FEEDBACK FUNCTIONS =====
 
-function initializeFeedbackModal() {
+function initializeFeedbackBookmark() {
     const feedbackBookmark = document.getElementById('feedbackBookmark');
-    const feedbackModal = document.getElementById('feedbackModal');
 
     if (!feedbackBookmark) return;
 
@@ -352,32 +353,10 @@ function initializeFeedbackModal() {
             feedbackBookmark.classList.add('expanded');
         }
     });
-
-    if (feedbackModal) {
-        window.addEventListener('click', (event) => {
-            if (event.target === feedbackModal) {
-                closeFeedbackModal();
-            }
-        });
-    }
 }
 
-function openFeedbackModal() {
-    const feedbackModal = document.getElementById('feedbackModal');
-
-    if (feedbackModal) {
-        feedbackModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeFeedbackModal() {
-    const feedbackModal = document.getElementById('feedbackModal');
-
-    if (feedbackModal) {
-        feedbackModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+function openFeedbackForm() {
+    window.open(FEEDBACK_FORM_URL, '_blank');
 }
 
 // ===== NOTIFICATIONS =====
