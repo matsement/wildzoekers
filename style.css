@@ -30,6 +30,7 @@ html, body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--cream);
+    overflow-x: hidden;
 }
 
 body {
