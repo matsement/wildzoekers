@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wildzoekers - Wilde Natuur in de Stad</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Wildzoekers - Wilde natuur in de stad</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        /* ===== INDEX-SPECIFIEKE STIJLEN ===== */
+
+        /* ===== PAGINA ===== */
 
         .concept-page header {
             position: sticky;
@@ -21,271 +24,229 @@
             z-index: 199;
         }
 
-        /* Hero */
+        /* ===== HERO ===== */
+
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
+            grid-template-columns: 1.1fr 1fr;
             gap: 3rem;
+            align-items: center;
             margin-bottom: 5rem;
         }
 
         .hero-content h2 {
-            font-size: 3.8rem;
+            font-size: 4rem;
+            line-height: 0.95;
             margin-bottom: 1.2rem;
-            line-height: 1;
             color: var(--primary-green);
         }
 
         .hero-content p {
-            font-size: 1.05rem;
-            color: var(--text-light);
+            font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 1rem;
+            color: var(--text-light);
+            max-width: 620px;
         }
 
-        .hero-image-wrap {
-            position: relative;
-        }
-
-        .hero-image {
-            width: 100%;
-            border-radius: 14px;
-            object-fit: cover;
-            max-height: 420px;
-            box-shadow: 0 12px 40px rgba(45, 80, 22, 0.15);
-        }
-
-        /* Intro tag boven hero-kop */
         .intro-tag {
             display: inline-block;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
             background: rgba(107, 163, 66, 0.12);
             border: 1px solid var(--pale-green);
             color: var(--light-green);
             font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            padding: 0.3rem 0.75rem;
-            border-radius: 20px;
-            margin-bottom: 0.9rem;
+            margin-bottom: 1rem;
         }
 
-        /* Twee-kolom tekstblok voor "Waarom" */
+        .hero-image {
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(45,80,22,0.14);
+        }
+
+        /* ===== ALGEMENE SECTIES ===== */
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        section h2 {
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+
+        .section-intro {
+            max-width: 720px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* ===== WAAROM ===== */
+
         .why-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            align-items: start;
-            margin-top: 2rem;
+            align-items: center;
         }
 
         .why-text p {
-            font-size: 1rem;
             color: var(--text-light);
-            line-height: 1.85;
+            line-height: 1.8;
             margin-bottom: 1rem;
         }
 
         .why-image {
             width: 100%;
-            border-radius: 12px;
+            height: 340px;
             object-fit: cover;
-            max-height: 320px;
-            box-shadow: 0 8px 28px rgba(45, 80, 22, 0.12);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(45,80,22,0.12);
         }
 
-        /* Hoe-het-werkt stappen */
-        .steps-section h2 {
-            margin-bottom: 0.5rem;
+        /* ===== IMPACT ===== */
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
         }
 
-        .steps-intro {
-            font-size: 1rem;
+        .impact-card {
+            background: rgba(255,255,255,0.72);
+            border: 1.5px solid var(--pale-green);
+            border-radius: 16px;
+            padding: 1.7rem;
+            transition: var(--transition);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--bright-green);
+            box-shadow: 0 10px 28px rgba(45,80,22,0.08);
+        }
+
+        .impact-card h3 {
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 0.8rem;
+            color: var(--primary-green);
+        }
+
+        .impact-card p {
+            font-size: 0.92rem;
+            line-height: 1.75;
             color: var(--text-light);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
         }
+
+        /* ===== STAPPEN ===== */
 
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            margin-top: 0;
         }
 
         .step {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255,255,255,0.72);
             border: 1.5px solid var(--pale-green);
-            border-radius: 14px;
-            padding: 1.5rem 1.2rem;
+            border-radius: 16px;
+            padding: 1.5rem;
             text-align: center;
             transition: var(--transition);
         }
 
         .step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(45, 80, 22, 0.10);
+            transform: translateY(-4px);
             border-color: var(--bright-green);
+            box-shadow: 0 8px 24px rgba(45,80,22,0.08);
         }
 
         .step-number {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--bright-green), var(--light-green));
-            color: white;
+            width: 46px;
+            height: 46px;
+            margin: 0 auto 1rem;
             border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                var(--bright-green),
+                var(--light-green)
+            );
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
             font-weight: 700;
-            margin: 0 auto 1rem;
+            font-size: 1.3rem;
             font-family: 'Dongle', sans-serif;
         }
 
         .step h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.6rem;
-            line-height: 1.1;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1;
             color: var(--primary-green);
         }
 
         .step p {
-            font-size: 0.88rem;
-            color: var(--text-light);
-            line-height: 1.65;
-        }
-
-        /* Info bord sectie */
-        .signage-section {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1.5px solid var(--pale-green);
-            border-radius: 14px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 5rem;
-        }
-
-        .signage-image {
-            width: 100%;
-            border-radius: 10px;
-            object-fit: cover;
-            max-height: 280px;
-            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.1);
-        }
-
-        .signage-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1;
-        }
-
-        .signage-content p {
-            font-size: 0.98rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 0.9rem;
-        }
-
-        /* Buurt-sectie: community */
-        .community-section h2 {
-            margin-bottom: 0.5rem;
-        }
-
-        .community-intro {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
             line-height: 1.7;
-        }
-
-        .community-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .community-card {
-            background: rgba(255, 255, 255, 0.65);
-            border: 1.5px solid var(--pale-green);
-            border-radius: 14px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .community-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(45, 80, 22, 0.1);
-            border-color: var(--bright-green);
-        }
-
-        .community-card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .community-card-body {
-            padding: 1.25rem 1.4rem;
-        }
-
-        .community-card-body h3 {
-            font-size: 1.8rem;
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            color: var(--primary-green);
-        }
-
-        .community-card-body p {
-            font-size: 0.88rem;
             color: var(--text-light);
-            line-height: 1.65;
         }
 
-        /* Project info */
+        /* ===== PROJECT ===== */
+
         .project-info {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255,255,255,0.55);
             border: 1.5px solid var(--pale-green);
-            border-radius: 14px;
-            padding: 2rem 2.5rem;
-        }
-
-        .project-info h2 {
-            margin-bottom: 1rem;
+            border-radius: 18px;
+            padding: 2.2rem;
         }
 
         .project-info p {
-            font-size: 0.97rem;
-            color: var(--text-light);
             line-height: 1.8;
-            margin-bottom: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
         }
 
         .project-info a {
             color: var(--light-green);
-            font-weight: 600;
             text-decoration: none;
+            font-weight: 600;
             border-bottom: 1px solid var(--pale-green);
             transition: var(--transition);
         }
 
         .project-info a:hover {
             color: var(--primary-green);
-            border-bottom-color: var(--primary-green);
+            border-color: var(--primary-green);
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
+        /* ===== CREDITS ===== */
+
+        .image-credit {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(0,0,0,0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 950px) {
+
             .hero,
             .why-grid,
-            .signage-section,
-            .community-grid {
+            .impact-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
 
             .steps-grid {
@@ -293,193 +254,370 @@
             }
 
             .hero-content h2 {
-                font-size: 2.8rem;
-            }
-
-            .signage-section {
-                padding: 1.75rem;
+                font-size: 3rem;
             }
         }
 
-        @media (max-width: 540px) {
+        @media (max-width: 600px) {
+
             .steps-grid {
                 grid-template-columns: 1fr;
             }
 
             .hero-content h2 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
+            }
+
+            section h2 {
+                font-size: 2.3rem;
+            }
+
+            .hero-image {
+                height: 320px;
             }
         }
+
     </style>
 </head>
+
 <body class="concept-page">
-    <div class="forest-background"></div>
 
-    <header>
-        <a href="index.html" class="header-logo">
-            <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="20" r="18" stroke="#a8c686" stroke-width="1.5"/>
-                    <path d="M20 5 Q25 12 20 18 Q15 12 20 5" fill="#a8c686"/>
-                    <path d="M10 20 Q15 15 18 20 Q15 25 10 20" fill="#a8c686" opacity="0.7"/>
-                    <path d="M30 20 Q25 15 22 20 Q25 25 30 20" fill="#a8c686" opacity="0.9"/>
-                </svg>
-                <h1>wildzoekers</h1>
+<div class="forest-background"></div>
+
+<header>
+    <a href="index.html" class="header-logo">
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="18" stroke="#a8c686" stroke-width="1.5"/>
+                <path d="M20 5 Q25 12 20 18 Q15 12 20 5" fill="#a8c686"/>
+                <path d="M10 20 Q15 15 18 20 Q15 25 10 20" fill="#a8c686" opacity="0.7"/>
+                <path d="M30 20 Q25 15 22 20 Q25 25 30 20" fill="#a8c686" opacity="0.9"/>
+            </svg>
+            <h1>wildzoekers</h1>
+        </div>
+    </a>
+</header>
+
+<div class="feedback-banner">
+    <p>
+        Dit prototype wordt getest.
+        Geef alstublieft
+        <a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">
+            feedback
+        </a>.
+    </p>
+</div>
+
+<main class="concept-main">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="intro-tag">
+                TU/e Final Bachelor Project
+            </span>
+
+            <h2>
+                Wilde natuur in de stad — bewust, niet per ongeluk
+            </h2>
+
+            <p>
+                Wildzoekers helpt bewoners begrijpen waarom wilde natuur in de stad waardevol is — en laat zien dat verwildering bewust en positief kan zijn.
+            </p>
+
+        </div>
+
+        <div>
+
+            <img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&q=80"
+                alt="Wilde vegetatie in de stad"
+                class="hero-image"
+            >
+
+            <p class="image-credit">
+                Bron: Unsplash
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- WAAROM -->
+
+    <section>
+
+        <h2>
+            Waarom wilde natuur zichtbaar maken?
+        </h2>
+
+        <div class="why-grid">
+
+            <div class="why-text">
+
+                <p>
+                    Wilde natuur in steden wordt vaak gezien als rommelig of vergeten. Maar juist deze plekken zijn belangrijk voor biodiversiteit.
+                </p>
+
+                <p>
+                    In ruige bermen, dood hout en spontane vegetatie leven insecten, vogels en andere soorten die moeilijk ruimte vinden in strak onderhouden steden.
+                </p>
+
+                <p>
+                    Wanneer mensen begrijpen waarom deze natuur bestaat, verandert weerstand vaak in nieuwsgierigheid.
+                </p>
+
             </div>
-        </a>
-    </header>
 
-    <div class="feedback-banner">
-        <p>Deze pagina is een prototype dat wordt getest. Geef alstublieft <a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">feedback</a>.</p>
+            <div>
+
+                <img
+                    src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1000&q=80"
+                    alt="Wilde vegetatie langs gebouwen"
+                    class="why-image"
+                >
+
+                <p class="image-credit">
+                    Bron: Unsplash
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- IMPACT -->
+
+    <section>
+
+        <h2>
+            Waarom werkt dit?
+        </h2>
+
+        <p class="section-intro">
+            Wildzoekers vergroot acceptatie van wilde natuur door drie dingen tegelijk zichtbaar te maken.
+        </p>
+
+        <div class="impact-grid">
+
+            <div class="impact-card">
+
+                <h3>
+                    Educatie
+                </h3>
+
+                <p>
+                    Bewoners leren welke dieren en planten hier leven, waarom biodiversiteit belangrijk is en waarom deze plekken goed zijn voor het ecosysteem.
+                </p>
+
+            </div>
+
+            <div class="impact-card">
+
+                <h3>
+                    Buurtbetrokkenheid
+                </h3>
+
+                <p>
+                    Mensen doen mee door soorten te zoeken, waarnemingen toe te voegen en samen de natuur in hun buurt zichtbaar te maken.
+                </p>
+
+            </div>
+
+            <div class="impact-card">
+
+                <h3>
+                    Bewuste verwildering
+                </h3>
+
+                <p>
+                    Het informatiebord laat direct zien dat de natuur hier bewust aanwezig is — niet vergeten of verwaarloosd.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STAPPEN -->
+
+    <section>
+
+        <h2>
+            Hoe werkt het?
+        </h2>
+
+        <p class="section-intro">
+            Wildzoekers combineert een fysiek informatiebord met een eenvoudige mobiele ervaring.
+        </p>
+
+        <div class="steps-grid">
+
+            <div class="step">
+
+                <div class="step-number">1</div>
+
+                <h3>
+                    Zie het bord
+                </h3>
+
+                <p>
+                    In de buurt staat een bord dat uitlegt waarom deze natuur hier aanwezig is.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-number">2</div>
+
+                <h3>
+                    Zoek soorten
+                </h3>
+
+                <p>
+                    Ontdek dieren en planten via het bord of een tag in de omgeving.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-number">3</div>
+
+                <h3>
+                    Leer waarom
+                </h3>
+
+                <p>
+                    Lees waarom deze natuur belangrijk is voor biodiversiteit in de stad.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-number">4</div>
+
+                <h3>
+                    Doe mee
+                </h3>
+
+                <p>
+                    Voeg waarnemingen toe en help de buurtnatuur zichtbaar maken.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJECT -->
+
+    <section class="project-info">
+
+        <h2>
+            Over dit project
+        </h2>
+
+        <p>
+            Wildzoekers is ontwikkeld als onderdeel van het
+            <strong>TU/e Industrial Design Final Bachelor Project</strong>
+            door
+            <a href="https://matsvandeijck.com" target="_blank">
+                Mats van Deijck
+            </a>.
+        </p>
+
+        <p>
+            Het project onderzoekt hoe fysieke aanwezigheid, educatie en buurtbetrokkenheid de acceptatie van verwilderde natuur in stedelijke omgevingen kunnen vergroten.
+        </p>
+
+        <p>
+            Dit prototype wordt getest in het Spoorpark in Tilburg.
+        </p>
+
+        <p>
+            <a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">
+                Geef hier feedback
+            </a>
+        </p>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-section">
+
+            <h4>Wildzoekers</h4>
+
+            <p>
+                Wilde natuur in de stad begrijpen, waarderen en bewust laten bestaan.
+            </p>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h4>Snelle links</h4>
+
+            <ul>
+                <li><a href="index.html">Concept</a></li>
+                <li><a href="meedoen.html">Meedoen</a></li>
+                <li><a href="references.html">Referenties</a></li>
+                <li>
+                    <a href="https://matsvandeijck.com" target="_blank">
+                        Mats van Deijck
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h4>Contact</h4>
+
+            <p>
+                Dit is een prototype. Feedback is welkom.
+            </p>
+
+            <p>
+                <a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">
+                    Geef feedback
+                </a>
+            </p>
+
+        </div>
+
     </div>
 
-    <main class="concept-main">
+    <div class="footer-bottom">
 
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-content">
-                <span class="intro-tag">TU/e Final Bachelor Project</span>
-                <h2>Wilde natuur in de stad — bewust, niet per ongeluk</h2>
-                <p>Steden herbergen verrassend veel wilde natuur: kevers in dood hout, vlinders op braakliggend terrein, lieveheersbeestjes in een haag. Maar de meeste mensen zien het niet, of begrijpen het niet — en willen het dan ook liever opruimen.</p>
-                <p>Wildzoekers werkt daaraan: door bewoners te laten ontdekken wat er leeft, te leren waarom dat goed is, en mee te doen aan het bijhouden ervan.</p>
-            </div>
-            <div class="hero-image-wrap">
-                <img
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80"
-                    alt="Wilde natuur in een stadspark"
-                    class="hero-image">
-                <p class="image-credit">Bron: Unsplash – Krivec Ales</p>
-            </div>
-        </section>
+        <p>
+            &copy; 2026 Wildzoekers.
+            TU/e Industrial Design Final Bachelor Project — Mats van Deijck.
+        </p>
 
-        <!-- WAAROM -->
-        <section>
-            <h2>Waarom verwildering accepteren?</h2>
-            <div class="why-grid">
-                <div class="why-text">
-                    <p>Wilde natuur in de stad wordt vaak als rommelig of verwaarloosd gezien. Maar een omgevallen boomstam of een stukje ruig gras is geen probleem — het is een ecosysteem. Tot een kwart van alle soorten in een stedelijke omgeving is afhankelijk van dit soort "rommelige" plekken.</p>
-                    <p>Het probleem is niet de natuur, maar de <em>onbekendheid</em> ermee. Zodra mensen begrijpen wat er leeft en waarom het er is, verandert die weerstand in nieuwsgierigheid — en soms in trots.</p>
-                    <p>Wildzoekers probeert precies die omslag te maken: van "onkruid en ongedierte" naar "onze natuur".</p>
-                </div>
-                <div>
-                    <img
-                        src="https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?w=600&q=80"
-                        alt="Insect op een plant in de stad"
-                        class="why-image">
-                    <p class="image-credit">Bron: Unsplash – Sime Basioli</p>
-                </div>
-            </div>
-        </section>
+        <p class="footer-credits">
+            Externe afbeeldingen: Unsplash
+        </p>
 
-        <!-- HOE WERKT HET -->
-        <section class="steps-section">
-            <h2>Hoe werkt het?</h2>
-            <p class="steps-intro">Wildzoekers combineert een fysiek informatiebord in de buurt met een interactieve webervaring op je telefoon. Samen vormen ze een laagdrempelige manier om de natuur om je heen te leren kennen.</p>
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Zie het bord</h3>
-                    <p>In het park of de buurt staat een informatiebord. Het laat zien welke dieren er leven en hoe je meedoet — ook zonder QR-code.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Zoek en scan</h3>
-                    <p>Ga op onderzoek uit. Vind een dier, scan de QR-code op het bord of de tag bij de plek, en open de pagina op je telefoon.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Leer erover</h3>
-                    <p>Je leest waarom dit dier hier leeft, wat het doet voor het ecosysteem, en waarom het goed is dat het er is.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Deel en tel mee</h3>
-                    <p>Voeg je waarneming toe aan de lokale teller, upload een foto, en draag bij aan het collectieve beeld van de natuur in jouw buurt.</p>
-                </div>
-            </div>
-        </section>
+    </div>
 
-        <!-- INFO BORD SECTIE -->
-        <section class="signage-section">
-            <img
-                src="https://images.unsplash.com/photo-1587502537745-84b86da1204f?w=600&q=80"
-                alt="Informatiebord in een park"
-                class="signage-image">
-            <div class="signage-content">
-                <h2>Het informatiebord: zichtbaar voor iedereen</h2>
-                <p>Een belangrijk onderdeel van Wildzoekers is het fysieke bord dat in de buurt geplaatst wordt. Dit bord maakt de intentie van de natuur zichtbaar — ook voor mensen die nooit een QR-code scannen.</p>
-                <p>Het bord communiceert dat de wilde natuur hier bewust aanwezig is: niet verwaarloosd, maar onderdeel van een gezond stedelijk ecosysteem. Dat alleen al verandert hoe mensen ernaar kijken.</p>
-                <p class="image-credit">Bron: Unsplash – Matt Flores</p>
-            </div>
-        </section>
+</footer>
 
-        <!-- BUURT EN COMMUNITY -->
-        <section class="community-section">
-            <h2>Bewoners als onderdeel van het systeem</h2>
-            <p class="community-intro">Wildzoekers werkt niet alleen als educatief hulpmiddel, maar ook als gemeenschapsproject. Bewoners dragen bij aan de waarnemingen, en iemand uit de buurt beheert en monitort de natuur ter plaatse.</p>
-            <div class="community-grid">
-                <div class="community-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
-                        alt="Bewoners samen in een park"
-                        class="community-card-img">
-                    <div class="community-card-body">
-                        <h3>Waarnemingen delen</h3>
-                        <p>Iedereen die een dier vindt, kan een foto uploaden en de lokale teller verhogen. Zo ontstaat een levend, gedeeld beeld van de natuur in de buurt — bijgehouden door de bewoners zelf.</p>
-                        <p class="image-credit">Bron: Unsplash – Vonecia Carswell</p>
-                    </div>
-                </div>
-                <div class="community-card">
-                    <img
-                        src="https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=600&q=80"
-                        alt="Iemand bestudeert natuur in de stad"
-                        class="community-card-img">
-                    <div class="community-card-body">
-                        <h3>Lokaal beheer</h3>
-                        <p>Een betrokken buurtbewoner of lokale organisatie monitort de natuur op de plek. Dat geeft het project wortels in de buurt — het is niet iets van de gemeente, maar van de mensen die er wonen.</p>
-                        <p class="image-credit">Bron: Unsplash – Aedrian</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<script src="app.js"></script>
 
-        <!-- OVER HET PROJECT -->
-        <section class="project-info">
-            <h2>Over dit project</h2>
-            <p>Wildzoekers is ontwikkeld als onderdeel van het <strong>TU/e Industrial Design Final Bachelor Project</strong> door <a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a>. Het project onderzoekt hoe een combinatie van fysieke aanwezigheid (het informatiebord), educatieve inhoud en actieve betrokkenheid van buurtbewoners de acceptatie van verwilderde natuur in stedelijke omgevingen kan vergroten.</p>
-            <p>Dit prototype wordt getest in het Spoorpark in Tilburg. Feedback is waardevol en helpt het concept verbeteren. Heb je gedachten, ideeën of kritiek?</p>
-            <p><a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">Geef hier je feedback.</a></p>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Wildzoekers</h4>
-                <p>Wilde natuur in de stad begrijpen, waarderen en bewust laten bestaan.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Snelle links</h4>
-                <ul>
-                    <li><a href="index.html">Concept</a></li>
-                    <li><a href="meedoen.html">Meedoen</a></li>
-                    <li><a href="references.html">Referenties</a></li>
-                    <li><a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Dit is een prototype. Feedback is welkom.</p>
-                <p><a href="https://matsvandeijck.com/kever/#feedback-dutch" target="_blank">Geef feedback</a></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project — Mats van Deijck.</p>
-            <p class="footer-credits">Externe afbeeldingen: Unsplash (Krivec Ales, Sime Basioli, Matt Flores, Vonecia Carswell, Aedrian)</p>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
 </body>
 </html>
