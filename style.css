@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .deco-leaf-topright {
-    top: -100px !important;
+    top: -30px !important;
     right: -30px;
     width: 380px;
 }
@@ -768,6 +768,7 @@ section h3 {
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
+    width: 80%;
 }
 
 .name-input-row label {
