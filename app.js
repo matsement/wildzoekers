@@ -79,6 +79,36 @@ function toggleCard(card) {
     card.classList.toggle('flipped');
 }
 
+// ===== INFO TOGGLE (accordion in habitat section) =====
+
+function toggleInfoSection(toggleEl) {
+    const content = toggleEl.nextElementSibling;
+    const icon = toggleEl.querySelector('.toggle-icon');
+    const isOpen = toggleEl.classList.contains('open');
+
+    // Sluit alle andere open secties
+    document.querySelectorAll('.info-toggle.open').forEach(openToggle => {
+        if (openToggle !== toggleEl) {
+            openToggle.classList.remove('open');
+            const otherContent = openToggle.nextElementSibling;
+            const otherIcon = openToggle.querySelector('.toggle-icon');
+            if (otherContent) otherContent.classList.remove('open');
+            if (otherIcon) otherIcon.textContent = '▼';
+        }
+    });
+
+    // Toggle huidige sectie
+    if (isOpen) {
+        toggleEl.classList.remove('open');
+        if (content) content.classList.remove('open');
+        if (icon) icon.textContent = '▼';
+    } else {
+        toggleEl.classList.add('open');
+        if (content) content.classList.add('open');
+        if (icon) icon.textContent = '▲';
+    }
+}
+
 // ===== PROGRESS TRACKER =====
 
 function updateProgressTrackers() {
