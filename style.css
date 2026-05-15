@@ -1275,10 +1275,6 @@ footer {
     }
 
     .deco-leaf-topright {
-        width: 150px;
-    }
-
-    .deco-leaf-bottom {
-        display: none;
+        width: 250px;
     }
 }
