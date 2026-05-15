@@ -65,11 +65,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .deco-leaf-topright {
-    top: -30px;
+    top: 0;
     right: -30px;
-    width: 280px;
-    transform: rotate(15deg);
-    animation: floatLeaf 7s ease-in-out infinite;
+    width: 380px;
 }
 
 .deco-leaf-mid {
