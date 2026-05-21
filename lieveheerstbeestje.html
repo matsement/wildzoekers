@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lieveheersbeestje gevonden! - Wildzoekers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="insect-page">
+    <div class="forest-background"></div>
+
+    <!-- Decoratieve bladeren -->
+    <img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decoratieve bladeren" class="deco-leaf deco-leaf-topright" aria-hidden="true">
+    <img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Groen blad" class="deco-leaf deco-leaf-left" aria-hidden="true">
+    <img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Herfstbladeren" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
+
+    <!-- STICKY HEADER + FEEDBACK BALK SAMEN -->
+    <div class="sticky-top">
+        <header>
+            <a href="index.html" class="header-logo">
+                <div class="logo">
+                    <h1>wildzoekers</h1>
+                </div>
+            </a>
+        </header>
+        <div class="feedback-banner">
+            <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
+        </div>
+    </div>
+
+    <main class="insect-main">
+        <!-- DISCOVERY SECTION -->
+        <section class="discovery-hero">
+            <div class="discovery-content">
+                <div class="confetti-container" id="confetti"></div>
+
+                <h2 class="discovery-title">Je hebt een lieveheersbeestje gevonden!</h2>
+                <p class="location-inline">📍 Spoorpark, Tilburg • <span id="found-date"></span></p>
+
+                <div class="insect-showcase">
+                    <img src="media/IMG_1828.jpg" alt="Lieveheersbeestje gevonden in Spoorpark" class="insect-image">
+                    <!-- Foto: eigen opname Wildzoekers, Spoorpark Tilburg -->
+                </div>
+            </div>
+        </section>
+
+        <!-- HABITAT EXPLORER -->
+        <section class="habitat-explorer">
+            <h2>Waar leven lieveheersbeestjes het liefst?</h2>
+            <p class="section-intro">Lieveheersbeestjes houden van bladeren en lage begroeiing — daar vinden ze hun voedsel.</p>
+
+            <div class="habitat-showcase">
+                <div class="habitat-card">
+                    <div class="habitat-image">
+                        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&q=80" alt="Bladeren in de stad" class="habitat-photo">
+                        <p class="image-credit">Bron: Unsplash – Noah Silliman</p>
+                    </div>
+                    <div class="habitat-content">
+                        <h3>Waarom is lage begroeiing zo belangrijk?</h3>
+                        <p>Lage planten met veel bladeren lijken misschien gewoon groen, maar ze zijn vitaal voor lieveheersbeestjes! Deze bladeren herbergen luizen en andere kleine insecten die het voedsel zijn van lieveheersbeestjes. Zonder deze planten hebben lieveheersbeestjes niets te eten.</p>
+
+                        <!-- INTERACTIEVE INFORMATIESECTIE -->
+                        <div class="info-section">
+                            <div class="info-toggle" onclick="toggleInfoSection(this)">
+                                <span class="toggle-icon">▼</span>
+                                <h4>🍽️ Waarom komt dit lieveheersbeestje hier?</h4>
+                            </div>
+                            <div class="info-content">
+                                <p>Lieveheersbeestjes eten luizen, melige luizen en andere kleine bladluis-soorten. Een enkel lieveheersbeestje kan per dag tot 50 luizen eten! Dit maakt hen ongelooflijk waardevol voor planten die door luizen worden aangevallen. Bladeren met veel plantensappen trekken luizen aan, en luizen trekken lieveheersbeestjes aan.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-toggle" onclick="toggleInfoSection(this)">
+                            <span class="toggle-icon">▼</span>
+                            <h4>🌍 Wat doet dit lieveheersbeestje voor de natuur?</h4>
+                        </div>
+                        <div class="info-content">
+                            <p><strong>Het lieveheersbeestje is een natuurlijke plaagbestrijder.</strong> Door luizen te eten, beschermen lieveheersbeestjes planten tegen massale insectenplagen. Dit helpt het hele ecosysteem in evenwicht te blijven. Bovendien zijn lieveheersbeestjes zelf voedsel voor vogels en andere dieren!</p>
+                        </div>
+
+                        <div class="info-toggle" onclick="toggleInfoSection(this)">
+                            <span class="toggle-icon">▼</span>
+                            <h4>⚠️ Waarom moeten we lage planten behouden?</h4>
+                        </div>
+                        <div class="info-content">
+                            <p>Veel tuinen en groene ruimtes worden schoon gehouden en hebben weinig lage begroeiing. Dit verstoort het voedselweb! Zonder bladeren en lage planten verdwijnen luizen, en zonder luizen verdwijnen lieveheersbeestjes. Als je lage planten laat groeien, creëer je een thuis voor lieveheersbeestjes en hun voedsel!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRESS TRACKER -->
+        <section class="progress-tracker">
+            <h2>Wat heb je al gevonden?</h2>
+            <div class="progress-grid">
+                <!-- Kever -->
+                <div class="progress-item" id="beetle-progress">
+                    <div class="progress-photo-wrap not-found-wrap">
+                        <img src="media/IMG_1828.jpg" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
+                        <!-- Bron: eigen opname -->
+                    </div>
+                    <h3 class="progress-name blurred-name" id="beetle-name">kever</h3>
+                    <p class="progress-status" id="beetle-status">Nog te vinden</p>
+                </div>
+
+                <!-- Lieveheersbeestje: altijd gevonden -->
+                <div class="progress-item found" id="ladybug-progress">
+                    <div class="progress-photo-wrap found-wrap">
+                        <img src="media/IMG_1828.jpg" alt="Lieveheersbeestje" class="progress-photo">
+                        <!-- Foto: eigen opname Wildzoekers -->
+                    </div>
+                    <h3>lieveheersbeestje</h3>
+                    <p class="progress-status">✓ Gevonden!</p>
+                </div>
+
+                <!-- Aardhommel -->
+                <div class="progress-item" id="bumblebee-progress">
+                    <div class="progress-photo-wrap not-found-wrap" id="bumblebee-photo-wrap">
+                        <img src="https://www.pngmart.com/files/6/Moth-PNG-Transparent-Picture.png" alt="Aardhommel silhouet" class="progress-photo silhouette" id="bumblebee-img">
+                        <!-- Bron: pngmart.com -->
+                    </div>
+                    <h3 class="progress-name blurred-name" id="bumblebee-name">aardhommel</h3>
+                    <p class="progress-status" id="bumblebee-status">Nog te vinden</p>
+                </div>
+            </div>
+            <p class="progress-message">Ga in de buurt op zoek en verzamel ze allemaal!</p>
+        </section>
+
+        <!-- COUNTING & CONTRIBUTION -->
+        <section class="contribution-section">
+            <h2 class="contribution-title">Help met onderzoek</h2>
+
+            <div class="fauna-counter-card">
+                <div class="counter-card-inner">
+                    <!-- Lieveheersbeestje foto links -->
+                    <div class="counter-beetle-photo">
+                        <img src="media/IMG_1828.jpg" alt="Lieveheersbeestje" class="counter-beetle-img">
+                        <!-- Foto: eigen opname Wildzoekers -->
+                    </div>
+
+                    <!-- Tellingen grid -->
+                    <div class="counter-grid">
+                        <div class="counter-box">
+                            <p class="counter-label">Hoeveel lieveheersbeestjes zie jij hier nu?</p>
+                            <div class="counter">
+                                <button onclick="decreaseCounter('personal')">−</button>
+                                <input type="number" id="personal-counter" value="1" min="0" max="5" readonly>
+                                <button onclick="increaseCounter('personal')">+</button>
+                            </div>
+                            <p class="counter-note">Max. 5 per keer</p>
+                            <button class="submit-btn" onclick="submitPersonalCount()">Verstuur waarneming</button>
+                        </div>
+
+                        <div class="counter-box">
+                            <p class="counter-label">Totaal in het Spoorpark</p>
+                            <div class="community-display">
+                                <p class="big-number-label">Totaal zijn er</p>
+                                <p class="big-number" id="community-total">47</p>
+                                <p class="big-number-unit">lieveheersbeestjes gezien</p>
+                                <p class="spoorpark-label">in het Spoorpark!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="submit-success" class="submit-success" style="display:none;">
+                    <p>✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.</p>
+                </div>
+            </div>
+
+            <!-- GEDEELDE WAARNEMINGEN -->
+            <div class="photo-timeline-section">
+                <h3>Gedeelde waarnemingen</h3>
+                <p>Foto's van andere Wildzoekers die lieveheersbeestjes hebben gezien</p>
+                <div class="timeline" id="photo-timeline">
+                    <div class="timeline-item sample">
+                        <div class="timeline-image">
+                            <img src="https://pixabay.com/fr/images/download/franknowledge7-insect-8857943_1920.jpg" alt="Lieveheersbeestje waarneming door Jens" class="timeline-photo">
+                        </div>
+                        <p class="timeline-date">Door <strong>Jens</strong> • 2 weken geleden</p>
+                        <!-- Bron: Pixabay – franknowledge7 -->
+                    </div>
+                    <div class="timeline-item sample">
+                        <div class="timeline-image">
+                            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Lieveheersbeestje waarneming door Denise" class="timeline-photo">
+                        </div>
+                        <p class="timeline-date">Door <strong>Denise</strong> • 1 week geleden</p>
+                        <!-- Bron: Dreamstime – lieveheersbeestjes -->
+                    </div>
+                </div>
+
+                <div class="photo-upload-area">
+                    <h4>Deel jouw foto</h4>
+                    <div class="name-input-row">
+                        <label for="uploader-name">Jouw voornaam:</label>
+                        <input type="text" id="uploader-name" class="name-input">
+                    </div>
+                    <div class="upload-box" onclick="document.getElementById('photo-input').click()">
+                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
+                            <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
+                        </svg>
+                        <p>Klik om een foto te uploaden</p>
+                        <p class="upload-note">of sleep hier een afbeelding naartoe</p>
+                    </div>
+                    <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="handlePhotoUpload(this)">
+                    <div id="photo-preview" style="display: none;">
+                        <img id="preview-img" src="" alt="Preview">
+                        <div class="preview-actions">
+                            <button class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
+                            <button class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FEEDBACK BOOKMARK (altijd zichtbaar, groeit na 8s of 40% scroll) -->
+    <div id="feedbackBookmark" class="feedback-bookmark">
+        <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
+            <span class="fb-icon">💬</span>
+            <span class="fb-label">Feedback</span>
+        </button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Wildzoekers</h4>
+                <p>Verwilderde natuur in de stad begrijpen, waarderen en bewust laten bestaan.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="index.html">Concept</a></li>
+                    <li>
+                    <a href="https://matsvandeijck.com" target="_blank">
+                        Mats van Deijck
+                    </a>
+                </li>
+                </ul>
+            </div>
+            <div class="footer-section">
+
+            <h4>Contact</h4>
+
+            <p>
+                Dit is een prototype. Feedback is welkom.
+            </p>
+            <p>
+                m.j.j.v.deijck@student.tue.nl
+            </p>
+            
+            <p>
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
+                    Geef feedback
+                </a>
+            </p>
+
+        </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
+            <p class="footer-credits">Externe afbeeldingen: Unsplash (Noah Silliman), Pixabay (franknowledge7), Dreamstime, pngmart.com, pluspng.com, pngall.com</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setFoundDate();
+            updateProgressTrackers();
+            initializeCounters();
+            createConfetti();
+            initializeFeedbackBookmark();
+            loadStoredPhotos();
+        });
+    </script>
+</body>
+</html>
