@@ -2,7 +2,7 @@
 
 const INSECTS = {
     kever: 'kever',
-    citroenvlinder: 'citroenvlinder',
+    aardhommel: 'aardhommel',
     lieveheersbeestje: 'lieveheersbeestje'
 };
 
@@ -36,10 +36,12 @@ function initializePage() {
     if (path.includes('kever')) {
         markInsectAsFound(INSECTS.kever);
         initializeBeetlePage();
-    } else if (path.includes('citroenvlinder')) {
-        markInsectAsFound(INSECTS.citroenvlinder);
+    } else if (path.includes('aardhommel')) {
+        markInsectAsFound(INSECTS.aardhommel);
+        initializeBeetlePage();
     } else if (path.includes('lieveheersbeestje')) {
         markInsectAsFound(INSECTS.lieveheersbeestje);
+        initializeBeetlePage();
     }
 }
 
@@ -115,12 +117,12 @@ function updateProgressTrackers() {
     const found = getFoundInsects();
 
     updateSingleTracker({
-        insect: INSECTS.citroenvlinder,
-        elementId: 'butterfly-progress',
-        imgId: 'butterfly-img',
-        wrapId: 'butterfly-photo-wrap',
-        nameId: 'butterfly-name',
-        statusId: 'butterfly-status'
+        insect: INSECTS.kever,
+        elementId: 'beetle-progress',
+        imgId: 'beetle-img',
+        wrapId: 'beetle-photo-wrap',
+        nameId: 'beetle-name',
+        statusId: 'beetle-status'
     }, found);
 
     updateSingleTracker({
@@ -130,6 +132,15 @@ function updateProgressTrackers() {
         wrapId: 'ladybug-photo-wrap',
         nameId: 'ladybug-name',
         statusId: 'ladybug-status'
+    }, found);
+
+    updateSingleTracker({
+        insect: INSECTS.aardhommel,
+        elementId: 'bumblebee-progress',
+        imgId: 'bumblebee-img',
+        wrapId: 'bumblebee-photo-wrap',
+        nameId: 'bumblebee-name',
+        statusId: 'bumblebee-status'
     }, found);
 }
 
@@ -346,7 +357,7 @@ function addPhotoToTimeline(photoData, prepend = false) {
 
     item.innerHTML = `
         <div class="timeline-image">
-            <img src="${photoData.image}" alt="Kever waarneming" class="timeline-photo">
+            <img src="${photoData.image}" alt="Waarneming" class="timeline-photo">
         </div>
         <p class="timeline-date">Door <strong>${photoData.name}</strong> • Zojuist</p>
     `;
