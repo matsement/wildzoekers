@@ -224,7 +224,7 @@ function submitPersonalCount(type) {
         communityElement.textContent = newCommunity;
     }
 
-    input.value = 0;
+    input.value = 1;
 
     if (successMessage) {
         successMessage.style.display = 'block';
