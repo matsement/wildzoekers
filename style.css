@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 .deco-leaf-mid {
     top: 38%;
     left: -40px;
-    width: 200px;
+    width: 120px;
     transform: rotate(-20deg) scaleX(-1);
     animation: floatLeaf 9s ease-in-out infinite;
     opacity: 0.13;
@@ -998,38 +998,20 @@ section h3 {
 }
 
 .feedback-bookmark.expanded .feedback-bookmark-btn {
-    padding: 0.75rem 0.75rem;
+    padding: 0.6rem 0.8rem;
 }
-
-/* ===== CONCEPT PAGE ===== */
-.concept-page main { padding: 2rem; }
-.hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
-}
-.hero-content h2 { font-size: 3rem; margin-bottom: 1rem; }
-.hero-content p { font-size: 1.1rem; color: var(--text-light); line-height: 1.8; }
-.hero-image { width: 100%; border-radius: 12px; object-fit: cover; max-height: 400px; box-shadow: 0 12px 40px rgba(45, 80, 22, 0.15); }
-
-.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-.step-card { background: rgba(255, 255, 255, 0.7); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--pale-green); text-align: center; transition: var(--transition); }
-.step-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(45, 80, 22, 0.12); }
-.step-number { display: inline-block; width: 50px; height: 50px; background: var(--bright-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin-bottom: 1rem; }
-.step-card h3 { font-size: 1.5rem; margin: 0.5rem 0; }
 
 /* ===== FOOTER ===== */
 footer {
     background: linear-gradient(135deg, #2d5016 0%, #3d6b20 100%);
     color: white;
-    padding: 3rem 2rem 1rem;
+    padding: 3rem 2rem 1.5rem;
     margin-top: 4rem;
+    border-top: 2px solid var(--bright-green);
 }
 
 .footer-content {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1038,27 +1020,16 @@ footer {
 }
 
 .footer-section h4 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    color: var(--accent-yellow);
     margin-bottom: 0.75rem;
-    color: #fff;
 }
 
 .footer-section p {
     font-size: 0.9rem;
     line-height: 1.6;
     margin-bottom: 0.5rem;
-}
-
-.footer-section a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 2px solid transparent;
-    transition: var(--transition);
-}
-
-.footer-section a:hover {
-    border-bottom-color: var(--accent-yellow);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .footer-section ul {
@@ -1066,56 +1037,45 @@ footer {
     padding: 0;
 }
 
-.footer-section ul li {
+.footer-section li {
     margin-bottom: 0.5rem;
 }
 
+.footer-section a {
+    color: var(--accent-yellow);
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-credits {
+    font-size: 0.75rem !important;
     margin-top: 0.5rem;
-    font-size: 0.8rem;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1024px) {
-    .habitat-card {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .info-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .counter-card-inner {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .counter-beetle-img {
-        width: 100px;
-        height: 100px;
-    }
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    main {
-        padding: 2rem 1rem;
-    }
-
     section h2 {
         font-size: 2.5rem;
     }
 
     section h3 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .discovery-title {
@@ -1124,43 +1084,20 @@ footer {
 
     .progress-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
     }
 
-    .info-cards {
+    .habitat-card {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    .info-card {
-        min-height: 70px;
-    }
-
-    .counter-grid {
+    .counter-card-inner {
         grid-template-columns: 1fr;
-    }
-
-    .habitat-photo {
-        min-height: 200px;
-    }
-
-    .name-input-row {
-        flex-wrap: wrap;
-    }
-
-    .name-input {
-        min-width: 100%;
-    }
-
-    .logo h1 {
-        font-size: 2rem;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .deco-leaf-topright {
-        width: 200px;
+        width: 250px;
     }
 
     .deco-leaf-bottom {
@@ -1170,11 +1107,7 @@ footer {
 
 @media (max-width: 480px) {
     main {
-        padding: 1.5rem 1rem;
-    }
-
-    section {
-        margin-bottom: 2rem;
+        padding: 2rem 1rem;
     }
 
     section h2 {
@@ -1185,29 +1118,8 @@ footer {
         font-size: 1.8rem;
     }
 
-    .location-inline {
-        font-size: 0.95rem;
-    }
-
-    .insect-showcase {
-        min-height: 200px;
-    }
-
-    .insect-image {
-        max-width: 280px;
-        max-height: 280px;
-    }
-
-    .info-icon {
-        font-size: 1.2rem;
-    }
-
-    .info-card-front strong {
-        font-size: 0.75rem;
-    }
-
-    .progress-item {
-        padding: 1rem;
+    .counter-grid {
+        grid-template-columns: 1fr;
     }
 
     .progress-photo-wrap {
@@ -1215,66 +1127,12 @@ footer {
         height: 90px;
     }
 
-    .progress-item h3 {
-        font-size: 1.1rem;
+    .counter-beetle-img {
+        width: 100px;
+        height: 100px;
     }
 
-    .counter-label {
-        font-size: 0.8rem;
-    }
-
-    .counter button {
-        width: 30px;
-        height: 30px;
-        font-size: 1.1rem;
-    }
-
-    .counter input {
-        width: 45px;
-        font-size: 1.1rem;
-    }
-
-    .big-number {
-        font-size: 2.2rem;
-    }
-
-    .upload-box {
-        padding: 1.5rem;
-    }
-
-    .name-input-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .name-input-row label {
-        width: 100%;
-        margin-bottom: 0.25rem;
-    }
-
-    .name-input {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .timeline {
-        grid-template-columns: 1fr;
-    }
-
-    .feedback-banner {
-        padding: 0.35rem 1rem;
-    }
-
-    .feedback-banner p {
-        font-size: 0.75rem;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .deco-leaf-topright {
-        width: 250px;
+    .deco-leaf {
+        opacity: 0.08;
     }
 }
