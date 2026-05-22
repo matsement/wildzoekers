@@ -183,23 +183,56 @@ function updateSingleTracker(config, foundList) {
 // ===== COUNTER FUNCTIONALITY =====
 
 function initializeCounters() {
-    const personalCounter = document.getElementById('personal-counter');
-    const communityTotal = document.getElementById('community-total');
-
-    if (personalCounter) {
-        personalCounter.value = 1;
-    }
+    ['lieveheersbeestje', 'kever', 'aardhommel'].forEach(type => {
+        const counter = document.getElementById(type + '-counter');
+        if (counter) counter.value = 1;
+    });
 
     let communityCount = localStorage.getItem(STORAGE_KEYS.communityCount);
-
     if (!communityCount) {
         communityCount = '47';
         localStorage.setItem(STORAGE_KEYS.communityCount, communityCount);
     }
-
+    const communityTotal = document.getElementById('community-total');
     if (communityTotal) {
         communityTotal.textContent = communityCount;
     }
+}
+
+function submitPersonalCount(type) {
+    const input = document.getElementById(type + '-counter');
+    const successMessage = document.getElementById('submit-success');
+    if (!input) return;
+
+    const count = parseInt(input.value);
+    if (count <= 0) {
+        const animalNames = {
+            'lieveheersbeestje': '🐞 Voeg eerst minimaal 1 lieveheersbeestje toe.',
+            'kever':             '🪲 Voeg eerst minimaal 1 kever toe.',
+            'aardhommel':        '🐝 Voeg eerst minimaal 1 hommel toe.'
+        };
+        showNotification(animalNames[type] || '🐛 Voeg eerst minimaal 1 dier toe.');
+        return;
+    }
+
+    const currentCommunity = parseInt(localStorage.getItem(STORAGE_KEYS.communityCount) || '47');
+    const newCommunity = currentCommunity + count;
+    localStorage.setItem(STORAGE_KEYS.communityCount, newCommunity);
+
+    const communityElement = document.getElementById('community-total');
+    if (communityElement) {
+        communityElement.textContent = newCommunity;
+    }
+
+    input.value = 0;
+
+    if (successMessage) {
+        successMessage.style.display = 'block';
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 4000);
+    }
+    createMiniConfetti();
 }
 
 function increaseCounter(type) {
@@ -234,44 +267,6 @@ function decreaseCounter(type) {
     }
 }
 
-function submitPersonalCount() {
-    const input = document.getElementById('personal-counter');
-    const successMessage = document.getElementById('submit-success');
-
-    if (!input) return;
-
-    const count = parseInt(input.value);
-
-    if (count <= 0) {
-        showNotification('🪲 Voeg eerst minimaal 1 kever toe.');
-        return;
-    }
-
-    const currentCommunity = parseInt(localStorage.getItem(STORAGE_KEYS.communityCount) || '47');
-
-    const newCommunity = currentCommunity + count;
-
-    localStorage.setItem(STORAGE_KEYS.communityCount, newCommunity);
-
-    const communityElement = document.getElementById('community-total');
-
-    if (communityElement) {
-        communityElement.textContent = newCommunity;
-    }
-
-    // reset teller na verzenden
-    input.value = 0;
-
-    if (successMessage) {
-        successMessage.style.display = 'block';
-
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-        }, 4000);
-    }
-
-    createMiniConfetti();
-}
 
 // ===== PHOTO UPLOAD =====
 
