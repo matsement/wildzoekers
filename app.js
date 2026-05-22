@@ -203,8 +203,13 @@ function initializeCounters() {
 }
 
 function increaseCounter(type) {
-    const input = document.getElementById(type + '-counter');
+    const messages = {
+        'lieveheersbeestje':     '🐞 Je kunt maximaal 5 lieveheersbeestjes tegelijk doorgeven.',
+        'kever':        '🪲 Je kunt maximaal 5 kevers tegelijk doorgeven.',
+        'aardhommel':      '🐝 Je kunt maximaal 5 hommels tegelijk doorgeven.'
+    };
 
+    const input = document.getElementById(type + '-counter');
     if (!input) return;
 
     let currentValue = parseInt(input.value);
@@ -212,7 +217,8 @@ function increaseCounter(type) {
     if (currentValue < 5) {
         input.value = currentValue + 1;
     } else {
-        showNotification('🐞 Je kunt maximaal 5 kevers tegelijk doorgeven.');
+        const msg = messages[type] || '🐛 Je kunt maximaal 5 tegelijk doorgeven.';
+        showNotification(msg);
     }
 }
 
