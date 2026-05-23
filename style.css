@@ -112,14 +112,17 @@ header {
     text-decoration: none;
     display: flex;
     align-items: center;
-    max-width: 200px;
-    margin: 0 auto;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    color: #fff;
+}
+
+.logo img {
+    height: 36px;
+    width: auto;
+    display: block;
 }
 
 .logo h1 {
