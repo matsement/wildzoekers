@@ -41,7 +41,6 @@
 
                 <div class="insect-showcase">
                     <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever gevonden in Spoorpark" class="insect-image">
-                    <!-- Foto: eigen opname Wildzoekers, Spoorpark Tilburg -->
                 </div>
             </div>
         </section>
@@ -58,7 +57,6 @@
                     </div>
                     <div class="habitat-content">
 
-                        <!-- INTERACTIEVE INFORMATIESECTIE -->
                         <div class="info-section">
                             <div class="info-toggle" onclick="toggleInfoSection(this)">
                                 <span class="toggle-icon">▼</span>
@@ -93,7 +91,6 @@
         <section class="progress-tracker">
             <h2>Wat heb je al gevonden?</h2>
             <div class="progress-grid">
-                <!-- Kever: altijd gevonden -->
                 <div class="progress-item found" id="beetle-progress">
                     <div class="progress-photo-wrap found-wrap">
                         <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever" class="progress-photo">
@@ -102,7 +99,6 @@
                     <p class="progress-status">✓ Gevonden!</p>
                 </div>
 
-                <!-- Lieveheersbeestje -->
                 <div class="progress-item" id="ladybug-progress">
                     <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
                         <img src="https://pluspng.com/img-png/ladybug-png-ladybug-png-transparent-image-1656.png" alt="Lieveheersbeestje silhouet" class="progress-photo silhouette" id="ladybug-img">
@@ -111,7 +107,6 @@
                     <p class="progress-status" id="ladybug-status">Nog te vinden</p>
                 </div>
 
-                <!-- Aardhommel -->
                 <div class="progress-item" id="bumblebee-progress">
                     <div class="progress-photo-wrap not-found-wrap" id="bumblebee-photo-wrap">
                         <img src="https://img.magnific.com/free-vector/detailed-vector-illustration-honey-bee_1308-180657.jpg?t=st=1779367736~exp=1779371336~hmac=ca4ef313c376ffad8e4ff64f7a68d1a96b2744d4406e8a9d405bb0d67658a624&w=1480" alt="Aardhommel silhouet" class="progress-photo silhouette" id="bumblebee-img">
@@ -129,12 +124,10 @@
 
             <div class="fauna-counter-card">
                 <div class="counter-card-inner">
-                    <!-- Kever foto links -->
                     <div class="counter-beetle-photo">
                         <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever" class="counter-beetle-img">
                     </div>
 
-                    <!-- Tellingen grid -->
                     <div class="counter-grid">
                         <div class="counter-box">
                             <p class="counter-label">Hoeveel kevers zie jij hier nu?</p>
@@ -201,8 +194,8 @@
                     <div id="photo-preview" style="display: none;">
                         <img id="preview-img" src="" alt="Preview">
                         <div class="preview-actions">
-                            <button class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
-                            <button class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+                            <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
+                            <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
                         </div>
                     </div>
                 </div>
@@ -210,7 +203,7 @@
         </section>
     </main>
 
-    <!-- FEEDBACK BOOKMARK (altijd zichtbaar, groeit na 8s of 40% scroll) -->
+    <!-- FEEDBACK BOOKMARK -->
     <div id="feedbackBookmark" class="feedback-bookmark">
         <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
             <span class="fb-icon">💬</span>
@@ -228,31 +221,19 @@
                 <h4>Links</h4>
                 <ul>
                     <li><a href="index.html">Concept</a></li>
-                    <li>
-                    <a href="https://matsvandeijck.com" target="_blank">
-                        Mats van Deijck
-                    </a>
-                </li>
+                    <li><a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-
-            <h4>Contact</h4>
-
-            <p>
-                Dit is een prototype. Feedback is welkom.
-            </p>
-            <p>
-                m.j.j.v.deijck@student.tue.nl
-            </p>
-            
-            <p>
-                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-                    Geef feedback
-                </a>
-            </p>
-
-        </div>
+                <h4>Contact</h4>
+                <p>Dit is een prototype. Feedback is welkom.</p>
+                <p>m.j.j.v.deijck@student.tue.nl</p>
+                <p>
+                    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
+                        Geef feedback
+                    </a>
+                </p>
+            </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
@@ -261,15 +242,5 @@
     </footer>
 
     <script src="app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setFoundDate();
-            updateProgressTrackers();
-            initializeCounters();
-            createConfetti();
-            initializeFeedbackBookmark();
-            loadStoredPhotos();
-        });
-    </script>
 </body>
 </html>
