@@ -190,7 +190,7 @@ function initializeCounters() {
 
     let communityCount = localStorage.getItem(STORAGE_KEYS.communityCount);
     if (!communityCount) {
-        communityCount = '47';
+        communityCount = String(Math.floor(Math.random() * 21) + 30);
         localStorage.setItem(STORAGE_KEYS.communityCount, communityCount);
     }
     const communityTotal = document.getElementById('community-total');
@@ -215,7 +215,7 @@ function submitPersonalCount(type) {
         return;
     }
 
-    const currentCommunity = parseInt(localStorage.getItem(STORAGE_KEYS.communityCount) || '47');
+    const currentCommunity = parseInt(localStorage.getItem(STORAGE_KEYS.communityCount) || '30');
     const newCommunity = currentCommunity + count;
     localStorage.setItem(STORAGE_KEYS.communityCount, newCommunity);
 
@@ -237,9 +237,9 @@ function submitPersonalCount(type) {
 
 function increaseCounter(type) {
     const messages = {
-        'lieveheersbeestje':     '🐞 Je kunt maximaal 5 lieveheersbeestjes tegelijk doorgeven.',
-        'kever':        '🪲 Je kunt maximaal 5 kevers tegelijk doorgeven.',
-        'aardhommel':      '🐝 Je kunt maximaal 5 hommels tegelijk doorgeven.'
+        'lieveheersbeestje': '🐞 Je kunt maximaal 5 lieveheersbeestjes tegelijk doorgeven.',
+        'kever':             '🪲 Je kunt maximaal 5 kevers tegelijk doorgeven.',
+        'aardhommel':        '🐝 Je kunt maximaal 5 hommels tegelijk doorgeven.'
     };
 
     const input = document.getElementById(type + '-counter');
@@ -305,29 +305,42 @@ function submitPhoto() {
     const previewImg = document.getElementById('preview-img');
     const uploaderNameInput = document.getElementById('uploader-name');
 
+    // Prevent focus/Enter on the name input from interfering with the upload
+    if (uploaderNameInput) uploaderNameInput.blur();
+
     if (!previewImg || !previewImg.src) {
         showNotification('📸 Upload eerst een foto.');
         return;
     }
 
-    let uploaderName = uploaderNameInput.value.trim();
+    let uploaderName = uploaderNameInput ? uploaderNameInput.value.trim() : '';
 
     if (!uploaderName) {
         uploaderName = 'Anoniem';
     }
 
+    // Read the animal type set per page in the HTML via PAGE_ANIMAL
+    const selectedAnimal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever';
+
+    const animalLabels = {
+        'lieveheersbeestje': '🐞 Jouw lieveheersbeestje foto staat nu tussen de waarnemingen!',
+        'kever':             '🪲 Jouw keverfoto staat nu tussen de waarnemingen!',
+        'aardhommel':        '🐝 Jouw aardhommel foto staat nu tussen de waarnemingen!'
+    };
+
     const photoData = {
         image: previewImg.src,
         name: uploaderName,
+        animal: selectedAnimal,
         timestamp: new Date().toISOString()
     };
 
     savePhotoToStorage(photoData);
     addPhotoToTimeline(photoData, true);
 
-    showNotification('🌿 Jouw keverfoto staat nu tussen de waarnemingen!');
+    showNotification(animalLabels[selectedAnimal] || '🌿 Jouw foto staat nu tussen de waarnemingen!');
 
-    uploaderNameInput.value = '';
+    if (uploaderNameInput) uploaderNameInput.value = '';
 
     removePhoto();
 }
@@ -369,6 +382,7 @@ function addPhotoToTimeline(photoData, prepend = false) {
         timeline.appendChild(item);
     }
 }
+
 
 // ===== FEEDBACK FUNCTIONS =====
 
