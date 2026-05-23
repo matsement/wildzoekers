@@ -6,6 +6,8 @@
     <title>Kever gevonden! - Wildzoekers</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script> const PAGE_ANIMAL = 'kever'; </script>
+    <script src="app.js"></script>
 </head>
 <body class="insect-page">
     <div class="forest-background"></div>
@@ -20,7 +22,7 @@
         <header>
             <a href="index.html" class="header-logo">
                 <div class="logo">
-                    <h1>wildzoekers</h1>
+                    <img src="media/Logo%20groen.png?raw=true" alt="Kever gevonden in Spoorpark" class="insect-image">
                 </div>
             </a>
         </header>
@@ -39,7 +41,7 @@
                 <p class="location-inline">📍 Spoorpark, Tilburg • <span id="found-date"></span></p>
 
                 <div class="insect-showcase">
-                    <img src="media/IMG_1828.jpg" alt="Kever gevonden in Spoorpark" class="insect-image">
+                    <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever gevonden in Spoorpark" class="insect-image">
                     <!-- Foto: eigen opname Wildzoekers, Spoorpark Tilburg -->
                 </div>
             </div>
@@ -47,36 +49,33 @@
 
         <!-- HABITAT EXPLORER -->
         <section class="habitat-explorer">
-            <h2>Waar leven kevers het liefst?</h2>
-            <p class="section-intro">Kevers houden van bijna elke plek — maar dood hout spant de kroon.</p>
+            <h2 style="line-height:0.1;">Waarom zit deze kever hier?</h2>
+            <p class="section-intro">Hij kwam af op het dode hout...</p>
 
             <div class="habitat-showcase">
                 <div class="habitat-card">
                     <div class="habitat-image">
-                        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&q=80" alt="Dood hout in de stad" class="habitat-photo">
-                        <p class="image-credit">Bron: Unsplash – Noah Silliman</p>
+                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1851.jpg?raw=true" alt="Dood hout in de stad" class="habitat-photo">
                     </div>
                     <div class="habitat-content">
-                        <h3>Waarom is dood hout zo belangrijk?</h3>
-                        <p>Omgevallen stammen en oude takken lijken misschien dood, maar ze zijn juist brutaal levendig! Ze zijn een echte voedingsbron en broedplaats voor duizenden soorten — inclusief kevers.</p>
 
                         <!-- INTERACTIEVE INFORMATIESECTIE -->
                         <div class="info-section">
                             <div class="info-toggle" onclick="toggleInfoSection(this)">
                                 <span class="toggle-icon">▼</span>
-                                <h4>🍽️ Waarom komt deze kever hier grazen?</h4>
+                                <h4>🍽️ Waarom komt 'ie hier grazen?</h4>
                             </div>
                             <div class="info-content">
-                                <p>Kevers eten niet zomaar hout — ze eten de schimmels die in verrotting hout groeien. Deze schimmels breken het hout af en maken het voedzaam. Sommige kevers eten ook ander organisch materiaal dat in het hout wordt gevonden.</p>
+                                <p>Kevers eten niet zomaar hout, ze <strong>eten de schimmels</strong> die in dood hout groeien. Deze schimmels breken het hout af en maken het voedzaam.</p>
                             </div>
                         </div>
 
                         <div class="info-toggle" onclick="toggleInfoSection(this)">
                             <span class="toggle-icon">▼</span>
-                            <h4>🌍 Wat doet deze kever voor de natuur?</h4>
+                            <h4>🌍 Wat doet 'ie voor de natuur?</h4>
                         </div>
                         <div class="info-content">
-                            <p><strong>De kever helpt de natuur circuleren.</strong> Door de schimmels te eten, helpt de kever ze uit te zaaien naar ander hout. Tegelijkertijd worden kevers zelf gegeten door vogels en andere dieren, dus ze zijn onderdeel van een groter voedselweb.</p>
+                            <p>Kevers helpen schimmels verspreiden, waardoor dood hout wordt afgebroken en <strong>voedingsstoffen terugkomen in de bodem</strong>. Daarnaast zijn kevers voedsel voor veel dieren, zoals vogels. Zo helpen ze de natuur gezond en in balans te houden.</p>
                         </div>
 
                         <div class="info-toggle" onclick="toggleInfoSection(this)">
@@ -84,7 +83,7 @@
                             <h4>⚠️ Waarom moeten we dood hout laten liggen?</h4>
                         </div>
                         <div class="info-content">
-                            <p>Veel mensen willen dood hout opruimen omdat ze denken dat het 'rommelig' is. Maar dit is een dodelijke fout voor het ecosysteem! Als jij dit hout weghaalt, vernietig je een thuis voor duizenden organismen, inclusief kevers.</p>
+                            <p>Veel mensen willen dood hout opruimen omdat ze denken dat het 'rommelig' is. Maar als jij dit hout weghaalt, <strong>vernietig je een thuis voor duizenden organismen, inclusief kevers</strong>.</p>
                         </div>
                     </div>
                 </div>
@@ -98,7 +97,7 @@
                 <!-- Kever: altijd gevonden -->
                 <div class="progress-item found" id="beetle-progress">
                     <div class="progress-photo-wrap found-wrap">
-                        <img src="media/IMG_1828.jpg" alt="Kever" class="progress-photo">
+                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever" class="progress-photo">
                         <!-- Foto: eigen opname Wildzoekers -->
                     </div>
                     <h3>kever</h3>
@@ -109,7 +108,6 @@
                 <div class="progress-item" id="ladybug-progress">
                     <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
                         <img src="https://pluspng.com/img-png/ladybug-png-ladybug-png-transparent-image-1656.png" alt="Lieveheersbeestje silhouet" class="progress-photo silhouette" id="ladybug-img">
-                        <!-- Bron: pluspng.com -->
                     </div>
                     <h3 class="progress-name blurred-name" id="ladybug-name">lieveheersbeestje</h3>
                     <p class="progress-status" id="ladybug-status">Nog te vinden</p>
@@ -119,7 +117,6 @@
                 <div class="progress-item" id="bumblebee-progress">
                     <div class="progress-photo-wrap not-found-wrap" id="bumblebee-photo-wrap">
                         <img src="https://img.magnific.com/free-vector/detailed-vector-illustration-honey-bee_1308-180657.jpg?t=st=1779367736~exp=1779371336~hmac=ca4ef313c376ffad8e4ff64f7a68d1a96b2744d4406e8a9d405bb0d67658a624&w=1480" alt="Aardhommel silhouet" class="progress-photo silhouette" id="bumblebee-img">
-                        <!-- Bron: magnific.com -->
                     </div>
                     <h3 class="progress-name blurred-name" id="bumblebee-name">aardhommel</h3>
                     <p class="progress-status" id="bumblebee-status">Nog te vinden</p>
@@ -136,8 +133,7 @@
                 <div class="counter-card-inner">
                     <!-- Kever foto links -->
                     <div class="counter-beetle-photo">
-                        <img src="media/IMG_1828.jpg" alt="Kever" class="counter-beetle-img">
-                        <!-- Foto: eigen opname Wildzoekers -->
+                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever" class="counter-beetle-img">
                     </div>
 
                     <!-- Tellingen grid -->
@@ -177,16 +173,15 @@
                 <div class="timeline" id="photo-timeline">
                     <div class="timeline-item sample">
                         <div class="timeline-image">
-                            <img src="https://pixabay.com/fr/images/download/franknowledge7-insect-8857943_1920.jpg" alt="Kever waarneming door Jens" class="timeline-photo">
+                            <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever waarneming door Mats" class="timeline-photo">
                         </div>
-                        <p class="timeline-date">Door <strong>Jens</strong> • 2 weken geleden</p>
-                        <!-- Bron: Pixabay – franknowledge7 -->
+                        <p class="timeline-date">Door <strong>Mats</strong> • 2 weken geleden</p>
                     </div>
                     <div class="timeline-item sample">
                         <div class="timeline-image">
-                            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Kever waarneming door Denise" class="timeline-photo">
+                            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Kever waarneming door Natalia" class="timeline-photo">
                         </div>
-                        <p class="timeline-date">Door <strong>Denise</strong> • 1 week geleden</p>
+                        <p class="timeline-date">Door <strong>Natalia</strong> • 1 week geleden</p>
                         <!-- Bron: Dreamstime – twee zwarte kevers -->
                     </div>
                 </div>
@@ -263,7 +258,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
-            <p class="footer-credits">Externe afbeeldingen: Unsplash (Noah Silliman), Pixabay (franknowledge7), Dreamstime, pngmart.com, pluspng.com, pngall.com</p>
+            <p class="footer-credits">Externe afbeeldingen: Dreamstime (Natalia Shishkova)</p>
         </div>
     </footer>
 
