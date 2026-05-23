@@ -6,13 +6,17 @@ const INSECTS = {
     lieveheersbeestje: 'lieveheersbeestje'
 };
 
-const STORAGE_KEYS = {
-    foundInsects: 'foundInsects',
-    communityCount: 'community-beetle-count',
-    uploadedPhotos: 'wildzoekers-uploaded-photos'
-};
-
 const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u';
+
+// Animal-specific storage keys — keeps each page's data separate
+function getStorageKeys(animal) {
+    return {
+        communityCount: 'community-count-' + animal,
+        uploadedPhotos: 'wildzoekers-photos-' + animal
+    };
+}
+
+const FOUND_INSECTS_KEY = 'foundInsects';
 
 // Track whether a photo has actually been loaded
 let photoReady = false;
@@ -21,12 +25,12 @@ function markInsectAsFound(insect) {
     const found = getFoundInsects();
     if (!found.includes(insect)) {
         found.push(insect);
-        localStorage.setItem(STORAGE_KEYS.foundInsects, JSON.stringify(found));
+        localStorage.setItem(FOUND_INSECTS_KEY, JSON.stringify(found));
     }
 }
 
 function getFoundInsects() {
-    const found = localStorage.getItem(STORAGE_KEYS.foundInsects);
+    const found = localStorage.getItem(FOUND_INSECTS_KEY);
     return found ? JSON.parse(found) : [];
 }
 
@@ -170,6 +174,9 @@ function initializeCounters() {
         if (counter) counter.value = 1;
     });
 
+    const animal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever';
+    const STORAGE_KEYS = getStorageKeys(animal);
+
     let communityCount = localStorage.getItem(STORAGE_KEYS.communityCount);
     if (!communityCount) {
         communityCount = String(Math.floor(Math.random() * 21) + 30);
@@ -196,6 +203,9 @@ function submitPersonalCount(type) {
         showNotification(animalNames[type] || '🐛 Voeg eerst minimaal 1 dier toe.');
         return;
     }
+
+    const animal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : type;
+    const STORAGE_KEYS = getStorageKeys(animal);
 
     const currentCommunity = parseInt(localStorage.getItem(STORAGE_KEYS.communityCount) || '30');
     const newCommunity = currentCommunity + count;
@@ -295,6 +305,7 @@ function submitPhoto() {
     }
 
     const selectedAnimal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever';
+    const STORAGE_KEYS = getStorageKeys(selectedAnimal);
 
     const animalLabels = {
         'lieveheersbeestje': '🐞 Jouw lieveheersbeestje foto staat nu tussen de waarnemingen!',
@@ -309,7 +320,7 @@ function submitPhoto() {
         timestamp: new Date().toISOString()
     };
 
-    savePhotoToStorage(photoData);
+    savePhotoToStorage(photoData, STORAGE_KEYS);
     addPhotoToTimeline(photoData, true);
 
     showNotification(animalLabels[selectedAnimal] || '🌿 Jouw foto staat nu tussen de waarnemingen!');
@@ -318,13 +329,16 @@ function submitPhoto() {
     removePhoto();
 }
 
-function savePhotoToStorage(photoData) {
+function savePhotoToStorage(photoData, STORAGE_KEYS) {
     const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
     storedPhotos.unshift(photoData);
     localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
 }
 
 function loadStoredPhotos() {
+    const animal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever';
+    const STORAGE_KEYS = getStorageKeys(animal);
+
     const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
     storedPhotos.reverse().forEach(photo => {
         addPhotoToTimeline(photo, false);
