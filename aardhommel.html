@@ -6,6 +6,7 @@
     <title>Aardhommel gevonden! - Wildzoekers</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script> const PAGE_ANIMAL = 'kever'; </script>
 </head>
 <body class="insect-page">
     <div class="forest-background"></div>
@@ -20,7 +21,7 @@
         <header>
             <a href="index.html" class="header-logo">
                 <div class="logo">
-                    <h1>wildzoekers</h1>
+                    <img src="media/Logo%20groen.png?raw=true" alt="Logo wildzoekers">
                 </div>
             </a>
         </header>
@@ -47,44 +48,41 @@
 
         <!-- HABITAT EXPLORER -->
         <section class="habitat-explorer">
-            <h2>Waar leven aardhommels het liefst?</h2>
-            <p class="section-intro">Aardhommels houden van bloemen in de lage begroeiing — daar zoeken ze voedsel en nesten ze.</p>
+            <h2>Waarom vliegt deze aardhommel hier?</h2>
+            <p class="section-intro">Hij kwam af op de <strong>bloemen in de lage begroeiing</strong>...</p>
 
             <div class="habitat-showcase">
                 <div class="habitat-card">
                     <div class="habitat-image">
-                        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&q=80" alt="Bloemen in de stad" class="habitat-photo">
-                        <p class="image-credit">Bron: Unsplash – Noah Silliman</p>
+                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1852.jpg?raw=true" alt="Bloemen in de stad" class="habitat-photo">
                     </div>
                     <div class="habitat-content">
-                        <h3>Waarom is lage begroeiing zo belangrijk?</h3>
-                        <p>Lage planten, grassen en kruiden lijken misschien onopvallend, maar ze zijn cruciaal voor aardhommels! Ze bieden bloemen voor voedsel en beschutte plekken voor hun nesten.</p>
 
                         <!-- INTERACTIEVE INFORMATIESECTIE -->
                         <div class="info-section">
                             <div class="info-toggle" onclick="toggleInfoSection(this)">
                                 <span class="toggle-icon">▼</span>
-                                <h4>🍯 Waarom komt deze aardhommel hier grazen?</h4>
+                                <h4>🍯 Waarom komt 'ie hier grazen?</h4>
                             </div>
                             <div class="info-content">
-                                <p>Aardhommels eten nectar en stuifmeel uit bloemen. Anders dan bij kevers, is dit hun belangrijkste voedsel. Ze hebben veel energie nodig om hun lichaamstemperatuur warm te houden.</p>
+                                <p>Aardhommels eten <strong>nectar en stuifmeel</strong> uit bloemen. Ze hebben veel energie nodig om hun lichaamstemperatuur warm te houden.</p>
                             </div>
                         </div>
 
                         <div class="info-toggle" onclick="toggleInfoSection(this)">
                             <span class="toggle-icon">▼</span>
-                            <h4>🌍 Wat doet deze aardhommel voor de natuur?</h4>
+                            <h4>🌍 Wat doet 'ie voor de natuur?</h4>
                         </div>
                         <div class="info-content">
-                            <p><strong>De aardhommel is een belangrijke bestuiver.</strong> Terwijl ze nectar en stuifmeel verzamelen, dragen ze stuifmeel over van bloem naar bloem. Dit is essentieel voor fruitteelt en bloemenrijke ecosystemen.</p>
+                            <p><strong>Aardhommels helpen planten groeien.</strong> Terwijl ze voedsel zoeken in bloemen, nemen ze stuifmeel mee naar andere bloemen. Zo kunnen planten en fruit beter groeien.</p>
                         </div>
 
                         <div class="info-toggle" onclick="toggleInfoSection(this)">
                             <span class="toggle-icon">▼</span>
-                            <h4>⚠️ Waarom moeten we bloemen laten groeien?</h4>
+                            <h4>⚠️ Waarom bloemen niet plukken?</h4>
                         </div>
                         <div class="info-content">
-                            <p>Veel tuinen en parken worden te strak onderhouden en hebben niet genoeg bloemen. Dit is voor aardhommels catastrofaal! Zonder bloemen kunnen ze niet voeden en kunnen ze niet nesten.</p>
+                            <p><strong>Veel mensen plukken bloemen.</strong> Mooi voor thuis, maar zonder bloemen kunnen aardhommels niet voeden en kunnen ze niet nesten...</p>
                         </div>
                     </div>
                 </div>
@@ -98,8 +96,7 @@
                 <!-- Kever -->
                 <div class="progress-item" id="beetle-progress">
                     <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
-                        <img src="media/IMG_1828.jpg" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
-                        <!-- Bron: eigen opname -->
+                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
                     </div>
                     <h3 class="progress-name blurred-name" id="beetle-name">kever</h3>
                     <p class="progress-status" id="beetle-status">Nog te vinden</p>
@@ -177,10 +174,9 @@
                 <div class="timeline" id="photo-timeline">
                     <div class="timeline-item sample">
                         <div class="timeline-image">
-                            <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Aardhommel waarneming door Ruud" class="timeline-photo">
+                            <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Aardhommel waarneming door Gom" class="timeline-photo">
                         </div>
-                        <p class="timeline-date">Door <strong>Ruud</strong> • 2 weken geleden</p>
-                        <!-- Bron: Zeelandnet -->
+                        <p class="timeline-date">Door <strong>Gom</strong> • 2 weken geleden</p>
                     </div>
                 </div>
 
@@ -201,8 +197,8 @@
                     <div id="photo-preview" style="display: none;">
                         <img id="preview-img" src="" alt="Preview">
                         <div class="preview-actions">
-                            <button class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
-                            <button class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+                            <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
+                            <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
                         </div>
                     </div>
                 </div>
@@ -256,7 +252,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
-            <p class="footer-credits">Externe afbeeldingen: Unsplash (Noah Silliman), pluspng.com, Zeelandnet, pngall.com</p>
+            <p class="footer-credits">Externe afbeeldingen: Zeelandnet (Gompie01)</p>
         </div>
     </footer>
 
