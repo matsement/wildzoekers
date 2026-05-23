@@ -591,6 +591,7 @@ section h3 {
 .contribution-title {
     font-size: 3.8rem !important;
     margin-bottom: 1.5rem !important;
+    line-height: 0.5;
 }
 
 /* ===== FAUNA COUNTER CARD ===== */
