@@ -308,7 +308,7 @@ function submitPhoto() {
     // Prevent focus/Enter on the name input from interfering with the upload
     if (uploaderNameInput) uploaderNameInput.blur();
 
-    if (!previewImg || !previewImg.src) {
+    if (!previewImg || !previewImg.src || previewImg.src === window.location.href) {
         showNotification('📸 Upload eerst een foto.');
         return;
     }
