@@ -265,12 +265,28 @@ function handlePhotoUpload(input) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            const preview = document.getElementById('photo-preview');
-            const previewImg = document.getElementById('preview-img');
+            const img = new Image();
+            img.onload = function () {
+                // Resize to max 600px wide/tall and compress to ~40% quality
+                const MAX = 600;
+                let w = img.width;
+                let h = img.height;
+                if (w > h && w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+                else if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; }
 
-            previewImg.src = e.target.result;
-            preview.style.display = 'flex';
-            photoReady = true;
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                const compressed = canvas.toDataURL('image/jpeg', 0.4);
+
+                const preview = document.getElementById('photo-preview');
+                const previewImg = document.getElementById('preview-img');
+                previewImg.src = compressed;
+                preview.style.display = 'flex';
+                photoReady = true;
+            };
+            img.src = e.target.result;
         };
 
         reader.readAsDataURL(file);
@@ -330,9 +346,21 @@ function submitPhoto() {
 }
 
 function savePhotoToStorage(photoData, STORAGE_KEYS) {
-    const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
-    storedPhotos.unshift(photoData);
-    localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
+    try {
+        const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
+        storedPhotos.unshift(photoData);
+        localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
+    } catch (e) {
+        // Storage full — remove oldest photo and try once more
+        try {
+            const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
+            storedPhotos.pop(); // remove oldest
+            storedPhotos.unshift(photoData);
+            localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
+        } catch (e2) {
+            showNotification('📸 Foto kon niet worden opgeslagen. Probeer een kleinere foto.');
+        }
+    }
 }
 
 function loadStoredPhotos() {
