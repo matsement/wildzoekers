@@ -101,6 +101,13 @@
     </div>
   </section>
 
+  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
+    <div class="tue-quote" style="margin-bottom: 0;">
+      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
+      <span>"Om te bouwen aan een duurzame toekomst, willen we dat er in <strong>2030</strong> minstens <strong>100</strong> verschillende insectensoorten op onze campus leven. Door jouw alledaagse waarnemingen te delen, help je als community mee en lever je de data die we hard nodig hebben om te zien of onze natuurplannen werken."</span>
+    </div>
+  </section>
+
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
       <h2 class="contribution-title" style="display: block; line-height: 1.4;">
@@ -195,10 +202,6 @@
         </div>
 
         <div class="habitat-content">
-          <div class="tue-quote">
-            <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
-            <span>"Om te bouwen aan een duurzame toekomst, willen we dat er in <strong>2030</strong> minstens <strong>100</strong> verschillende insectensoorten op onze campus leven. Door jouw alledaagse waarnemingen te delen, help je als community mee en lever je de data die we hard nodig hebben om te zien of onze natuurplannen werken."</span>
-          </div>
 
           <div class="info-section">
             <div class="info-toggle" onclick="toggleInfoSection(this)">
@@ -311,15 +314,37 @@
   const found = localStorage.getItem(KEY);
   const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  // Selecteer de hoofdcontainer en alle losse bouwstenen
+  const main = document.querySelector('.insect-main');
+  const hero = document.querySelector('.discovery-hero');
+  const education = document.getElementById('education-section');
+  const quote = document.getElementById('tue-quote-section');
+  const observation = document.getElementById('observation-anchor');
+  const progress = document.querySelector('.progress-tracker');
+
   if (found) {
+    // ── TERUGKERENDE BEZOEKER ──
     document.getElementById('discovery-title-new').style.display = 'none';
     const returnTitle = document.getElementById('discovery-title-return');
     returnTitle.style.display = 'block';
-    
     document.querySelector('.insect-showcase').style.display = 'none';
-    // The scrolling timeout that used to be here is now gone!
+
+    // Volgorde: Hero -> Quote -> Waarneming -> Educatie -> Tracker
+    main.appendChild(hero);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(education);
+    main.appendChild(progress);
   } else {
+    // ── EERSTE BEZOEK (EERSTE SCAN) ──
     localStorage.setItem(KEY, today);
+
+    // Volgorde: Hero -> Educatie -> Quote -> Waarneming -> Tracker
+    main.appendChild(hero);
+    main.appendChild(education);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(progress);
   }
 })();
 </script>
