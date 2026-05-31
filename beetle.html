@@ -8,111 +8,57 @@
 <link rel="stylesheet" href="style.css">
 <script> const PAGE_ANIMAL = 'kever'; </script>
 <style>
-  /* ── RETURNING USER BANNER ── */
-  .welcome-back-banner {
-    display: none;
-    background: linear-gradient(135deg, #2d6a2d 0%, #4a7c2e 100%);
-    color: #fff;
-    border-radius: 18px;
-    padding: 1.2rem 1.5rem;
-    margin: 1rem 0 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 20px rgba(74,124,46,0.25);
-  }
-  .welcome-back-banner .wb-icon { font-size: 2.4rem; flex-shrink: 0; }
-  .welcome-back-banner h3 { margin: 0 0 .25rem; font-size: 1.1rem; font-family: 'Poppins', sans-serif; }
-  .welcome-back-banner p  { margin: 0; font-size: .85rem; opacity: .9; }
-  .wb-badge { background: rgba(255,255,255,0.2); border-radius: 30px; padding: .15rem .7rem; font-size: .75rem; font-weight: 600; display: inline-block; margin-top: .3rem; }
+  .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
+  .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
 
-  /* ── ADOPTER CARD ── */
-  .adopter-card {
+  .discovery-subtitle-return { display: none; }
+
+  .nature-section {
     background: #f8faf4;
-    border: 2px solid #d4e8be;
-    border-radius: 18px;
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
+    border-radius: 20px;
+    padding: 0 0 1.8rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1.5px solid #d4e8be;
   }
-  .adopter-avatar {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #4a7c2e;
-    flex-shrink: 0;
+  .nature-section .contribution-wrap {
+    background: #fff;
+    padding: 1.4rem 1.4rem 1.2rem;
+    border-bottom: 1.5px solid #e0edd0;
+    margin-bottom: 1.4rem;
   }
-  .adopter-info { flex: 1; }
-  .adopter-info h4 { margin: 0 0 .2rem; font-family: 'Poppins', sans-serif; font-size: .95rem; color: #2d6a2d; }
-  .adopter-info p  { margin: 0; font-size: .82rem; color: #555; line-height: 1.45; }
-  .adopter-tag { font-size: .72rem; background: #4a7c2e; color: #fff; border-radius: 20px; padding: .1rem .55rem; display: inline-block; margin-top: .35rem; }
-  .adopter-video-wrap { margin-top: .8rem; border-radius: 12px; overflow: hidden; background: #e8f2df; display: flex; align-items: center; justify-content: center; min-height: 56px; }
-  .adopter-video-placeholder { display: flex; align-items: center; gap: .5rem; padding: .7rem 1rem; font-size: .82rem; color: #4a7c2e; cursor: pointer; }
-  .adopter-video-placeholder .play-icon { font-size: 1.4rem; }
+  .nature-section .contribution-wrap h2 { margin: 0 0 1rem; }
+  .nature-inner { padding: 0 1.4rem; }
+  .nature-inner h2 { margin: 0 0 .4rem; line-height: 1.2; }
+  .nature-inner .section-intro { margin-bottom: 1rem; }
+  .habitat-photo-wrap { border-radius: 14px; overflow: hidden; margin-bottom: 1.2rem; }
+  .habitat-photo-wrap img { width: 100%; display: block; object-fit: cover; max-height: 220px; }
 
-  /* ── MUNICIPAL VISION SECTION ── */
-  .vision-section {
+  .tue-vision-card {
     background: linear-gradient(135deg, #1a4d2e 0%, #2d6a2d 100%);
     color: #fff;
-    border-radius: 20px;
-    padding: 1.5rem 1.5rem 1.8rem;
-    margin-bottom: 2rem;
+    border-radius: 16px;
+    padding: 1.2rem 1.2rem 1.4rem;
+    margin: 1.4rem 0;
     position: relative;
     overflow: hidden;
   }
-  .vision-section::before {
+  .tue-vision-card::before {
     content: '';
     position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
   }
-  .vision-header { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; }
-  .vision-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 30px; padding: .2rem .8rem; font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
-  .vision-section h2 { margin: 0 0 .7rem; font-size: 1.25rem; font-family: 'Poppins', sans-serif; }
-  .vision-section .vision-quote { font-size: .9rem; line-height: 1.6; opacity: .92; margin: 0 0 1.1rem; }
-  .vision-authority { display: flex; align-items: center; gap: .6rem; background: rgba(255,255,255,.12); border-radius: 12px; padding: .6rem .9rem; }
-  .authority-logo { font-size: 1.5rem; }
-  .authority-text { font-size: .8rem; opacity: .9; }
-  .authority-text strong { display: block; font-size: .85rem; opacity: 1; }
-  .vision-timeline { margin-top: 1.2rem; }
-  .vision-timeline h4 { font-size: .82rem; opacity: .8; margin: 0 0 .6rem; text-transform: uppercase; letter-spacing: .05em; }
-  .timeline-steps { display: flex; gap: .5rem; }
-  .tl-step { flex: 1; background: rgba(255,255,255,.1); border-radius: 10px; padding: .5rem .6rem; text-align: center; font-size: .72rem; }
-  .tl-step.active { background: rgba(255,255,255,.25); border: 1px solid rgba(255,255,255,.4); }
-  .tl-step .tl-year { font-weight: 700; font-size: .8rem; display: block; margin-bottom: .15rem; }
-
-  /* ── MESSAGE SECTION ── */
-  .messages-section {
-    background: #fff;
-    border: 2px solid #e0edd0;
-    border-radius: 20px;
-    padding: 1.4rem 1.4rem 1rem;
-    margin-bottom: 2rem;
-  }
-  .messages-section h3 { margin: 0 0 1rem; font-family: 'Poppins', sans-serif; font-size: 1rem; color: #2d6a2d; display: flex; align-items: center; gap: .4rem; }
-  .message-thread { display: flex; flex-direction: column; gap: .8rem; margin-bottom: 1rem; }
-  .msg { display: flex; gap: .7rem; }
-  .msg-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #d4e8be; }
-  .msg-avatar.municipal { border-color: #4a7c2e; }
-  .msg-bubble { background: #f4f9ee; border-radius: 0 14px 14px 14px; padding: .55rem .85rem; flex: 1; }
-  .msg-bubble.municipal { background: #e8f2df; }
-  .msg-sender { font-size: .72rem; font-weight: 600; color: #4a7c2e; display: block; margin-bottom: .2rem; }
-  .msg-sender.municipal-sender { color: #1a4d2e; }
-  .msg-text { font-size: .83rem; color: #444; line-height: 1.5; margin: 0; }
-  .msg-time { font-size: .68rem; color: #999; margin-top: .2rem; display: block; }
-  .msg-input-row { display: flex; gap: .5rem; }
-  .msg-input-row input { flex: 1; border: 1.5px solid #d4e8be; border-radius: 30px; padding: .55rem 1rem; font-size: .85rem; font-family: 'Poppins', sans-serif; outline: none; }
-  .msg-input-row input:focus { border-color: #4a7c2e; }
-  .msg-send-btn { background: #4a7c2e; color: #fff; border: none; border-radius: 30px; padding: .55rem 1.1rem; font-size: .85rem; cursor: pointer; font-family: 'Poppins', sans-serif; }
-
-  /* ── MONITORING-ON-TOP ── */
-  #monitoring-top { display: none; margin-bottom: 2rem; }
-  #monitoring-top.visible { display: block; }
-
-  /* ── LANG TOGGLE ── */
-  .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
-  .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+  .tue-vision-card .vision-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 30px; padding: .15rem .7rem; font-size: .7rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; display: inline-block; margin-bottom: .7rem; }
+  .tue-vision-card h3 { margin: 0 0 .6rem; font-size: 1.05rem; font-family: 'Poppins', sans-serif; }
+  .tue-vision-card p { font-size: .86rem; line-height: 1.6; opacity: .92; margin: 0 0 .8rem; }
+  .tue-vision-card p:last-child { margin-bottom: 0; }
+  .tue-authority { display: flex; align-items: center; gap: .55rem; background: rgba(255,255,255,.12); border-radius: 10px; padding: .5rem .8rem; margin-bottom: .9rem; font-size: .8rem; }
+  .tue-authority .auth-icon { font-size: 1.3rem; }
+  .vision-video-wrap { background: rgba(0,0,0,.2); border-radius: 12px; overflow: hidden; margin-top: .8rem; }
+  .vision-video-placeholder { display: flex; align-items: center; gap: .6rem; padding: .9rem 1rem; cursor: pointer; font-size: .84rem; color: rgba(255,255,255,.9); }
+  .vision-video-placeholder .play-btn { width: 34px; height: 34px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; transition: background .2s; }
+  .vision-video-placeholder:hover .play-btn { background: rgba(255,255,255,.35); }
 </style>
 </head>
 <body class="insect-page">
@@ -137,20 +83,27 @@
 
 <main class="insect-main">
 
-  <!-- ══ RETURNING USER: WELCOME BACK ══ -->
-  <div class="welcome-back-banner" id="welcome-back" style="display:none;">
-    <div class="wb-icon">🎉</div>
-    <div>
-      <h3>Welcome back! You already collected the beetle.</h3>
-      <p>Great to see you back in Spoorpark.</p>
-      <span class="wb-badge">🐛 Beetle — found on <span id="found-date-banner"></span></span>
+  <!-- ══ 1. DISCOVERY HERO — always first ══ -->
+  <section class="discovery-hero">
+    <div class="discovery-content">
+      <div class="confetti-container" id="confetti"></div>
+      <h2 class="discovery-title" id="discovery-title-new">You found a beetle!</h2>
+      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">
+        You found this beetle before, on <span id="found-date-return"></span>
+      </h2>
+      <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
+      <div class="insect-showcase">
+        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle found on TU/e campus" class="insect-image">
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══ RETURNING USER: MONITORING ON TOP ══ -->
-  <div id="monitoring-top">
-    <section class="contribution-section">
-      <h2 class="contribution-title">📊 Your observation for today</h2>
+  <!-- ══ 2 + 3. BIG INTEGRATED SECTION ══ -->
+  <section class="nature-section" id="nature-section">
+
+    <!-- OBSERVATION -->
+    <div class="contribution-wrap" id="observation-anchor">
+      <h2 class="contribution-title">Help with research</h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
           <div class="counter-beetle-photo">
@@ -161,105 +114,79 @@
               <p class="counter-label">How many beetles do you see right now?</p>
               <div class="counter">
                 <button onclick="decreaseCounter('kever')">−</button>
-                <input type="number" id="kever-counter-top" value="1" min="0" max="5" readonly>
+                <input type="number" id="kever-counter" value="1" min="0" max="5" readonly>
                 <button onclick="increaseCounter('kever')">+</button>
               </div>
               <p class="counter-note">Max. 5 at a time</p>
-              <button class="submit-btn" onclick="submitPersonalCount('kever', 'top')">Submit observation</button>
+              <button class="submit-btn" onclick="submitPersonalCount('kever')">Submit observation</button>
             </div>
             <div class="counter-box">
-              <p class="counter-label">Total in Spoorpark</p>
+              <p class="counter-label">Total on TU/e Campus</p>
               <div class="community-display">
                 <p class="big-number-label">In total</p>
-                <p class="big-number" id="community-total-top">47</p>
+                <p class="big-number" id="community-total">47</p>
                 <p class="big-number-unit">beetles spotted</p>
-                <p class="spoorpark-label">in Spoorpark!</p>
+                <p class="spoorpark-label">on TU/e campus!</p>
               </div>
             </div>
           </div>
         </div>
-        <div id="submit-success-top" class="submit-success" style="display:none;">
+        <div id="submit-success" class="submit-success" style="display:none;">
           <p>✅ Thank you! Your observation has been saved and contributed to our research.</p>
         </div>
       </div>
-    </section>
-  </div>
 
-  <!-- ══ ADOPTER CARD ══ -->
-  <div class="adopter-card">
-    <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Mats, adopter" class="adopter-avatar">
-    <div class="adopter-info">
-      <h4>Mats van Deijck</h4>
-      <p>I adopted this piece of dead wood in Spoorpark. I find it fascinating how much life is in it — and I want to show others how special rewilded urban nature really is.</p>
-      <span class="adopter-tag">🌿 Adopter of this piece of nature</span>
-      <div class="adopter-video-wrap" id="adopter-video-wrap">
-        <div class="adopter-video-placeholder" onclick="playAdopterVideo()">
-          <span class="play-icon">▶️</span>
-          <span>Watch Mats' short introduction (0:32)</span>
+      <!-- Shared observations -->
+      <div class="photo-timeline-section">
+        <h3>Shared observations</h3>
+        <p>Photos from other Wildzoekers who spotted beetles</p>
+        <div class="timeline" id="photo-timeline">
+          <div class="timeline-item sample">
+            <div class="timeline-image">
+              <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Beetle spotted by Mats" class="timeline-photo">
+            </div>
+            <p class="timeline-date">By <strong>Mats</strong> • 2 weeks ago</p>
+          </div>
+          <div class="timeline-item sample">
+            <div class="timeline-image">
+              <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Beetle spotted by Natalia" class="timeline-photo">
+            </div>
+            <p class="timeline-date">By <strong>Natalia</strong> • 1 week ago</p>
+          </div>
+        </div>
+        <div class="photo-upload-area">
+          <h4>Share your photo</h4>
+          <div class="name-input-row">
+            <label for="uploader-name">Your first name:</label>
+            <input type="text" id="uploader-name" class="name-input">
+          </div>
+          <div class="upload-box" onclick="document.getElementById('photo-input').click()">
+            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
+              <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
+            </svg>
+            <p>Click to upload a photo</p>
+            <p class="upload-note">or drag an image here</p>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
+          <div id="photo-preview" style="display:none;">
+            <img id="preview-img" src="" alt="Preview">
+            <div class="preview-actions">
+              <button type="button" class="btn-secondary" onclick="removePhoto()">Remove</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Send photo</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div><!-- end contribution-wrap -->
 
-  <!-- ══ MUNICIPAL VISION SECTION ══ -->
-  <section class="vision-section">
-    <div class="vision-header">
-      <span class="vision-badge">🏛️ Municipal vision</span>
-    </div>
-    <h2>Why does it look like this here?</h2>
-    <p class="vision-quote">
-      "Spoorpark is being gradually transformed into an urban oasis for insects and small animals. The dead wood you see here is <strong>intentional</strong> — it is habitat for hundreds of organisms. What looks messy is actually purposefully designed nature."
-    </p>
-    <div class="vision-authority">
-      <span class="authority-logo">🌳</span>
-      <div class="authority-text">
-        <strong>Municipality of Tilburg &amp; Landschap Pauwels</strong>
-        Management &amp; vision for this green space
-      </div>
-    </div>
-    <div class="vision-timeline">
-      <h4>Rewilding plan Spoorpark</h4>
-      <div class="timeline-steps">
-        <div class="tl-step active">
-          <span class="tl-year">2024</span>
-          Dead wood preserved
-        </div>
-        <div class="tl-step active">
-          <span class="tl-year">2025</span>
-          Native plants
-        </div>
-        <div class="tl-step">
-          <span class="tl-year">2026</span>
-          Insect hotel
-        </div>
-        <div class="tl-step">
-          <span class="tl-year">2028</span>
-          Mature biotope
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- ECOLOGY + VISION -->
+    <div class="nature-inner">
+      <h2>Why is this beetle here?</h2>
+      <p class="section-intro">It was drawn to the <strong>dead wood</strong>...</p>
 
-  <!-- ══ DISCOVERY SECTION ══ -->
-  <section class="discovery-hero" id="discovery-section">
-    <div class="discovery-content">
-      <div class="confetti-container" id="confetti"></div>
-      <h2 class="discovery-title">You found a beetle!</h2>
-      <p class="location-inline">📍 Spoorpark, Tilburg • <span id="found-date"></span></p>
-      <div class="insect-showcase">
-        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle found in Spoorpark" class="insect-image">
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ HABITAT EXPLORER ══ -->
-  <section class="habitat-explorer">
-    <h2 style="line-height:0.1;">Why is this beetle here?</h2>
-    <p class="section-intro">It was drawn to the <strong>dead wood</strong>...</p>
-    <div class="habitat-showcase">
       <div class="habitat-card">
-        <div class="habitat-image">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1851.jpg?raw=true" alt="Dead wood in the city" class="habitat-photo">
+        <div class="habitat-photo-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1851.jpg?raw=true" alt="Dead wood on TU/e campus">
         </div>
         <div class="habitat-content">
           <div class="info-section">
@@ -268,7 +195,7 @@
               <h4>🍽️ Why does it graze here?</h4>
             </div>
             <div class="info-content">
-              <p>Beetles don't just eat wood — they <strong>eat the fungi</strong> that grow inside dead wood. These fungi break down the wood and make it nutrient-rich.</p>
+              <p>Beetles don't just eat wood — they <strong>eat the fungi</strong> that grow inside dead wood. These fungi break down the wood and make it rich in nutrients.</p>
             </div>
           </div>
           <div class="info-toggle" onclick="toggleInfoSection(this)">
@@ -276,21 +203,48 @@
             <h4>🌍 What does it do for nature?</h4>
           </div>
           <div class="info-content">
-            <p>Beetles help spread fungi, which breaks down dead wood and returns <strong>nutrients to the soil</strong>. They're also food for many animals like birds, helping keep nature healthy and in balance.</p>
-          </div>
-          <div class="info-toggle" onclick="toggleInfoSection(this)">
-            <span class="toggle-icon">▼</span>
-            <h4>⚠️ Why leave dead wood alone?</h4>
-          </div>
-          <div class="info-content">
-            <p>Many people want to clean up dead wood because it looks 'messy'. But removing it <strong>destroys a home for thousands of organisms, including beetles</strong>. The municipality makes this choice deliberately.</p>
+            <p>Beetles help spread fungi, which breaks down dead wood and returns <strong>nutrients to the soil</strong>. They're also an essential food source for birds and other animals, keeping the ecosystem in balance.</p>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- TU/e vision card -->
+      <div class="tue-vision-card">
+        <span class="vision-badge">🌿 TU/e Campus Vision</span>
+        <div class="tue-authority">
+          <span class="auth-icon">🎓</span>
+          <span>Eindhoven University of Technology</span>
+        </div>
+        <h3>Why does TU/e leave this wood here?</h3>
+        <p>
+          TU/e wants to be a <strong>green and biodiverse campus</strong>. The dead wood you see here is left intentionally. It's not litter — it's habitat. This single piece of wood is home to dozens of fungi, insects, and bacteria that together form a mini-ecosystem.
+        </p>
+        <p>
+          The 47 beetles observed by Wildzoekers are concrete proof to TU/e that the campus nature is thriving. More observations help the university understand which species live here and how biodiversity is developing over time.
+        </p>
+
+        <div class="vision-video-wrap" id="vision-video-wrap">
+          <div class="vision-video-placeholder" onclick="playVisionVideo()">
+            <span class="play-btn">▶</span>
+            <span>Watch: TU/e on their green campus vision (1:10)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section" style="margin-top:1.2rem;">
+        <div class="info-toggle" onclick="toggleInfoSection(this)">
+          <span class="toggle-icon">▼</span>
+          <h4>⚠️ Why not remove the dead wood?</h4>
+        </div>
+        <div class="info-content">
+          <p>Dead wood can look messy, which makes people want to clear it away. But removing it <strong>destroys a home for thousands of organisms, including beetles</strong>. TU/e deliberately chooses to leave it — precisely because of how ecologically valuable it is.</p>
+        </div>
+      </div>
+
+    </div><!-- end nature-inner -->
   </section>
 
-  <!-- ══ PROGRESS TRACKER ══ -->
+  <!-- ══ 4. PROGRESS TRACKER ══ -->
   <section class="progress-tracker">
     <h2>What have you found so far?</h2>
     <div class="progress-grid">
@@ -316,131 +270,15 @@
         <p class="progress-status" id="bumblebee-status">Yet to find</p>
       </div>
     </div>
-    <p class="progress-message">Explore the area and collect them all!</p>
-  </section>
-
-  <!-- ══ MONITORING / CONTRIBUTION ══ -->
-  <section class="contribution-section" id="monitoring-main">
-    <h2 class="contribution-title">Help with research</h2>
-    <div class="fauna-counter-card">
-      <div class="counter-card-inner">
-        <div class="counter-beetle-photo">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle" class="counter-beetle-img">
-        </div>
-        <div class="counter-grid">
-          <div class="counter-box">
-            <p class="counter-label">How many beetles do you see right now?</p>
-            <div class="counter">
-              <button onclick="decreaseCounter('kever')">−</button>
-              <input type="number" id="kever-counter" value="1" min="0" max="5" readonly>
-              <button onclick="increaseCounter('kever')">+</button>
-            </div>
-            <p class="counter-note">Max. 5 at a time</p>
-            <button class="submit-btn" onclick="submitPersonalCount('kever')">Submit observation</button>
-          </div>
-          <div class="counter-box">
-            <p class="counter-label">Total in Spoorpark</p>
-            <div class="community-display">
-              <p class="big-number-label">In total</p>
-              <p class="big-number" id="community-total">47</p>
-              <p class="big-number-unit">beetles spotted</p>
-              <p class="spoorpark-label">in Spoorpark!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="submit-success" class="submit-success" style="display:none;">
-        <p>✅ Thank you! Your observation has been saved and contributed to our research.</p>
-      </div>
-    </div>
-
-    <!-- SHARED OBSERVATIONS -->
-    <div class="photo-timeline-section">
-      <h3>Shared observations</h3>
-      <p>Photos from other Wildzoekers who spotted beetles</p>
-      <div class="timeline" id="photo-timeline">
-        <div class="timeline-item sample">
-          <div class="timeline-image">
-            <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Beetle spotted by Mats" class="timeline-photo">
-          </div>
-          <p class="timeline-date">By <strong>Mats</strong> • 2 weeks ago</p>
-        </div>
-        <div class="timeline-item sample">
-          <div class="timeline-image">
-            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Beetle spotted by Natalia" class="timeline-photo">
-          </div>
-          <p class="timeline-date">By <strong>Natalia</strong> • 1 week ago</p>
-          <!-- Source: Dreamstime – two black beetles -->
-        </div>
-      </div>
-      <div class="photo-upload-area">
-        <h4>Share your photo</h4>
-        <div class="name-input-row">
-          <label for="uploader-name">Your first name:</label>
-          <input type="text" id="uploader-name" class="name-input">
-        </div>
-        <div class="upload-box" onclick="document.getElementById('photo-input').click()">
-          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
-            <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
-          </svg>
-          <p>Click to upload a photo</p>
-          <p class="upload-note">or drag an image here</p>
-        </div>
-        <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="handlePhotoUpload(this)">
-        <div id="photo-preview" style="display: none;">
-          <img id="preview-img" src="" alt="Preview">
-          <div class="preview-actions">
-            <button type="button" class="btn-secondary" onclick="removePhoto()">Remove</button>
-            <button type="button" class="submit-btn" onclick="submitPhoto()">Send photo</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ MESSAGE SECTION ══ -->
-  <section class="messages-section">
-    <h3>💬 Messages</h3>
-    <div class="message-thread" id="message-thread">
-      <div class="msg">
-        <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Mats" class="msg-avatar municipal">
-        <div class="msg-bubble municipal">
-          <span class="msg-sender municipal-sender">Mats (adopter)</span>
-          <p class="msg-text">Have you seen the beetle move yet? They're most active in the evening, around the dead wood on the right side of the path 🐛</p>
-          <span class="msg-time">2 days ago</span>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="msg-avatar municipal" style="background:#e8f2df; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border-color:#2d6a2d;">🏛️</div>
-        <div class="msg-bubble municipal">
-          <span class="msg-sender municipal-sender">Municipality of Tilburg</span>
-          <p class="msg-text">Thank you for all your observations! Your data helps us substantiate the rewilding plan for Spoorpark. Next month we'll be placing an additional insect hotel.</p>
-          <span class="msg-time">1 week ago</span>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="msg-avatar" style="background:#f4f9ee; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">👤</div>
-        <div class="msg-bubble">
-          <span class="msg-sender">Thomas</span>
-          <p class="msg-text">I saw three of them at once yesterday! Near the big tree stump.</p>
-          <span class="msg-time">3 days ago</span>
-        </div>
-      </div>
-    </div>
-    <div class="msg-input-row">
-      <input type="text" id="new-message" placeholder="Write a message..." onkeydown="if(event.key==='Enter') sendMessage()">
-      <button class="msg-send-btn" onclick="sendMessage()">Send</button>
-    </div>
+    <p class="progress-message">Explore the campus and collect them all!</p>
   </section>
 
 </main>
 
-<!-- LANGUAGE TOGGLE -->
 <div class="lang-toggle">
   <a href="kever.html">🇳🇱 Nederlands</a>
 </div>
 
-<!-- FEEDBACK BOOKMARK -->
 <div id="feedbackBookmark" class="feedback-bookmark">
   <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Give feedback">
     <span class="fb-icon">💬</span>
@@ -465,11 +303,7 @@
       <h4>Contact</h4>
       <p>This is a prototype. Feedback is welcome.</p>
       <p>m.j.j.v.deijck@student.tue.nl</p>
-      <p>
-        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-          Give feedback
-        </a>
-      </p>
+      <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Give feedback</a></p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -480,66 +314,43 @@
 
 <script src="app.js"></script>
 <script>
-// ── RETURN VISITOR LOGIC ──
 (function() {
-  const KEY = 'wz_kever_found';
+  const KEY = 'wz_kever_found_en';
   const found = localStorage.getItem(KEY);
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   if (found) {
-    document.getElementById('welcome-back').style.display = 'flex';
-    document.getElementById('found-date-banner').textContent = found;
-    document.getElementById('monitoring-top').classList.add('visible');
+    document.getElementById('discovery-title-new').style.display = 'none';
+    const returnTitle = document.getElementById('discovery-title-return');
+    returnTitle.style.display = 'block';
+    document.getElementById('found-date-return').textContent = found;
     setTimeout(() => {
-      document.getElementById('monitoring-top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('observation-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
   } else {
     localStorage.setItem(KEY, today);
   }
-
-  const foundEl = document.getElementById('found-date');
-  if (foundEl) foundEl.textContent = found || today;
 })();
 
 function decreaseCounter(animal) {
-  const el = document.getElementById(animal + '-counter') || document.getElementById(animal + '-counter-top');
+  const el = document.getElementById(animal + '-counter');
   if (el && +el.value > 0) el.value = +el.value - 1;
 }
 function increaseCounter(animal) {
-  const el = document.getElementById(animal + '-counter') || document.getElementById(animal + '-counter-top');
+  const el = document.getElementById(animal + '-counter');
   if (el && +el.value < 5) el.value = +el.value + 1;
 }
-function submitPersonalCount(animal, variant) {
-  const suffix = variant === 'top' ? '-top' : '';
-  const successEl = document.getElementById('submit-success' + suffix);
-  const totalEl   = document.getElementById('community-total' + suffix);
-  const counter   = document.getElementById(animal + '-counter' + suffix);
+function submitPersonalCount(animal) {
+  const successEl = document.getElementById('submit-success');
+  const totalEl   = document.getElementById('community-total');
+  const counter   = document.getElementById(animal + '-counter');
   if (totalEl && counter) totalEl.textContent = +totalEl.textContent + +counter.value;
   if (successEl) { successEl.style.display = 'block'; setTimeout(() => successEl.style.display = 'none', 4000); }
 }
 
-function sendMessage() {
-  const input = document.getElementById('new-message');
-  const text = input.value.trim();
-  if (!text) return;
-  const thread = document.getElementById('message-thread');
-  const div = document.createElement('div');
-  div.className = 'msg';
-  div.innerHTML = `
-    <div class="msg-avatar" style="background:#f4f9ee; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">👤</div>
-    <div class="msg-bubble">
-      <span class="msg-sender">You</span>
-      <p class="msg-text">${text.replace(/</g,'&lt;')}</p>
-      <span class="msg-time">Just now</span>
-    </div>`;
-  thread.appendChild(div);
-  input.value = '';
-  div.scrollIntoView({ behavior: 'smooth' });
-}
-
-function playAdopterVideo() {
-  const wrap = document.getElementById('adopter-video-wrap');
-  wrap.innerHTML = '<p style="padding:.7rem 1rem; font-size:.82rem; color:#4a7c2e;">📹 Video placeholder — link your own video or YouTube embed here.</p>';
+function playVisionVideo() {
+  const wrap = document.getElementById('vision-video-wrap');
+  wrap.innerHTML = '<div style="padding:.9rem 1rem; font-size:.83rem; color:rgba(255,255,255,.85);">📹 Video placeholder — link a YouTube embed or your own video here.</div>';
 }
 
 function toggleInfoSection(el) {
