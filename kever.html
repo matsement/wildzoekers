@@ -8,122 +8,139 @@
 <link rel="stylesheet" href="style.css">
 <script> const PAGE_ANIMAL = 'kever'; </script>
 <style>
-  /* ── RETURNING USER BANNER ── */
-  .welcome-back-banner {
-    display: none;
-    background: linear-gradient(135deg, #2d6a2d 0%, #4a7c2e 100%);
-    color: #fff;
-    border-radius: 18px;
-    padding: 1.2rem 1.5rem;
-    margin: 1rem 0 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 20px rgba(74,124,46,0.25);
-  }
-  .welcome-back-banner .wb-icon { font-size: 2.4rem; flex-shrink: 0; }
-  .welcome-back-banner h3 { margin: 0 0 .25rem; font-size: 1.1rem; font-family: 'Poppins', sans-serif; }
-  .welcome-back-banner p  { margin: 0; font-size: .85rem; opacity: .9; }
-  .wb-badge { background: rgba(255,255,255,0.2); border-radius: 30px; padding: .15rem .7rem; font-size: .75rem; font-weight: 600; display: inline-block; margin-top: .3rem; }
-
-  /* ── ADOPTER CARD ── */
-  .adopter-card {
-    background: #f8faf4;
-    border: 2px solid #d4e8be;
-    border-radius: 18px;
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-  .adopter-avatar {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #4a7c2e;
-    flex-shrink: 0;
-  }
-  .adopter-info { flex: 1; }
-  .adopter-info h4 { margin: 0 0 .2rem; font-family: 'Poppins', sans-serif; font-size: .95rem; color: #2d6a2d; }
-  .adopter-info p  { margin: 0; font-size: .82rem; color: #555; line-height: 1.45; }
-  .adopter-tag { font-size: .72rem; background: #4a7c2e; color: #fff; border-radius: 20px; padding: .1rem .55rem; display: inline-block; margin-top: .35rem; }
-  .adopter-video-wrap { margin-top: .8rem; border-radius: 12px; overflow: hidden; background: #e8f2df; display: flex; align-items: center; justify-content: center; min-height: 56px; }
-  .adopter-video-placeholder { display: flex; align-items: center; gap: .5rem; padding: .7rem 1rem; font-size: .82rem; color: #4a7c2e; cursor: pointer; }
-  .adopter-video-placeholder .play-icon { font-size: 1.4rem; }
-
-  /* ── MUNICIPAL VISION SECTION ── */
-  .vision-section {
-    background: linear-gradient(135deg, #1a4d2e 0%, #2d6a2d 100%);
-    color: #fff;
-    border-radius: 20px;
-    padding: 1.5rem 1.5rem 1.8rem;
-    margin-bottom: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .vision-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-  .vision-header { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; }
-  .vision-badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 30px; padding: .2rem .8rem; font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
-  .vision-section h2 { margin: 0 0 .7rem; font-size: 1.25rem; font-family: 'Poppins', sans-serif; }
-  .vision-section .vision-quote { font-size: .9rem; line-height: 1.6; opacity: .92; margin: 0 0 1.1rem; }
-  .vision-authority { display: flex; align-items: center; gap: .6rem; background: rgba(255,255,255,.12); border-radius: 12px; padding: .6rem .9rem; }
-  .authority-logo { font-size: 1.5rem; }
-  .authority-text { font-size: .8rem; opacity: .9; }
-  .authority-text strong { display: block; font-size: .85rem; opacity: 1; }
-  .vision-timeline { margin-top: 1.2rem; }
-  .vision-timeline h4 { font-size: .82rem; opacity: .8; margin: 0 0 .6rem; text-transform: uppercase; letter-spacing: .05em; }
-  .timeline-steps { display: flex; gap: .5rem; }
-  .tl-step { flex: 1; background: rgba(255,255,255,.1); border-radius: 10px; padding: .5rem .6rem; text-align: center; font-size: .72rem; }
-  .tl-step.active { background: rgba(255,255,255,.25); border: 1px solid rgba(255,255,255,.4); }
-  .tl-step .tl-year { font-weight: 700; font-size: .8rem; display: block; margin-bottom: .15rem; }
-
-  /* ── MESSAGE SECTION ── */
-  .messages-section {
-    background: #fff;
-    border: 2px solid #e0edd0;
-    border-radius: 20px;
-    padding: 1.4rem 1.4rem 1rem;
-    margin-bottom: 2rem;
-  }
-  .messages-section h3 { margin: 0 0 1rem; font-family: 'Poppins', sans-serif; font-size: 1rem; color: #2d6a2d; display: flex; align-items: center; gap: .4rem; }
-  .message-thread { display: flex; flex-direction: column; gap: .8rem; margin-bottom: 1rem; }
-  .msg { display: flex; gap: .7rem; }
-  .msg-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #d4e8be; }
-  .msg-avatar.municipal { border-color: #4a7c2e; }
-  .msg-bubble { background: #f4f9ee; border-radius: 0 14px 14px 14px; padding: .55rem .85rem; flex: 1; }
-  .msg-bubble.municipal { background: #e8f2df; border-radius: 0 14px 14px 14px; }
-  .msg-sender { font-size: .72rem; font-weight: 600; color: #4a7c2e; display: block; margin-bottom: .2rem; }
-  .msg-sender.municipal-sender { color: #1a4d2e; }
-  .msg-text { font-size: .83rem; color: #444; line-height: 1.5; margin: 0; }
-  .msg-time { font-size: .68rem; color: #999; margin-top: .2rem; display: block; }
-  .msg-input-row { display: flex; gap: .5rem; }
-  .msg-input-row input { flex: 1; border: 1.5px solid #d4e8be; border-radius: 30px; padding: .55rem 1rem; font-size: .85rem; font-family: 'Poppins', sans-serif; outline: none; }
-  .msg-input-row input:focus { border-color: #4a7c2e; }
-  .msg-send-btn { background: #4a7c2e; color: #fff; border: none; border-radius: 30px; padding: .55rem 1.1rem; font-size: .85rem; cursor: pointer; font-family: 'Poppins', sans-serif; }
-
-  /* ── MONITORING-ON-TOP (returning users) ── */
-  #monitoring-top { display: none; margin-bottom: 2rem; }
-  #monitoring-top.visible { display: block; }
-
   /* ── LANG TOGGLE ── */
   .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
   .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+
+  /* ── RETURNING subtitle tweak ── */
+  .discovery-subtitle-return { display: none; }
+
+  /* ── BIG INTEGRATED SECTION ── */
+  .nature-section {
+    background: #f8faf4;
+    border-radius: 20px;
+    padding: 0 0 1.8rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1.5px solid #d4e8be;
+  }
+
+  /* observation part sits at top of nature-section */
+  .nature-section .contribution-wrap {
+    background: #fff;
+    padding: 1.4rem 1.4rem 1.2rem;
+    border-bottom: 1.5px solid #e0edd0;
+    margin-bottom: 1.4rem;
+  }
+  .nature-section .contribution-wrap h2 {
+    margin: 0 0 1rem;
+  }
+
+  /* ecology + vision content */
+  .nature-inner {
+    padding: 0 1.4rem;
+  }
+  .nature-inner h2 {
+    margin: 0 0 .4rem;
+    line-height: 1.2;
+  }
+  .nature-inner .section-intro {
+    margin-bottom: 1rem;
+  }
+
+  /* habitat photo */
+  .habitat-photo-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+  }
+  .habitat-photo-wrap img {
+    width: 100%; display: block; object-fit: cover; max-height: 220px;
+  }
+
+  /* TU/e vision card — integrated, not separate */
+  .tue-vision-card {
+    background: linear-gradient(135deg, #1a4d2e 0%, #2d6a2d 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 1.2rem 1.2rem 1.4rem;
+    margin: 1.4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .tue-vision-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .tue-vision-card .vision-badge {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 30px;
+    padding: .15rem .7rem;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: .7rem;
+  }
+  .tue-vision-card h3 {
+    margin: 0 0 .6rem;
+    font-size: 1.05rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  .tue-vision-card p {
+    font-size: .86rem;
+    line-height: 1.6;
+    opacity: .92;
+    margin: 0 0 .8rem;
+  }
+  .tue-vision-card p:last-child { margin-bottom: 0; }
+  .tue-authority {
+    display: flex; align-items: center; gap: .55rem;
+    background: rgba(255,255,255,.12);
+    border-radius: 10px;
+    padding: .5rem .8rem;
+    margin-bottom: .9rem;
+    font-size: .8rem;
+  }
+  .tue-authority .auth-icon { font-size: 1.3rem; }
+
+  /* video placeholder inside vision card */
+  .vision-video-wrap {
+    background: rgba(0,0,0,.2);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: .8rem;
+  }
+  .vision-video-placeholder {
+    display: flex; align-items: center; gap: .6rem;
+    padding: .9rem 1rem;
+    cursor: pointer;
+    font-size: .84rem;
+    color: rgba(255,255,255,.9);
+  }
+  .vision-video-placeholder .play-btn {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background .2s;
+  }
+  .vision-video-placeholder:hover .play-btn { background: rgba(255,255,255,.35); }
 </style>
 </head>
 <body class="insect-page">
 <div class="forest-background"></div>
 
-<!-- Decoratieve bladeren -->
 <img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decoratieve bladeren" class="deco-leaf deco-leaf-topright" aria-hidden="true">
 <img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Groen blad" class="deco-leaf deco-leaf-mid" aria-hidden="true">
 <img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Herfstbladeren" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
 
-<!-- STICKY HEADER -->
 <div class="sticky-top">
   <header>
     <a href="index.html" class="header-logo">
@@ -139,20 +156,29 @@
 
 <main class="insect-main">
 
-  <!-- ══ RETURNING USER: WELCOME BACK BANNER ══ -->
-  <div class="welcome-back-banner" id="welcome-back" style="display:none;">
-    <div class="wb-icon">🎉</div>
-    <div>
-      <h3>Welkom terug! Je hebt de kever al in je collectie.</h3>
-      <p>Fijn dat je weer op zoek bent in het Spoorpark.</p>
-      <span class="wb-badge">🐛 Kever — gevonden op <span id="found-date-banner"></span></span>
+  <!-- ══ 1. DISCOVERY HERO — always first ══ -->
+  <section class="discovery-hero">
+    <div class="discovery-content">
+      <div class="confetti-container" id="confetti"></div>
+      <!-- First visit title -->
+      <h2 class="discovery-title" id="discovery-title-new">Je hebt een kever gevonden!</h2>
+      <!-- Return visit title (hidden until JS reveals) -->
+      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">
+        Je hebt de kever eerder gevonden, op <span id="found-date-return"></span>
+      </h2>
+      <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
+      <div class="insect-showcase">
+        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever gevonden op TU/e campus" class="insect-image">
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══ RETURNING USER: MONITORING ON TOP ══ -->
-  <div id="monitoring-top">
-    <section class="contribution-section">
-      <h2 class="contribution-title">📊 Jouw waarneming van vandaag</h2>
+  <!-- ══ 2 + 3. BIG INTEGRATED SECTION: Observation + Ecology + TU/e Vision ══ -->
+  <section class="nature-section" id="nature-section">
+
+    <!-- OBSERVATION (always here; scrolled-to on return visits) -->
+    <div class="contribution-wrap" id="observation-anchor">
+      <h2 class="contribution-title">Help met onderzoek</h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
           <div class="counter-beetle-photo">
@@ -163,105 +189,79 @@
               <p class="counter-label">Hoeveel kevers zie jij hier nu?</p>
               <div class="counter">
                 <button onclick="decreaseCounter('kever')">−</button>
-                <input type="number" id="kever-counter-top" value="1" min="0" max="5" readonly>
+                <input type="number" id="kever-counter" value="1" min="0" max="5" readonly>
                 <button onclick="increaseCounter('kever')">+</button>
               </div>
               <p class="counter-note">Max. 5 per keer</p>
-              <button class="submit-btn" onclick="submitPersonalCount('kever', 'top')">Verstuur waarneming</button>
+              <button class="submit-btn" onclick="submitPersonalCount('kever')">Verstuur waarneming</button>
             </div>
             <div class="counter-box">
-              <p class="counter-label">Totaal in het Spoorpark</p>
+              <p class="counter-label">Totaal op de TU/e Campus</p>
               <div class="community-display">
                 <p class="big-number-label">Totaal zijn er</p>
-                <p class="big-number" id="community-total-top">47</p>
+                <p class="big-number" id="community-total">47</p>
                 <p class="big-number-unit">kevers gezien</p>
-                <p class="spoorpark-label">in het Spoorpark!</p>
+                <p class="spoorpark-label">op de TU/e campus!</p>
               </div>
             </div>
           </div>
         </div>
-        <div id="submit-success-top" class="submit-success" style="display:none;">
+        <div id="submit-success" class="submit-success" style="display:none;">
           <p>✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.</p>
         </div>
       </div>
-    </section>
-  </div>
 
-  <!-- ══ ADOPTER CARD ══ -->
-  <div class="adopter-card">
-    <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Mats, adoptant" class="adopter-avatar">
-    <div class="adopter-info">
-      <h4>Mats van Deijck</h4>
-      <p>Ik heb dit stuk dood hout geadopteerd in het Spoorpark. Ik vind het fascinerend hoeveel leven er in zit — en wil anderen laten zien hoe bijzonder verwilderd groen is.</p>
-      <span class="adopter-tag">🌿 Adoptant van dit stuk natuur</span>
-      <div class="adopter-video-wrap" id="adopter-video-wrap">
-        <div class="adopter-video-placeholder" onclick="playAdopterVideo()">
-          <span class="play-icon">▶️</span>
-          <span>Bekijk Mats' korte introductie (0:32)</span>
+      <!-- Shared observations -->
+      <div class="photo-timeline-section">
+        <h3>Gedeelde waarnemingen</h3>
+        <p>Foto's van andere Wildzoekers die kevers hebben gezien</p>
+        <div class="timeline" id="photo-timeline">
+          <div class="timeline-item sample">
+            <div class="timeline-image">
+              <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Kever waarneming door Mats" class="timeline-photo">
+            </div>
+            <p class="timeline-date">Door <strong>Mats</strong> • 2 weken geleden</p>
+          </div>
+          <div class="timeline-item sample">
+            <div class="timeline-image">
+              <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Kever waarneming door Natalia" class="timeline-photo">
+            </div>
+            <p class="timeline-date">Door <strong>Natalia</strong> • 1 week geleden</p>
+          </div>
+        </div>
+        <div class="photo-upload-area">
+          <h4>Deel jouw foto</h4>
+          <div class="name-input-row">
+            <label for="uploader-name">Jouw voornaam:</label>
+            <input type="text" id="uploader-name" class="name-input">
+          </div>
+          <div class="upload-box" onclick="document.getElementById('photo-input').click()">
+            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
+              <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
+            </svg>
+            <p>Klik om een foto te uploaden</p>
+            <p class="upload-note">of sleep hier een afbeelding naartoe</p>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
+          <div id="photo-preview" style="display:none;">
+            <img id="preview-img" src="" alt="Preview">
+            <div class="preview-actions">
+              <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div><!-- end contribution-wrap -->
 
-  <!-- ══ MUNICIPAL VISION SECTION ══ -->
-  <section class="vision-section">
-    <div class="vision-header">
-      <span class="vision-badge">🏛️ Gemeentelijke visie</span>
-    </div>
-    <h2>Waarom ziet het er zo uit hier?</h2>
-    <p class="vision-quote">
-      "Het Spoorpark wordt stap voor stap omgevormd tot een stadsoase voor insecten en kleine dieren. Het dode hout dat je ziet, ligt hier <strong>bewust</strong> — het is leefgebied voor honderden organismen. Wat rommelig lijkt, is doelbewust ontworpen natuur."
-    </p>
-    <div class="vision-authority">
-      <span class="authority-logo">🌳</span>
-      <div class="authority-text">
-        <strong>Gemeente Tilburg & Landschap Pauwels</strong>
-        Beheer & visie voor dit stuk groen
-      </div>
-    </div>
-    <div class="vision-timeline">
-      <h4>Rewilding plan Spoorpark</h4>
-      <div class="timeline-steps">
-        <div class="tl-step active">
-          <span class="tl-year">2024</span>
-          Dood hout bewaard
-        </div>
-        <div class="tl-step active">
-          <span class="tl-year">2025</span>
-          Inheemse planten
-        </div>
-        <div class="tl-step">
-          <span class="tl-year">2026</span>
-          Insectenhotel
-        </div>
-        <div class="tl-step">
-          <span class="tl-year">2028</span>
-          Volwassen biotoop
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- ECOLOGY + VISION integrated -->
+    <div class="nature-inner">
+      <h2>Waarom zit deze kever hier?</h2>
+      <p class="section-intro">Hij kwam af op het <strong>dode hout</strong>...</p>
 
-  <!-- ══ NEW VISITOR: DISCOVERY SECTION ══ -->
-  <section class="discovery-hero" id="discovery-section">
-    <div class="discovery-content">
-      <div class="confetti-container" id="confetti"></div>
-      <h2 class="discovery-title">Je hebt een kever gevonden!</h2>
-      <p class="location-inline">📍 Spoorpark, Tilburg • <span id="found-date"></span></p>
-      <div class="insect-showcase">
-        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever gevonden in Spoorpark" class="insect-image">
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ HABITAT EXPLORER ══ -->
-  <section class="habitat-explorer">
-    <h2 style="line-height:0.1;">Waarom zit deze kever hier?</h2>
-    <p class="section-intro">Hij kwam af op het <strong>dode hout</strong>...</p>
-    <div class="habitat-showcase">
       <div class="habitat-card">
-        <div class="habitat-image">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1851.jpg?raw=true" alt="Dood hout in de stad" class="habitat-photo">
+        <div class="habitat-photo-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1851.jpg?raw=true" alt="Dood hout op de TU/e campus">
         </div>
         <div class="habitat-content">
           <div class="info-section">
@@ -278,21 +278,50 @@
             <h4>🌍 Wat doet 'ie voor de natuur?</h4>
           </div>
           <div class="info-content">
-            <p>Kevers helpen schimmels verspreiden, waardoor dood hout wordt afgebroken en <strong>voedingsstoffen terugkomen in de bodem</strong>. Daarnaast zijn kevers voedsel voor veel dieren, zoals vogels. Zo helpen ze de natuur gezond en in balans te houden.</p>
-          </div>
-          <div class="info-toggle" onclick="toggleInfoSection(this)">
-            <span class="toggle-icon">▼</span>
-            <h4>⚠️ Waarom dood hout laten liggen?</h4>
-          </div>
-          <div class="info-content">
-            <p>Veel mensen willen dood hout opruimen omdat ze denken dat het 'rommelig' is. Maar als jij dit hout weghaalt, <strong>vernietig je een thuis voor duizenden organismen, inclusief kevers</strong>. De gemeente kiest hier bewust voor.</p>
+            <p>Kevers helpen schimmels verspreiden, waardoor dood hout wordt afgebroken en <strong>voedingsstoffen terugkomen in de bodem</strong>. Zo zijn ze een onmisbare schakel in het ecosysteem — en voedsel voor vogels en andere dieren.</p>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- TU/e vision card — integrated -->
+      <div class="tue-vision-card">
+        <span class="vision-badge">🌿 TU/e Campusvisie</span>
+        <div class="tue-authority">
+          <span class="auth-icon">🎓</span>
+          <span>Technische Universiteit Eindhoven</span>
+        </div>
+        <h3>Waarom laat de TU/e dit hout liggen?</h3>
+        <p>
+          De TU/e wil een <strong>groene en biodiverse campus</strong> zijn. Dood hout dat je hier ziet, ligt er bewust. Het is geen rommel — het is leefgebied. Dit stuk hout herbergt tientallen soorten schimmels, insecten en bacteriën die samen een mini-ecosysteem vormen.
+        </p>
+        <p>
+          De 47 kevers die Wildzoekers al hebben waargenomen, zijn voor de TU/e een concreet signaal dat de campusnatuur aanslaat. Meer waarnemingen helpen de universiteit te begrijpen welke soorten hier leven en hoe de biodiversiteit zich ontwikkelt.
+        </p>
+
+        <!-- Video complementary to the text -->
+        <div class="vision-video-wrap" id="vision-video-wrap">
+          <div class="vision-video-placeholder" onclick="playVisionVideo()">
+            <span class="play-btn">▶</span>
+            <span>Bekijk: de TU/e over hun groene campusvisie (1:10)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why not touch the dead wood -->
+      <div class="info-section" style="margin-top:1.2rem;">
+        <div class="info-toggle" onclick="toggleInfoSection(this)">
+          <span class="toggle-icon">▼</span>
+          <h4>⚠️ Waarom dood hout niet weghalen?</h4>
+        </div>
+        <div class="info-content">
+          <p>Veel mensen willen dood hout opruimen omdat het 'rommelig' lijkt. Maar als je dit hout weghaalt, <strong>vernietig je een thuis voor duizenden organismen, inclusief kevers</strong>. De TU/e kiest er bewust voor om het te laten liggen — juist omdat het zo waardevol is.</p>
+        </div>
+      </div>
+
+    </div><!-- end nature-inner -->
   </section>
 
-  <!-- ══ PROGRESS TRACKER ══ -->
+  <!-- ══ 4. PROGRESS TRACKER ══ -->
   <section class="progress-tracker">
     <h2>Wat heb je al gevonden?</h2>
     <div class="progress-grid">
@@ -319,120 +348,6 @@
       </div>
     </div>
     <p class="progress-message">Ga in de buurt op zoek en verzamel ze allemaal!</p>
-  </section>
-
-  <!-- ══ MONITORING / CONTRIBUTION (main, for first-time visitors) ══ -->
-  <section class="contribution-section" id="monitoring-main">
-    <h2 class="contribution-title">Help met onderzoek</h2>
-    <div class="fauna-counter-card">
-      <div class="counter-card-inner">
-        <div class="counter-beetle-photo">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever" class="counter-beetle-img">
-        </div>
-        <div class="counter-grid">
-          <div class="counter-box">
-            <p class="counter-label">Hoeveel kevers zie jij hier nu?</p>
-            <div class="counter">
-              <button onclick="decreaseCounter('kever')">−</button>
-              <input type="number" id="kever-counter" value="1" min="0" max="5" readonly>
-              <button onclick="increaseCounter('kever')">+</button>
-            </div>
-            <p class="counter-note">Max. 5 per keer</p>
-            <button class="submit-btn" onclick="submitPersonalCount('kever')">Verstuur waarneming</button>
-          </div>
-          <div class="counter-box">
-            <p class="counter-label">Totaal in het Spoorpark</p>
-            <div class="community-display">
-              <p class="big-number-label">Totaal zijn er</p>
-              <p class="big-number" id="community-total">47</p>
-              <p class="big-number-unit">kevers gezien</p>
-              <p class="spoorpark-label">in het Spoorpark!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="submit-success" class="submit-success" style="display:none;">
-        <p>✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.</p>
-      </div>
-    </div>
-
-    <!-- GEDEELDE WAARNEMINGEN -->
-    <div class="photo-timeline-section">
-      <h3>Gedeelde waarnemingen</h3>
-      <p>Foto's van andere Wildzoekers die kevers hebben gezien</p>
-      <div class="timeline" id="photo-timeline">
-        <div class="timeline-item sample">
-          <div class="timeline-image">
-            <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Kever waarneming door Mats" class="timeline-photo">
-          </div>
-          <p class="timeline-date">Door <strong>Mats</strong> • 2 weken geleden</p>
-        </div>
-        <div class="timeline-item sample">
-          <div class="timeline-image">
-            <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Kever waarneming door Natalia" class="timeline-photo">
-          </div>
-          <p class="timeline-date">Door <strong>Natalia</strong> • 1 week geleden</p>
-          <!-- Bron: Dreamstime – twee zwarte kevers -->
-        </div>
-      </div>
-      <div class="photo-upload-area">
-        <h4>Deel jouw foto</h4>
-        <div class="name-input-row">
-          <label for="uploader-name">Jouw voornaam:</label>
-          <input type="text" id="uploader-name" class="name-input">
-        </div>
-        <div class="upload-box" onclick="document.getElementById('photo-input').click()">
-          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
-            <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
-          </svg>
-          <p>Klik om een foto te uploaden</p>
-          <p class="upload-note">of sleep hier een afbeelding naartoe</p>
-        </div>
-        <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="handlePhotoUpload(this)">
-        <div id="photo-preview" style="display: none;">
-          <img id="preview-img" src="" alt="Preview">
-          <div class="preview-actions">
-            <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
-            <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ MESSAGE SECTION ══ -->
-  <section class="messages-section">
-    <h3>💬 Berichten</h3>
-    <div class="message-thread" id="message-thread">
-      <div class="msg">
-        <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Mats" class="msg-avatar municipal">
-        <div class="msg-bubble municipal">
-          <span class="msg-sender municipal-sender">Mats (adoptant)</span>
-          <p class="msg-text">Heb je de kever al zien bewegen? Ze zijn het actiefst in de avond, rond het dode hout aan de rechterkant van het pad 🐛</p>
-          <span class="msg-time">2 dagen geleden</span>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="msg-avatar municipal" style="background:#e8f2df; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border-color:#2d6a2d;">🏛️</div>
-        <div class="msg-bubble municipal">
-          <span class="msg-sender municipal-sender">Gemeente Tilburg</span>
-          <p class="msg-text">Bedankt voor alle waarnemingen! Jullie data helpt ons het rewildingplan voor het Spoorpark te onderbouwen. Volgende maand plaatsen we een extra insectenhotel.</p>
-          <span class="msg-time">1 week geleden</span>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="msg-avatar" style="background:#f4f9ee; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">👤</div>
-        <div class="msg-bubble">
-          <span class="msg-sender">Thomas</span>
-          <p class="msg-text">Ik zag er gisteren drie tegelijk! Vlakbij de grote boomstronk.</p>
-          <span class="msg-time">3 dagen geleden</span>
-        </div>
-      </div>
-    </div>
-    <div class="msg-input-row">
-      <input type="text" id="new-message" placeholder="Schrijf een bericht..." onkeydown="if(event.key==='Enter') sendMessage()">
-      <button class="msg-send-btn" onclick="sendMessage()">Verstuur</button>
-    </div>
   </section>
 
 </main>
@@ -467,11 +382,7 @@
       <h4>Contact</h4>
       <p>Dit is een prototype. Feedback is welkom.</p>
       <p>m.j.j.v.deijck@student.tue.nl</p>
-      <p>
-        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-          Geef feedback
-        </a>
-      </p>
+      <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Geef feedback</a></p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -489,69 +400,44 @@
   const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
   if (found) {
-    // Returning visitor
-    document.getElementById('welcome-back').style.display = 'flex';
-    document.getElementById('found-date-banner').textContent = found;
-    document.getElementById('monitoring-top').classList.add('visible');
-    // Scroll to monitoring on load
+    // Swap title
+    document.getElementById('discovery-title-new').style.display = 'none';
+    const returnTitle = document.getElementById('discovery-title-return');
+    returnTitle.style.display = 'block';
+    document.getElementById('found-date-return').textContent = found;
+    // Scroll observation section into view
     setTimeout(() => {
-      document.getElementById('monitoring-top').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('observation-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
   } else {
-    // First visit — mark as found
     localStorage.setItem(KEY, today);
   }
-
-  // Set found date in hero
-  const foundEl = document.getElementById('found-date');
-  if (foundEl) foundEl.textContent = found || today;
 })();
 
-// ── COUNTER HELPERS ──
+// ── COUNTER ──
 function decreaseCounter(animal) {
-  const el = document.getElementById(animal + '-counter') || document.getElementById(animal + '-counter-top');
+  const el = document.getElementById(animal + '-counter');
   if (el && +el.value > 0) el.value = +el.value - 1;
 }
 function increaseCounter(animal) {
-  const el = document.getElementById(animal + '-counter') || document.getElementById(animal + '-counter-top');
+  const el = document.getElementById(animal + '-counter');
   if (el && +el.value < 5) el.value = +el.value + 1;
 }
-function submitPersonalCount(animal, variant) {
-  const suffix = variant === 'top' ? '-top' : '';
-  const successEl = document.getElementById('submit-success' + suffix);
-  const totalEl   = document.getElementById('community-total' + suffix);
-  const counter   = document.getElementById(animal + '-counter' + suffix);
+function submitPersonalCount(animal) {
+  const successEl = document.getElementById('submit-success');
+  const totalEl   = document.getElementById('community-total');
+  const counter   = document.getElementById(animal + '-counter');
   if (totalEl && counter) totalEl.textContent = +totalEl.textContent + +counter.value;
   if (successEl) { successEl.style.display = 'block'; setTimeout(() => successEl.style.display = 'none', 4000); }
 }
 
-// ── MESSAGES ──
-function sendMessage() {
-  const input = document.getElementById('new-message');
-  const text = input.value.trim();
-  if (!text) return;
-  const thread = document.getElementById('message-thread');
-  const div = document.createElement('div');
-  div.className = 'msg';
-  div.innerHTML = `
-    <div class="msg-avatar" style="background:#f4f9ee; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">👤</div>
-    <div class="msg-bubble">
-      <span class="msg-sender">Jij</span>
-      <p class="msg-text">${text.replace(/</g,'&lt;')}</p>
-      <span class="msg-time">Zojuist</span>
-    </div>`;
-  thread.appendChild(div);
-  input.value = '';
-  div.scrollIntoView({ behavior: 'smooth' });
+// ── VIDEO ──
+function playVisionVideo() {
+  const wrap = document.getElementById('vision-video-wrap');
+  wrap.innerHTML = '<div style="padding:.9rem 1rem; font-size:.83rem; color:rgba(255,255,255,.85);">📹 Videoplaats — koppel hier een YouTube embed of eigen video.</div>';
 }
 
-// ── ADOPTER VIDEO PLACEHOLDER ──
-function playAdopterVideo() {
-  const wrap = document.getElementById('adopter-video-wrap');
-  wrap.innerHTML = '<p style="padding:.7rem 1rem; font-size:.82rem; color:#4a7c2e;">📹 Videoplaats — hier koppel je een eigen video of YouTube embed.</p>';
-}
-
-// ── INFO TOGGLES (fallback if app.js not loaded) ──
+// ── INFO TOGGLES ──
 function toggleInfoSection(el) {
   const content = el.nextElementSibling;
   if (!content) return;
