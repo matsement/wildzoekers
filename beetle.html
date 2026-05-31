@@ -89,6 +89,13 @@
     </div>
   </section>
 
+<section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
+    <div class="tue-quote" style="margin-bottom: 0;">
+      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
+      <span>"To build a sustainable future, we want at least <strong>100</strong> different insect species living on our campus by <strong>2030</strong>. By sharing your everyday beetle observations, you drive community engagement and give us the vital data we need to track if our nature plans actually work."</span>
+    </div>
+  </section>
+  
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
       <h2 class="contribution-title" style="display: block; line-height: 1.4;">
@@ -183,10 +190,6 @@
         </div>
 
         <div class="habitat-content">
-          <div class="tue-quote">
-            <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
-            <span>"To build a sustainable future, we want at least <strong>100</strong> different insect species living on our campus by <strong>2030</strong>. By sharing your everyday beetle observations, you drive community engagement and give us the vital data we need to track if our nature plans actually work."</span>
-          </div>
 
           <div class="info-section">
             <div class="info-toggle" onclick="toggleInfoSection(this)">
@@ -297,15 +300,47 @@
   const found = localStorage.getItem(KEY);
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  // Select the main container and all individual sections
+  const main = document.querySelector('.insect-main');
+  const hero = document.querySelector('.discovery-hero');
+  const education = document.getElementById('education-section');
+  const quote = document.getElementById('tue-quote-section');
+  const observation = document.getElementById('observation-anchor');
+  const progress = document.querySelector('.progress-tracker');
+  const showcase = document.querySelector('.insect-showcase');
+
+  // SAFETY CHECK: If a section is missing or misspelled, prevent a code crash
+  if (!main || !hero || !education || !quote || !observation || !progress) {
+    console.error("Wildzoekers Debug: One of the sections is missing in beetle.html or has an incorrect ID.");
+    return;
+  }
+
   if (found) {
-    document.getElementById('discovery-title-new').style.display = 'none';
-    const returnTitle = document.getElementById('discovery-title-return');
-    returnTitle.style.display = 'block';
-    
-    document.querySelector('.insect-showcase').style.display = 'none';
-    
+    // ── RETURNING VISITOR ──
+    if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'none';
+    if (document.getElementById('discovery-title-return')) document.getElementById('discovery-title-return').style.display = 'block';
+    if (showcase) showcase.style.display = 'none';
+
+    // Order: Hero -> Quote -> Observation -> Education -> Tracker
+    main.appendChild(hero);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(education);
+    main.appendChild(progress);
   } else {
+    // ── FIRST VISIT (FIRST SCAN) ──
     localStorage.setItem(KEY, today);
+
+    if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'block';
+    if (document.getElementById('discovery-title-return')) document.getElementById('discovery-title-return').style.display = 'none';
+    if (showcase) showcase.style.display = 'block';
+
+    // Order: Hero -> Education -> Quote -> Observation -> Tracker
+    main.appendChild(hero);
+    main.appendChild(education);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(progress);
   }
 })();
 </script>
