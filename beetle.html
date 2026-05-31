@@ -37,16 +37,18 @@
   .nature-inner .section-intro { margin-bottom: 1rem; }
   
   .tue-quote { 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-    background: #e0edd0; 
-    padding: 1rem; 
-    border-radius: 12px; 
-    margin-bottom: 1.5rem; 
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
+  display: flex; 
+  flex-direction: column; /* Stacks the items vertically */
+  align-items: flex-start; /* Aligns the logo to the left */
+  gap: 12px; 
+  background: #e0edd0; 
+  padding: 1rem; 
+  border-radius: 12px; 
+  margin-bottom: 1.5rem; 
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+  
   .tue-quote img { height: 28px; flex-shrink: 0; }
   
   .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
@@ -91,7 +93,8 @@
     <div class="contribution-wrap">
       <h2 class="contribution-title">
         Help 
-        <img src="https://seekvectorlogo.com/wp-content/uploads/2020/01/eindhoven-university-of-technology-tue-vector-logo-small.png" style="height: 24px; margin: 0 8px;" alt="TU/e logo"> 
+        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 24px; margin: 0 8px;" alt="TU/e logo">
+        <br>
         with counting
       </h2>
       <div class="fauna-counter-card">
@@ -181,7 +184,7 @@
 
         <div class="habitat-content">
           <div class="tue-quote">
-            <img src="https://seekvectorlogo.com/wp-content/uploads/2020/01/eindhoven-university-of-technology-tue-vector-logo-small.png" alt="TU/e Logo"> 
+            <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
             <span>"TU/e is transforming the campus into a <strong>green, ecologically rich park</strong> where biodiversity is given room to thrive. That is why we deliberately leave dead wood behind; it provides a crucial habitat for fungi and beetles, which together form the essential foundation for a healthy and resilient ecosystem."</span>
           </div>
 
@@ -298,6 +301,8 @@
     document.getElementById('discovery-title-new').style.display = 'none';
     const returnTitle = document.getElementById('discovery-title-return');
     returnTitle.style.display = 'block';
+    
+    document.querySelector('.insect-showcase').style.display = 'none';
     
     setTimeout(() => {
       document.getElementById('observation-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
