@@ -8,7 +8,10 @@ const INSECTS = {
 
 const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u';
 
-// Animal-specific storage keys — keeps each page's data separate
+// Detect if page is english
+const isEnglish = document.documentElement.lang === 'en';
+
+// Animal-specific storage keys — keeps each page's data separate (but shares between NL/EN if PAGE_ANIMAL is the same)
 function getStorageKeys(animal) {
     return {
         communityCount: 'community-count-' + animal,
@@ -47,7 +50,6 @@ function initializePage() {
         markInsectAsFound(INSECTS.lieveheersbeestje);
     }
 
-    setFoundDate();
     updateProgressTrackers();
     initializeCounters();
     initializeFeedbackBookmark();
@@ -55,22 +57,6 @@ function initializePage() {
     loadStoredPhotos();
 }
 
-// ===== FOUND DATE =====
-
-function setFoundDate() {
-    const today = new Date();
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-    const formattedDate = today.toLocaleDateString('nl-NL', options);
-    const dateElement = document.getElementById('found-date');
-    if (dateElement) {
-        dateElement.textContent = formattedDate;
-    }
-}
 
 // ===== INTERACTIVE INFO CARDS =====
 
@@ -155,14 +141,14 @@ function updateSingleTracker(config, foundList) {
         wrap.classList.remove('not-found-wrap');
         wrap.classList.add('found-wrap');
         name.classList.remove('blurred-name');
-        status.textContent = '✓ Gevonden!';
+        status.textContent = isEnglish ? '✓ Found!' : '✓ Gevonden!';
     } else {
         progressElement.classList.remove('found');
         image.classList.add('silhouette');
         wrap.classList.add('not-found-wrap');
         wrap.classList.remove('found-wrap');
         name.classList.add('blurred-name');
-        status.textContent = 'Nog te vinden';
+        status.textContent = isEnglish ? 'Yet to find' : 'Nog te vinden';
     }
 }
 
@@ -196,11 +182,11 @@ function submitPersonalCount(type) {
     const count = parseInt(input.value);
     if (count <= 0) {
         const animalNames = {
-            'lieveheersbeestje': '🐞 Voeg eerst minimaal 1 lieveheersbeestje toe.',
-            'kever':             '🪲 Voeg eerst minimaal 1 kever toe.',
-            'aardhommel':        '🐝 Voeg eerst minimaal 1 hommel toe.'
+            'lieveheersbeestje': isEnglish ? '🐞 Please add at least 1 ladybug first.' : '🐞 Voeg eerst minimaal 1 lieveheersbeestje toe.',
+            'kever':             isEnglish ? '🪲 Please add at least 1 beetle first.'  : '🪲 Voeg eerst minimaal 1 kever toe.',
+            'aardhommel':        isEnglish ? '🐝 Please add at least 1 bumblebee first.': '🐝 Voeg eerst minimaal 1 hommel toe.'
         };
-        showNotification(animalNames[type] || '🐛 Voeg eerst minimaal 1 dier toe.');
+        showNotification(animalNames[type] || (isEnglish ? '🐛 Please add at least 1 animal first.' : '🐛 Voeg eerst minimaal 1 dier toe.'));
         return;
     }
 
@@ -229,9 +215,9 @@ function submitPersonalCount(type) {
 
 function increaseCounter(type) {
     const messages = {
-        'lieveheersbeestje': '🐞 Je kunt maximaal 5 lieveheersbeestjes tegelijk doorgeven.',
-        'kever':             '🪲 Je kunt maximaal 5 kevers tegelijk doorgeven.',
-        'aardhommel':        '🐝 Je kunt maximaal 5 hommels tegelijk doorgeven.'
+        'lieveheersbeestje': isEnglish ? '🐞 Max 5 ladybugs at a time.' : '🐞 Je kunt maximaal 5 lieveheersbeestjes tegelijk doorgeven.',
+        'kever':             isEnglish ? '🪲 Max 5 beetles at a time.' : '🪲 Je kunt maximaal 5 kevers tegelijk doorgeven.',
+        'aardhommel':        isEnglish ? '🐝 Max 5 bumblebees at a time.' : '🐝 Je kunt maximaal 5 hommels tegelijk doorgeven.'
     };
 
     const input = document.getElementById(type + '-counter');
@@ -241,7 +227,7 @@ function increaseCounter(type) {
     if (currentValue < 5) {
         input.value = currentValue + 1;
     } else {
-        const msg = messages[type] || '🐛 Je kunt maximaal 5 tegelijk doorgeven.';
+        const msg = messages[type] || (isEnglish ? '🐛 Max 5 at a time.' : '🐛 Je kunt maximaal 5 tegelijk doorgeven.');
         showNotification(msg);
     }
 }
@@ -267,7 +253,6 @@ function handlePhotoUpload(input) {
         reader.onload = function (e) {
             const img = new Image();
             img.onload = function () {
-                // Resize to max 600px wide/tall and compress to ~40% quality
                 const MAX = 600;
                 let w = img.width;
                 let h = img.height;
@@ -311,22 +296,22 @@ function submitPhoto() {
     if (uploaderNameInput) uploaderNameInput.blur();
 
     if (!photoReady) {
-        showNotification('📸 Upload eerst een foto.');
+        showNotification(isEnglish ? '📸 Upload a photo first.' : '📸 Upload eerst een foto.');
         return;
     }
 
     let uploaderName = uploaderNameInput ? uploaderNameInput.value.trim() : '';
     if (!uploaderName) {
-        uploaderName = 'Anoniem';
+        uploaderName = isEnglish ? 'Anonymous' : 'Anoniem';
     }
 
     const selectedAnimal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever';
     const STORAGE_KEYS = getStorageKeys(selectedAnimal);
 
     const animalLabels = {
-        'lieveheersbeestje': '🐞 Jouw lieveheersbeestje foto staat nu tussen de waarnemingen!',
-        'kever':             '🪲 Jouw keverfoto staat nu tussen de waarnemingen!',
-        'aardhommel':        '🐝 Jouw aardhommel foto staat nu tussen de waarnemingen!'
+        'lieveheersbeestje': isEnglish ? '🐞 Your ladybug photo is now live!' : '🐞 Jouw lieveheersbeestje foto staat nu tussen de waarnemingen!',
+        'kever':             isEnglish ? '🪲 Your beetle photo is now live!' : '🪲 Jouw keverfoto staat nu tussen de waarnemingen!',
+        'aardhommel':        isEnglish ? '🐝 Your bumblebee photo is now live!' : '🐝 Jouw aardhommel foto staat nu tussen de waarnemingen!'
     };
 
     const photoData = {
@@ -339,7 +324,7 @@ function submitPhoto() {
     savePhotoToStorage(photoData, STORAGE_KEYS);
     addPhotoToTimeline(photoData, true);
 
-    showNotification(animalLabels[selectedAnimal] || '🌿 Jouw foto staat nu tussen de waarnemingen!');
+    showNotification(animalLabels[selectedAnimal] || (isEnglish ? '🌿 Photo shared successfully!' : '🌿 Jouw foto staat nu tussen de waarnemingen!'));
 
     if (uploaderNameInput) uploaderNameInput.value = '';
     removePhoto();
@@ -358,7 +343,7 @@ function savePhotoToStorage(photoData, STORAGE_KEYS) {
             storedPhotos.unshift(photoData);
             localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
         } catch (e2) {
-            showNotification('📸 Foto kon niet worden opgeslagen. Probeer een kleinere foto.');
+            showNotification(isEnglish ? '📸 Could not save photo. Try a smaller file.' : '📸 Foto kon niet worden opgeslagen. Probeer een kleinere foto.');
         }
     }
 }
@@ -377,13 +362,16 @@ function addPhotoToTimeline(photoData, prepend = false) {
     const timeline = document.getElementById('photo-timeline');
     if (!timeline) return;
 
+    const byLabel = isEnglish ? 'By' : 'Door';
+    const justNowLabel = isEnglish ? 'Just now' : 'Zojuist';
+
     const item = document.createElement('div');
     item.className = 'timeline-item';
     item.innerHTML = `
         <div class="timeline-image">
             <img src="${photoData.image}" alt="Waarneming" class="timeline-photo">
         </div>
-        <p class="timeline-date">Door <strong>${photoData.name}</strong> • Zojuist</p>
+        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong> • ${justNowLabel}</p>
     `;
 
     if (prepend) {
