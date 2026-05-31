@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Wildzoekers - Urban Wildlife & Monitoring</title>
+    <title>Wildzoekers - Urban Wildlife Monitoring</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=400;500;600;700&family=Dongle:wght=400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -14,12 +14,41 @@
             position: sticky;
             top: 0;
             z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            background: #fff;
+            height: 70px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .concept-page .feedback-banner {
             position: sticky;
-            top: 60px;
+            top: 70px;
             z-index: 199;
+        }
+
+        /* Language Button Styling */
+        .lang-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            background: transparent;
+            border: 1.5px solid var(--pale-green);
+            color: var(--primary-green);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
         }
 
         /* ===== HERO ===== */
@@ -84,6 +113,7 @@
             color: var(--text-light);
             line-height: 1.8;
             margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         /* ===== WHY ===== */
@@ -97,7 +127,8 @@
         .why-text p {
             color: var(--text-light);
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
         }
 
         .why-image {
@@ -108,41 +139,7 @@
             box-shadow: 0 10px 30px rgba(45,80,22,0.12);
         }
 
-        /* ===== IMPACT ===== */
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .impact-card {
-            background: rgba(255,255,255,0.72);
-            border: 1.5px solid var(--pale-green);
-            border-radius: 16px;
-            padding: 1.7rem;
-            transition: var(--transition);
-        }
-
-        .impact-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--bright-green);
-            box-shadow: 0 10px 28px rgba(45,80,22,0.08);
-        }
-
-        .impact-card h3 {
-            font-size: 2rem;
-            line-height: 1;
-            margin-bottom: 0.8rem;
-            color: var(--primary-green);
-        }
-
-        .impact-card p {
-            font-size: 0.92rem;
-            line-height: 1.75;
-            color: var(--text-light);
-        }
-
-        /* ===== STEPS ===== */
+        /* ===== STEPS CONNECTING ===== */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -153,7 +150,7 @@
             background: rgba(255,255,255,0.72);
             border: 1.5px solid var(--pale-green);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1.8rem;
             text-align: center;
             transition: var(--transition);
             display: flex;
@@ -161,14 +158,10 @@
             justify-content: space-between;
         }
 
-        .step-content {
-            margin-bottom: 1rem;
-        }
-
         .step:hover {
             transform: translateY(-4px);
             border-color: var(--bright-green);
-            box-shadow: 0 8px 24px rgba(45,80,22,0.08);
+            box-shadow: 0 10px 28px rgba(45,80,22,0.08);
         }
 
         .step-number {
@@ -186,33 +179,39 @@
             font-family: 'Dongle', sans-serif;
         }
 
+        .step-pillar {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--light-green);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
         .step h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
             line-height: 1.1;
             color: var(--primary-green);
         }
 
         .step p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.7;
             color: var(--text-light);
         }
 
         .step-media {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-        }
-
-        .step-media-double {
             grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
         }
 
         .step-img {
             width: 100%;
-            height: 120px;
+            height: 110px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid var(--pale-green);
@@ -247,10 +246,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 950px) {
-            .hero, .why-grid, .impact-grid {
-                grid-template-columns: 1fr;
-            }
-            .steps-grid {
+            .hero, .why-grid, .steps-grid {
                 grid-template-columns: 1fr;
             }
             .hero-content h2 {
@@ -284,9 +280,7 @@
                     <img src="media/Logo%20groen.png?raw=true" alt="Wildzoekers logo">
                 </div>
             </a>
-            <div style="position: absolute; right: 20px; top: 20px;">
-                <a href="index.html" style="color: var(--primary-green); text-decoration: none; font-weight: 600; font-size: 0.9rem;">NL</a>
-            </div>
+            <a href="index.html" class="lang-btn">NL</a>
         </header>
         <div class="feedback-banner">
             <p>This is a prototype. Please provide your <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
@@ -299,9 +293,9 @@
     <section class="hero">
         <div class="hero-content">
             <span class="intro-tag">TU/e Final Bachelor Project</span>
-            <h2>Wildzoekers: The interactive monitoring platform for urban nature.</h2>
+            <h2>The interactive monitoring platform for urban nature.</h2>
             <p>
-                Big changes start small. Wildzoekers is an advanced citizen-science monitoring platform, seamlessly wrapped inside an immersive exploration game. We activate, connect, and educate local communities to collaboratively track and protect the hidden biodiversity thriving within intentionally wild urban spaces.
+                Wildzoekers is a nature monitoring platform, wrapped in an immersive exploration game. Together with local residents, it maps the hidden biodiversity within intentionally wild urban spaces.
             </p>
         </div>
         <div>
@@ -315,10 +309,10 @@
         <div class="why-grid">
             <div class="why-text">
                 <p>
-                    Wild nature in urban environments is frequently overlooked, dismissed as "untamed weeds", or misidentified as simple maintenance neglect. But appearances can be deceptive.
+                    Wild nature in cities is unfortunately often overlooked, labeled as 'weeds' or seen as a lack of maintenance.
                 </p>
                 <p>
-                    These untouched, rugged verges and spontaneous plants serve as the literal powerhouse of our city's biodiversity. Insects, birds, and small mammals rely on these areas for essential food sources and nesting habitats. To preserve them effectively, we must first map what lives there.
+                    But it is precisely these untouched, rugged verges and spontaneous vegetation that are the source of urban biodiversity. Insects, birds, and small mammals find their indispensable food sources and shelters here.
                 </p>
             </div>
             <div>
@@ -327,95 +321,64 @@
         </div>
     </section>
 
-    <!-- STEPS -->
+    <!-- HOW IT WORKS -->
     <section>
         <h2>How does Wildzoekers work?</h2>
         <p class="section-intro">
-            Our platform bridges the gap between the physical outdoor environment and digital citizen science through three simple, interactive steps:
+            Wildzoekers begin their journey of discovery with the striking physical insects on the street and end with actively monitoring all nature in the neighborhood.
         </p>
 
         <div class="steps-grid">
-            <!-- STEP 1 -->
+            <!-- STEP 1 (With Photos) -->
             <div class="step">
-                <div class="step-content">
+                <div>
                     <div class="step-number">1</div>
-                    <h3>Spot the Signboard & 3D Insects</h3>
-                    <p>Around the neighborhood, a physical signboard instantly catches your eye. Tucked away close by, unique and tangible 3D-printed insects are hidden, inviting passersby to take action.</p>
+                    <span class="step-pillar">Playful Discovery</span>
+                    <h3>Physical objects catch attention & scan</h3>
+                    <p>Physical elements in the neighborhood instantly draw the attention of passersby. Tangible 3D insects are hidden among the vegetation, inviting people to interact. Scanning the QR codes launches the game right away.</p>
                 </div>
-                <div class="step-media step-media-double">
+                <div class="step-media">
                     <img src="media/informatiebord.jpg" alt="Physical signboard" class="step-img" onerror="this.src='https://placehold.co/300x200?text=Signboard'">
                     <img src="media/3d-insect.jpg" alt="3D-printed insect" class="step-img" onerror="this.src='https://placehold.co/300x200?text=3D+Insects'">
                 </div>
             </div>
 
-            <!-- STEP 2 -->
+            <!-- STEP 2 (No Photos) -->
             <div class="step">
-                <div class="step-content">
+                <div>
                     <div class="step-number">2</div>
-                    <h3>Search, Scan, and Collect Playfully</h3>
-                    <p>The quest begins! Residents go on a micro-adventure to locate the hidden creatures. By scanning their custom codes via smartphone, users capture and unlock the insects into their digital collection.</p>
-                </div>
-                <div class="step-media">
-                    <img src="https://placehold.co/600x200?text=Interactive+Exploration+Game" alt="Searching and scanning" class="step-img">
+                    <span class="step-pillar">Education & Communication</span>
+                    <h3>Learn about nature through the platform</h3>
+                    <p>As soon as an insect is scanned, the mobile platform opens up. Here, residents instantly discover the true ecological value of this specific location. The platform transparently communicates why this rugged ecosystem is intentional and vital.</p>
                 </div>
             </div>
 
-            <!-- STEP 3 -->
+            <!-- STEP 3 (No Photos) -->
             <div class="step">
-                <div class="step-content">
+                <div>
                     <div class="step-number">3</div>
-                    <h3>Monitor, Report, and Learn Together</h3>
-                    <p>This is where real impact is made. Through the digital platform, users upload live photo observations and log local insect counts, building a meaningful research database while learning about ecosystems.</p>
-                </div>
-                <div class="step-media">
-                    <img src="https://placehold.co/600x200?text=Live+Monitoring+Dashboard" alt="Monitoring Platform" class="step-img">
+                    <span class="step-pillar">Community Participation</span>
+                    <h3>Actively monitor urban nature together</h3>
+                    <p>This is where the monitoring infrastructure truly comes alive. Residents transform into active citizen scientists by maintaining live wild animal counts and uploading photo observations, building a shared local database.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- IMPACT -->
-    <section>
-        <h2>Why Wildzoekers works</h2>
-        <div class="impact-grid">
-            <div class="impact-card">
-                <h3>Education and Communication</h3>
-                <p>
-                    The platform transforms invisible ecological data into tangible community knowledge. Through transparent communication and targeted insights, neighbors discover that these "untamed" patches are actually vital, intentionally engineered biodiversity hotspots.
-                </p>
-            </div>
-
-            <div class="impact-card">
-                <h3>Community Participation</h3>
-                <p>
-                    Wildzoekers converts passive passersby into active citizen scientists. By crowdsourcing environmental observations, exchanging photos, and tracking neighborhood wildlife, residents cultivate a shared sense of neighborhood pride and stewardship.
-                </p>
-            </div>
-
-            <div class="impact-card">
-                <h3>Playful Discovery</h3>
-                <p>
-                    By framing rigorous environmental monitoring within a challenging, beautifully stylized game, we lower the entry barrier significantly. The process of searching, scanning, and accumulating data keeping the platform dynamic, engaging, and highly accessible for all demographics.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECT -->
+    <!-- ABOUT THIS PROJECT -->
     <section class="project-info">
         <h2>About this project</h2>
         <p>
-            Wildzoekers was developed as part of a <strong>TU/e Industrial Design Final Bachelor Project</strong> by 
-            <a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a>.
+            Wildzoekers was developed as part of the <strong>TU/e Industrial Design Final Bachelor Project</strong> by Mats van Deijck.
         </p>
         <p>
-            This academic design exploration investigates how interactive architecture and citizen-science infrastructures can fundamentally improve public perception and long-term acceptance of intentional, wild urban landscaping.
+            This project investigates how design can improve public perception and acceptance of wild nature in an urban environment.
         </p>
-        <p>This platform is a functional prototype currently undergoing active field testing.</p>
         <p>
+            This platform is a functional prototype. 
             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-                Submit your prototype feedback here
-            </a>
+                Give your feedback on the prototype here
+            </a>.
         </p>
     </section>
 </main>
@@ -427,7 +390,7 @@
             <p>Understanding, appreciating, and collectively monitoring urban wildlife spaces.</p>
         </div>
         <div class="footer-section">
-            <h4>Quick Links</h4>
+            <h4>Quick links</h4>
             <ul>
                 <li><a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a></li>
             </ul>
