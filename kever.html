@@ -49,16 +49,17 @@
 
   /* TU/e Quote styling */
   .tue-quote { 
-    display: flex; 
-    align-items: center; 
-    gap: 12px; 
-    background: #e0edd0; 
-    padding: 1rem; 
-    border-radius: 12px; 
-    margin-bottom: 1.5rem; 
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
+  display: flex; 
+  flex-direction: column; /* Stacks the items vertically */
+  align-items: flex-start; /* Aligns the logo to the left */
+  gap: 12px; 
+  background: #e0edd0; 
+  padding: 1rem; 
+  border-radius: 12px; 
+  margin-bottom: 1.5rem; 
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
   .tue-quote img { height: 28px; flex-shrink: 0; }
 
   /* Info toggles (Fixed logic handled by app.js) */
@@ -102,11 +103,12 @@
 
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
-      <h2 class="contribution-title">
-        Help 
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eindhoven_University_of_Technology_logo.svg/512px-Eindhoven_University_of_Technology_logo.svg.png" style="height: 24px; margin: 0 8px;" alt="TU/e logo"> 
-        met tellen
-      </h2>
+      <h2 class="contribution-title" style="display: block; line-height: 1.4;">
+  Help 
+  <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 8px, 0; vertical-align: middle;" alt="TU/e logo">
+  <br>
+  met tellen
+</h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
           <div class="counter-beetle-photo">
@@ -195,7 +197,7 @@
         <div class="habitat-content">
           <div class="tue-quote">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eindhoven_University_of_Technology_logo.svg/512px-Eindhoven_University_of_Technology_logo.svg.png" alt="TU/e Logo"> 
-            <span><strong>TU/e:</strong> "Dood hout is geen rommel. Het is een waardevol leefgebied dat we bewust laten liggen om de biodiversiteit op onze groene campus te bevorderen."</span>
+            <span>"De TU/e transformeert de campus naar een <strong>groen, ecologisch rijk park</strong> waar biodiversiteit de ruimte krijgt. Daarom laten we dood hout bewust liggen. Het is een cruciale leefomgeving voor schimmels en kevers, die samen de onmisbare basis vormen voor een gezond en veerkrachtig ecosysteem."</span>
           </div>
 
           <div class="info-section">
@@ -314,9 +316,8 @@
     const returnTitle = document.getElementById('discovery-title-return');
     returnTitle.style.display = 'block';
     
-    setTimeout(() => {
-      document.getElementById('observation-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 400);
+    document.querySelector('.insect-showcase').style.display = 'none';
+    // The scrolling timeout that used to be here is now gone!
   } else {
     localStorage.setItem(KEY, today);
   }
