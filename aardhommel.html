@@ -1,257 +1,343 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aardhommel gevonden! - Wildzoekers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script> const PAGE_ANIMAL = 'aardhommel'; </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aardhommel gevonden! - Wildzoekers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script> const PAGE_ANIMAL = 'aardhommel'; </script>
+<style>
+  /* ── LANG TOGGLE ── */
+  .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
+  .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+
+  /* ── RETURNING subtitle tweak ── */
+  .discovery-subtitle-return { display: none; }
+
+  /* ── SEPARATED SECTIONS ── */
+  .nature-section {
+    background: #f8faf4;
+    border-radius: 20px;
+    padding: 0 0 1.8rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1.5px solid #d4e8be;
+  }
+
+  .contribution-wrap {
+    background: #fff;
+    padding: 1.4rem 1.4rem 1.2rem;
+    border-radius: 20px;
+  }
+  .contribution-wrap h2 {
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .nature-inner {
+    padding: 1.4rem;
+  }
+  .nature-inner h2 {
+    margin: 0 0 .4rem;
+    line-height: 1.2;
+  }
+  .nature-inner .section-intro {
+    margin-bottom: 1rem;
+  }
+
+  /* TU/e Quote styling */
+  .tue-quote { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 12px; 
+    background: #e0edd0; 
+    padding: 1rem; 
+    border-radius: 12px; 
+    margin-bottom: 1.5rem; 
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .tue-quote img { height: 28px; flex-shrink: 0; }
+
+  /* Info toggles */
+  .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
+  .info-content.open { display: block; }
+</style>
 </head>
 <body class="insect-page">
-    <div class="forest-background"></div>
+<div class="forest-background"></div>
 
-    <!-- Decoratieve bladeren -->
-    <img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decoratieve bladeren" class="deco-leaf deco-leaf-topright" aria-hidden="true">
-    <img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Groen blad" class="deco-leaf deco-leaf-mid" aria-hidden="true">
-    <img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Herfstbladeren" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
+<img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decoratieve bladeren" class="deco-leaf deco-leaf-topright" aria-hidden="true">
+<img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Groen blad" class="deco-leaf deco-leaf-mid" aria-hidden="true">
+<img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Herfstbladeren" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
 
-    <!-- STICKY HEADER + FEEDBACK BALK SAMEN -->
-    <div class="sticky-top">
-        <header>
-            <a href="index.html" class="header-logo">
-                <div class="logo">
-                    <img src="media/Logo%20groen.png?raw=true" alt="Logo wildzoekers">
-                </div>
-            </a>
-        </header>
-        <div class="feedback-banner">
-            <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
-        </div>
+<div class="sticky-top">
+  <header>
+    <a href="index.html" class="header-logo">
+      <div class="logo">
+        <img src="media/Logo%20groen.png?raw=true" alt="Logo wildzoekers">
+      </div>
+    </a>
+  </header>
+  <div class="feedback-banner">
+    <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
+  </div>
+</div>
+
+<main class="insect-main">
+
+  <section class="discovery-hero">
+    <div class="discovery-content">
+      <div class="confetti-container" id="confetti"></div>
+      <h2 class="discovery-title" id="discovery-title-new">Je hebt een aardhommel gevonden!</h2>
+      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">Welkom terug!</h2>
+      <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
+      <div class="insect-showcase">
+        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel gevonden op TU/e campus" class="insect-image">
+      </div>
     </div>
+  </section>
 
-    <main class="insect-main">
-        <!-- DISCOVERY SECTION -->
-        <section class="discovery-hero">
-            <div class="discovery-content">
-                <div class="confetti-container" id="confetti"></div>
-
-                <h2 class="discovery-title">Je hebt een aardhommel gevonden!</h2>
-                <p class="location-inline">📍 Spoorpark, Tilburg • <span id="found-date"></span></p>
-
-                <div class="insect-showcase">
-                    <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel gevonden in Spoorpark" class="insect-image">
-                </div>
-            </div>
-        </section>
-
-        <!-- HABITAT EXPLORER -->
-        <section class="habitat-explorer">
-            <h2>Waarom vliegt deze aardhommel hier?</h2>
-            <p class="section-intro">Hij kwam af op de <strong>bloemen in de lage begroeiing</strong>...</p>
-
-            <div class="habitat-showcase">
-                <div class="habitat-card">
-                    <div class="habitat-image">
-                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1852.jpg?raw=true" alt="Bloemen in de stad" class="habitat-photo">
-                    </div>
-                    <div class="habitat-content">
-
-                        <!-- INTERACTIEVE INFORMATIESECTIE -->
-                        <div class="info-section">
-                            <div class="info-toggle" onclick="toggleInfoSection(this)">
-                                <span class="toggle-icon">▼</span>
-                                <h4>🍯 Waarom komt 'ie hier grazen?</h4>
-                            </div>
-                            <div class="info-content">
-                                <p>Aardhommels eten <strong>nectar en stuifmeel</strong> uit bloemen. Ze hebben veel energie nodig om hun lichaamstemperatuur warm te houden.</p>
-                            </div>
-                        </div>
-
-                        <div class="info-toggle" onclick="toggleInfoSection(this)">
-                            <span class="toggle-icon">▼</span>
-                            <h4>🌍 Wat doet 'ie voor de natuur?</h4>
-                        </div>
-                        <div class="info-content">
-                            <p><strong>Aardhommels helpen planten groeien.</strong> Terwijl ze voedsel zoeken in bloemen, nemen ze stuifmeel mee naar andere bloemen. Zo kunnen planten en fruit beter groeien.</p>
-                        </div>
-
-                        <div class="info-toggle" onclick="toggleInfoSection(this)">
-                            <span class="toggle-icon">▼</span>
-                            <h4>⚠️ Waarom bloemen niet plukken?</h4>
-                        </div>
-                        <div class="info-content">
-                            <p><strong>Veel mensen plukken bloemen.</strong> Mooi voor thuis, maar zonder bloemen kunnen aardhommels niet voeden en kunnen ze niet nesten...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROGRESS TRACKER -->
-        <section class="progress-tracker">
-            <h2>Wat heb je al gevonden?</h2>
-            <div class="progress-grid">
-                <!-- Kever -->
-                <div class="progress-item" id="beetle-progress">
-                    <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
-                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
-                    </div>
-                    <h3 class="progress-name blurred-name" id="beetle-name">kever</h3>
-                    <p class="progress-status" id="beetle-status">Nog te vinden</p>
-                </div>
-
-                <!-- Lieveheersbeestje -->
-                <div class="progress-item" id="ladybug-progress">
-                    <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
-                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Lieveheersbeestje silhouet" class="progress-photo silhouette" id="ladybug-img">
-                    </div>
-                    <h3 class="progress-name blurred-name" id="ladybug-name">lieveheersbeestje</h3>
-                    <p class="progress-status" id="ladybug-status">Nog te vinden</p>
-                </div>
-
-                <!-- Aardhommel: altijd gevonden -->
-                <div class="progress-item found" id="bumblebee-progress">
-                    <div class="progress-photo-wrap found-wrap">
-                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="progress-photo">
-                    </div>
-                    <h3>aardhommel</h3>
-                    <p class="progress-status">✓ Gevonden!</p>
-                </div>
-            </div>
-            <p class="progress-message">Ga in de buurt op zoek en verzamel ze allemaal!</p>
-        </section>
-
-        <!-- COUNTING & CONTRIBUTION -->
-        <section class="contribution-section">
-            <h2 class="contribution-title">Help met onderzoek</h2>
-
-            <div class="fauna-counter-card">
-                <div class="counter-card-inner">
-                    <!-- Aardhommel foto links -->
-                    <div class="counter-beetle-photo">
-                        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="counter-beetle-img">
-                    </div>
-
-                    <!-- Tellingen grid -->
-                    <div class="counter-grid">
-                        <div class="counter-box">
-                            <p class="counter-label">Hoeveel aardhommels zie jij hier nu?</p>
-                            <div class="counter">
-                                <button onclick="decreaseCounter('aardhommel')">−</button>
-                                <input type="number" id="aardhommel-counter" value="1" min="0" max="5" readonly>
-                                <button onclick="increaseCounter('aardhommel')">+</button>
-                            </div>
-                            <p class="counter-note">Max. 5 per keer</p>
-                            <button class="submit-btn" onclick="submitPersonalCount('aardhommel')">Verstuur waarneming</button>
-                        </div>
-
-                        <div class="counter-box">
-                            <p class="counter-label">Totaal in het Spoorpark</p>
-                            <div class="community-display">
-                                <p class="big-number-label">Totaal zijn er</p>
-                                <p class="big-number" id="community-total">47</p>
-                                <p class="big-number-unit">aardhommels gezien</p>
-                                <p class="spoorpark-label">in het Spoorpark!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="submit-success" class="submit-success" style="display:none;">
-                    <p>✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.</p>
-                </div>
-            </div>
-
-            <!-- GEDEELDE WAARNEMINGEN -->
-            <div class="photo-timeline-section">
-                <h3>Gedeelde waarnemingen</h3>
-                <p>Foto's van andere Wildzoekers die aardhommels hebben gezien</p>
-                <div class="timeline" id="photo-timeline">
-                    <div class="timeline-item sample">
-                        <div class="timeline-image">
-                            <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Aardhommel waarneming door Gom" class="timeline-photo">
-                        </div>
-                        <p class="timeline-date">Door <strong>Gom</strong> • 2 weken geleden</p>
-                    </div>
-                </div>
-
-                <div class="photo-upload-area">
-                    <h4>Deel jouw foto</h4>
-                    <div class="name-input-row">
-                        <label for="uploader-name">Jouw voornaam:</label>
-                        <input type="text" id="uploader-name" class="name-input">
-                    </div>
-                    <div class="upload-box" onclick="document.getElementById('photo-input').click()">
-                        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
-                            <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
-                        </svg>
-                        <p>Klik om een foto te uploaden</p>
-                        <p class="upload-note">of sleep hier een afbeelding naartoe</p>
-                    </div>
-                    <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="handlePhotoUpload(this)">
-                    <div id="photo-preview" style="display: none;">
-                        <img id="preview-img" src="" alt="Preview">
-                        <div class="preview-actions">
-                            <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
-                            <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FEEDBACK BOOKMARK (altijd zichtbaar, groeit na 8s of 40% scroll) -->
-    <div id="feedbackBookmark" class="feedback-bookmark">
-        <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
-            <span class="fb-icon">💬</span>
-            <span class="fb-label">Feedback</span>
-        </button>
+  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
+    <div class="tue-quote" style="margin-bottom: 0;">
+      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
+      <span>"Wij willen duurzaamheid verweven in het dagelijks studentenleven om zo te bouwen aan een gezonde, groene campusgemeenschap. Ons doel is om tegen <strong>2030</strong> minstens <strong>100</strong> verschillende insectensoorten te beschermen; door jouw waarnemingen te delen help je onze community direct om deze cultuur van verandering te meten en te versnellen."</span>
     </div>
+  </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Wildzoekers</h4>
-                <p>Verwilderde natuur in de stad begrijpen, waarderen en bewust laten bestaan.</p>
+  <section class="nature-section" id="observation-anchor">
+    <div class="contribution-wrap">
+      <h2 class="contribution-title" style="display: block; line-height: 1.4;">
+        Help 
+        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 8px, 0; vertical-align: middle;" alt="TU/e logo">
+        <br>
+        met tellen
+      </h2>
+      <div class="fauna-counter-card">
+        <div class="counter-card-inner">
+          <div class="counter-beetle-photo">
+            <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="counter-beetle-img">
+          </div>
+          <div class="counter-grid">
+            <div class="counter-box">
+              <p class="counter-label">Hoeveel <strong>levende</strong> aardhommels zie jij hier nu?</p>
+              <div class="counter">
+                <button onclick="decreaseCounter('aardhommel')">−</button>
+                <input type="number" id="aardhommel-counter" value="1" min="0" max="5" readonly>
+                <button onclick="increaseCounter('aardhommel')">+</button>
+              </div>
+              <p class="counter-note">Max. 5 per keer</p>
+              <button class="submit-btn" onclick="submitPersonalCount('aardhommel')">Verstuur waarneming</button>
             </div>
-            <div class="footer-section">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="index.html">Concept</a></li>
-                    <li>
-                    <a href="https://matsvandeijck.com" target="_blank">
-                        Mats van Deijck
-                    </a>
-                </li>
-                </ul>
+            <div class="counter-box">
+              <p class="counter-label">Totaal op de TU/e Campus</p>
+              <div class="community-display">
+                <p class="big-number-label">Totaal zijn er in 2026 tot nu toe</p>
+                <p class="big-number" id="community-total">47</p>
+                <p class="big-number-unit">aardhommels gezien</p>
+                <p class="spoorpark-label">op de TU/e campus!</p>
+              </div>
             </div>
-            <div class="footer-section">
-
-            <h4>Contact</h4>
-
-            <p>
-                Dit is een prototype. Feedback is welkom.
-            </p>
-            <p>
-                m.j.j.v.deijck@student.tue.nl
-            </p>
-            
-            <p>
-                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-                    Geef feedback
-                </a>
-            </p>
-
+          </div>
         </div>
+        <div id="submit-success" class="submit-success" style="display:none;">
+          <p>✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
-            <p class="footer-credits">Externe afbeeldingen: Zeelandnet (Gompie01)</p>
-        </div>
-    </footer>
+      </div>
 
-    <script src="app.js"></script>
+      <div class="photo-timeline-section">
+        <h3>Gedeelde waarnemingen</h3>
+        <p>Foto's van andere Wildzoekers die aardhommels hebben gezien</p>
+        <div class="timeline" id="photo-timeline">
+          <div class="timeline-item sample">
+            <div class="timeline-image">
+              <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Aardhommel waarneming door Gom" class="timeline-photo">
+            </div>
+            <p class="timeline-date">Door <strong>Gom</strong> • 2 weken geleden</p>
+          </div>
+        </div>
+        <div class="photo-upload-area">
+          <h4>Deel jouw foto</h4>
+          <div class="name-input-row">
+            <label for="uploader-name">Jouw voornaam:</label>
+            <input type="text" id="uploader-name" class="name-input">
+          </div>
+          <div class="upload-box" onclick="document.getElementById('photo-input').click()">
+            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
+              <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
+            </svg>
+            <p>Klik om een foto te uploaden</p>
+            <p class="upload-note">of sleep hier een afbeelding naartoe</p>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
+          <div id="photo-preview" style="display:none;">
+            <img id="preview-img" src="" alt="Preview">
+            <div class="preview-actions">
+              <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nature-section" id="education-section">
+    <div class="nature-inner">
+      <h2>Waarom vliegt deze aardhommel hier?</h2>
+      <p class="section-intro">Hij kwam af op de <strong>bloemen in de lage begroeiing</strong>...</p>
+
+      <div class="habitat-card">
+        <div class="habitat-image" style="margin-bottom: 1.2rem;">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1852.jpg?raw=true" alt="Bloemen in het gras" class="habitat-photo" style="width:100%; border-radius:14px; max-height:220px; object-fit:cover;">
+        </div>
+
+        <div class="habitat-content">
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>🍯 Waarom komt 'ie hier grazen?</h4>
+            </div>
+            <div class="info-content">
+              <p>Aardhommels eten <strong>nectar en stuifmeel</strong> uit bloemen. Ze hebben veel energie nodig om hun lichaamstemperatuur warm te houden.</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>🌍 Wat doet 'ie voor de natuur?</h4>
+            </div>
+            <div class="info-content">
+              <p><strong>Aardhommels helpen planten groeien.</strong> Terwijl ze voedsel zoeken in bloemen, nemen ze stuifmeel mee naar andere bloemen. Zo kunnen planten en fruit beter groeien.</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>⚠️ Waarom bloemen niet plukken?</h4>
+            </div>
+            <div class="info-content">
+              <p><strong>Veel mensen plukken bloemen.</strong> Mooi voor thuis, maar zonder bloemen kunnen aardhommels zich niet voeden en kunnen ze geen nesten bouwen...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="progress-tracker">
+    <h2>Wat heb je al gevonden?</h2>
+    <div class="progress-grid">
+      <div class="progress-item" id="beetle-progress">
+        <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
+        </div>
+        <h3 class="progress-name blurred-name" id="beetle-name">kever</h3>
+        <p class="progress-status" id="beetle-status">Nog te vinden</p>
+      </div>
+      <div class="progress-item" id="ladybug-progress">
+        <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Lieveheersbeestje silhouet" class="progress-photo silhouette" id="ladybug-img">
+        </div>
+        <h3 class="progress-name blurred-name" id="ladybug-name">lieveheersbeestje</h3>
+        <p class="progress-status" id="ladybug-status">Nog te vinden</p>
+      </div>
+      <div class="progress-item found" id="bumblebee-progress">
+        <div class="progress-photo-wrap found-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="progress-photo">
+        </div>
+        <h3>aardhommel</h3>
+        <p class="progress-status">✓ Gevonden!</p>
+      </div>
+    </div>
+    <p class="progress-message">Ga in de buurt op zoek en verzamel ze allemaal!</p>
+  </section>
+
+</main>
+
+<div class="lang-toggle">
+  <a href="bumblebee.html">🇬🇧 English</a>
+</div>
+
+<div id="feedbackBookmark" class="feedback-bookmark">
+  <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
+    <span class="fb-icon">💬</span>
+    <span class="fb-label">Feedback</span>
+  </button>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Wildzoekers</h4>
+      <p>Verwilderde natuur in de stad begrijpen, waarderen en bewust laten bestaan.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="index.html">Concept</a></li>
+        <li><a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>Dit is een prototype. Feedback is welkom.</p>
+      <p>m.j.j.v.deijck@student.tue.nl</p>
+      <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Geef feedback</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
+    <p class="footer-credits">Externe afbeeldingen: Zeelandnet (Gompie01)</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+(function() {
+  const KEY = 'wz_aardhommel_found';
+  const found = localStorage.getItem(KEY);
+  const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const main = document.querySelector('.insect-main');
+  const hero = document.querySelector('.discovery-hero');
+  const education = document.getElementById('education-section');
+  const quote = document.getElementById('tue-quote-section');
+  const observation = document.getElementById('observation-anchor');
+  const progress = document.querySelector('.progress-tracker');
+  const showcase = document.querySelector('.insect-showcase');
+
+  if (!main || !hero || !education || !quote || !observation || !progress) return;
+
+  if (found) {
+    if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'none';
+    if (document.getElementById('discovery-title-return')) document.getElementById('discovery-title-return').style.display = 'block';
+    if (showcase) showcase.style.display = 'none';
+
+    main.appendChild(hero);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(education);
+    main.appendChild(progress);
+  } else {
+    localStorage.setItem(KEY, today);
+
+    if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'block';
+    if (document.getElementById('discovery-title-return')) document.getElementById('discovery-title-return').style.display = 'none';
+    if (showcase) showcase.style.display = 'block';
+
+    main.appendChild(hero);
+    main.appendChild(education);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(progress);
+  }
+})();
+</script>
 </body>
 </html>
