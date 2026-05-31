@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Wildzoekers - Wilde natuur in de stad</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=400;500;600;700&family=Dongle:wght=400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <style>
-
         /* ===== PAGINA ===== */
-
         .concept-page header {
             position: sticky;
             top: 0;
@@ -25,7 +23,6 @@
         }
 
         /* ===== HERO ===== */
-
         .hero {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
@@ -42,7 +39,7 @@
         }
 
         .hero-content p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
             color: var(--text-light);
             max-width: 620px;
@@ -71,7 +68,6 @@
         }
 
         /* ===== ALGEMENE SECTIES ===== */
-
         section {
             margin-bottom: 5rem;
         }
@@ -91,7 +87,6 @@
         }
 
         /* ===== WAAROM ===== */
-
         .why-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -114,7 +109,6 @@
         }
 
         /* ===== IMPACT ===== */
-
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -149,10 +143,9 @@
         }
 
         /* ===== STAPPEN ===== */
-
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* Aangepast naar 3 stappen */
             gap: 1.5rem;
         }
 
@@ -163,6 +156,13 @@
             padding: 1.5rem;
             text-align: center;
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .step-content {
+            margin-bottom: 1rem;
         }
 
         .step:hover {
@@ -176,11 +176,7 @@
             height: 46px;
             margin: 0 auto 1rem;
             border-radius: 50%;
-            background: linear-gradient(
-                135deg,
-                var(--bright-green),
-                var(--light-green)
-            );
+            background: linear-gradient(135deg, var(--bright-green), var(--light-green));
             color: white;
             display: flex;
             align-items: center;
@@ -191,9 +187,9 @@
         }
 
         .step h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 0.5rem;
-            line-height: 1;
+            line-height: 1.1;
             color: var(--primary-green);
         }
 
@@ -203,8 +199,26 @@
             color: var(--text-light);
         }
 
-        /* ===== PROJECT ===== */
+        .step-media {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
 
+        .step-media-double {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .step-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--pale-green);
+        }
+
+        /* ===== PROJECT ===== */
         .project-info {
             background: rgba(255,255,255,0.55);
             border: 1.5px solid var(--pale-green);
@@ -231,52 +245,27 @@
             border-color: var(--primary-green);
         }
 
-        /* ===== CREDITS ===== */
-
-        .image-credit {
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            color: rgba(0,0,0,0.5);
-        }
-
         /* ===== RESPONSIVE ===== */
-
         @media (max-width: 950px) {
-
-            .hero,
-            .why-grid,
-            .impact-grid {
+            .hero, .why-grid, .impact-grid {
                 grid-template-columns: 1fr;
             }
-
             .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
-
             .hero-content h2 {
                 font-size: 3rem;
             }
         }
 
         @media (max-width: 600px) {
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content h2 {
+            .hero-content h2, section h2 {
                 font-size: 2.3rem;
             }
-
-            section h2 {
-                font-size: 2.3rem;
-            }
-
             .hero-image {
                 height: 320px;
             }
         }
-
     </style>
 </head>
 
@@ -284,12 +273,10 @@
 
     <div class="forest-background"></div>
 
-    <!-- Decoratieve bladeren -->
     <img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decoratieve bladeren" class="deco-leaf deco-leaf-topright" aria-hidden="true">
     <img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Groen blad" class="deco-leaf deco-leaf-mid" aria-hidden="true">
     <img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Herfstbladeren" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
 
-    <!-- STICKY HEADER + FEEDBACK BALK SAMEN -->
     <div class="sticky-top">
         <header>
             <a href="index.html" class="header-logo">
@@ -297,6 +284,10 @@
                     <img src="media/Logo%20groen.png?raw=true" alt="Logo wildzoekers">
                 </div>
             </a>
+            <!-- Simpele taalswitcher link die matcht met je andere pagina's -->
+            <div style="position: absolute; right: 20px; top: 20px;">
+                <a href="index-en.html" style="color: var(--primary-green); text-decoration: none; font-weight: 600; font-size: 0.9rem;">EN</a>
+            </div>
         </header>
         <div class="feedback-banner">
             <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
@@ -306,296 +297,157 @@
 <main class="concept-main">
 
     <!-- HERO -->
-
     <section class="hero">
-
         <div class="hero-content">
-
-            <span class="intro-tag">
-                TU/e Final Bachelor Project
-            </span>
-
-            <h2>
-                Bewust verwilderde natuur in de stad.
-            </h2>
-
+            <span class="intro-tag">TU/e Final Bachelor Project</span>
+            <h2>Wildzoekers: Hét interactieve monitorplatform voor stadsnatuur.</h2>
             <p>
-                Wildzoekers helpt bewoners begrijpen waarom verwilderde vegetatie in de stad waardevol is en laat zien dat verwildering bewust en positief kan zijn.
+                Grote veranderingen beginnen klein. Wildzoekers is een geavanceerd citizen-science monitorplatform, slim verpakt in een meeslepend zoekspel. Wij activeren, verbinden en onderwijzen buurtbewoners om samen de verborgen biodiversiteit in onze bewust verwilderde stadsnatuur in kaart te brengen.
             </p>
-
         </div>
-
         <div>
-
-            <img
-                src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1857.jpg?raw=true"
-                alt="Wilde vegetatie in de stad"
-                class="hero-image"
-            >
-
+            <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1857.jpg?raw=true" alt="Wilde vegetatie in de stad" class="hero-image">
         </div>
-
     </section>
 
-
-            <!-- WAAROM -->
-
+    <!-- WAAROM -->
     <section>
-
-        <h2>
-            Waarom is dit belangrijk?
-        </h2>
-
+        <h2>Waarom is dit belangrijk?</h2>
         <div class="why-grid">
-
             <div class="why-text">
-
                 <p>
-                    Verwilderde natuur in steden wordt vaak gezien als rommelig of vergeten. Onkruid. Maar juist deze plekken zijn belangrijk voor biodiversiteit.
+                    Verwilderde natuur in steden wordt helaas vaak over het hoofd gezien, bestempeld als 'onkruid' of gezien als achterstallig onderhoud. Maar schijn bedriegt.
                 </p>
-
                 <p>
-                    In ruige bermen, dood hout en spontane vegetatie leven insecten, vogels en andere soorten die moeilijk ruimte vinden in strak onderhouden steden.
+                    Juist in deze ongerepte, ruige bermen en spontane vegetatie schuilt de motor van onze stedelijke biodiversiteit. Insecten, vogels en kleine zoogdieren vinden hier hun onmisbare voedselbronnen en schuilplaatsen. Om deze natuur effectief te beschermen, moeten we eerst weten wat er leeft.
                 </p>
-
             </div>
-
             <div>
-
-                <img
-                    src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1850.jpg?raw=true"
-                    alt="Wilde vegetatie langs gebouwen"
-                    class="why-image"
-                >
-
+                <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1850.jpg?raw=true" alt="Wilde vegetatie langs gebouwen" class="why-image">
             </div>
-
         </div>
-
     </section>
 
     <!-- STAPPEN -->
-
     <section>
-
-        <h2>
-            Hoe werkt Wildzoekers?
-        </h2>
-
+        <h2>Hoe werkt Wildzoekers?</h2>
         <p class="section-intro">
-            Een informatiebord, 3D-geprintte insecten en een mobiel platform...
+            Ons platform slaat een brug tussen de fysieke buitenwereld en digitale citizen science via drie eenvoudige, interactieve stappen:
         </p>
 
         <div class="steps-grid">
-
+            <!-- STAP 1 -->
             <div class="step">
-
-                <div class="step-number">1</div>
-
-                <h3>
-                    Het bord en/of de insecten vallen op.
-                </h3>
-
-                <p>
-                    In de buurt staat een bord dat uitlegt dat hier insecten verstopt zitten.
-                </p>
-
+                <div class="step-content">
+                    <div class="step-number">1</div>
+                    <h3>Vind het informatiebord & de 3D-insecten</h3>
+                    <p>In de buurt trekt een fysiek informatiebord direct de aandacht. In de directe omgeving van dit bord zitten unieke, tastbare 3D-geprinte insecten verstopt die uitnodigen tot actie.</p>
+                </div>
+                <div class="step-media step-media-double">
+                    <!-- Pas hier de src-paden aan naar je echte foto's -->
+                    <img src="media/informatiebord.jpg" alt="Fysiek informatiebord" class="step-img" onerror="this.src='https://placehold.co/300x200?text=Informatiebord'">
+                    <img src="media/3d-insect.jpg" alt="3D-geprint insect" class="step-img" onerror="this.src='https://placehold.co/300x200?text=3D+Insecten'">
+                </div>
             </div>
 
+            <!-- STAP 2 -->
             <div class="step">
-
-                <div class="step-number">2</div>
-
-                <h3>
-                    Zoek en verzamel alle insecten!
-                </h3>
-
-                <p>
-                    Start de zoektocht naar de insecten en verzamel ze allemaal door te scannen.
-                </p>
-
+                <div class="step-content">
+                    <div class="step-number">2</div>
+                    <h3>Zoek, scan en verzamel spelenderwijs</h3>
+                    <p>Het avontuur begint! Bewoners gaan actief op zoek naar de verborgen insecten. Door de codes te scannen met hun smartphone, verzamelen en ontgrendelen ze de insecten direct in hun digitale collectie.</p>
+                </div>
+                <div class="step-media">
+                    <img src="https://placehold.co/600x200?text=Interactief+Zoekspel" alt="Zoeken en scannen" class="step-img">
+                </div>
             </div>
 
+            <!-- STAP 3 -->
             <div class="step">
-
-                <div class="step-number">3</div>
-
-                <h3>
-                    Leer over de natuur.
-                </h3>
-
-                <p>
-                    In het online platform lees je waarom deze natuur belangrijk is voor biodiversiteit in de stad.
-                </p>
-
+                <div class="step-content">
+                    <div class="step-number">3</div>
+                    <h3>Monitor, rapporteer en leer samen</h3>
+                    <p>Dit is waar de echte impact ontstaat. Via het platform sturen gebruikers live fotowaarnemingen in en houden ze lokale insectentellingen bij. Zo bouwt de buurt samen aan een waardevolle database én leert men over het ecosysteem.</p>
+                </div>
+                <div class="step-media">
+                    <img src="https://placehold.co/600x200?text=Live+Monitor+Dashboard" alt="Monitor Platform" class="step-img">
+                </div>
             </div>
-
-            <div class="step">
-
-                <div class="step-number">4</div>
-
-                <h3>
-                    Help de buurt mee!
-                </h3>
-
-                <p>
-                    Voeg jouw waarnemingen toe en help met monitoren van de buurtnatuur.
-                </p>
-
-            </div>
-
         </div>
-
     </section>
 
-
     <!-- IMPACT -->
-
     <section>
-
-        <h2>
-            Waarom werkt Wildzoekers?
-        </h2>
-
-
+        <h2>Waarom werkt Wildzoekers?</h2>
         <div class="impact-grid">
-
             <div class="impact-card">
-
-                <h3>
-                    Educatie
-                </h3>
-
+                <h3>Educatie en communicatie</h3>
                 <p>
-                    Bewoners leren welke dieren en planten hier leven, waarom biodiversiteit belangrijk is en waarom deze plekken goed zijn voor het ecosysteem.
+                    Het platform maakt de onzichtbare ecologische waarde tastbaar. Door heldere communicatie en directe educatie leren bewoners in te zien dat deze 'rommelige' stukken natuur in werkelijkheid vitale, doelbewust gecreëerde hotspots voor biodiversiteit zijn.
                 </p>
-
             </div>
 
             <div class="impact-card">
-
-                <h3>
-                    Buurtparticipatie
-                </h3>
-
+                <h3>Buurtparticipatie</h3>
                 <p>
-                    Mensen doen mee door de natuur in hun buurt zichtbaar te maken en te monitoren.
+                    Wildzoekers verandert passieve voorbijgangers in actieve wetenschappers. Door samen ecologische data te verzamelen, foto's te delen en de lokale biodiversiteit te monitoren, ontstaat er een gedeeld gevoel van trots en verantwoordelijkheid voor het groen in de wijk.
                 </p>
-
             </div>
 
             <div class="impact-card">
-
-                <h3>
-                    Bewuste verwildering
-                </h3>
-
+                <h3>Speelse ontdekking</h3>
                 <p>
-                    De insecten en het informatiebord laten in één oogopslag zien dat de natuur hier bewust aanwezig is en niet is vergeten of verwaarloosd.
+                    Door serieuze natuurmonitoring te verpakken in een uitdagend en visueel aantrekkelijk spel, verlagen we de drempel voor deelname aanzienlijk. Het ontdekken, scannen en verzamelen houdt het platform dynamisch, competitief en leuk voor jong en oud.
                 </p>
-
             </div>
-
         </div>
-
     </section>
 
     <!-- PROJECT -->
-
     <section class="project-info">
-
-        <h2>
-            Over dit project
-        </h2>
-
+        <h2>Over dit project</h2>
         <p>
-            Wildzoekers is ontwikkeld als onderdeel van het
-            <strong>TU/e Industrial Design Final Bachelor Project</strong>
-            door
-            <a href="https://matsvandeijck.com" target="_blank">
-                Mats van Deijck
-            </a>.
+            Wildzoekers is ontwikkeld als onderdeel van het <strong>TU/e Industrial Design Final Bachelor Project</strong> door 
+            <a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a>.
         </p>
-
         <p>
-            Het project onderzoekt hoe design de acceptatie van verwilderde natuur in stedelijke omgevingen kan vergroten.
+            Dit academische project onderzoekt hoe interactief design en citizen-science systemen de publieke perceptie en acceptatie van bewuste, verwilderde natuur in een stedelijke omgeving ingrijpend kunnen verbeteren.
         </p>
-
-        <p>
-            Dit platform is een prototype en wordt op dit moment getest.
-        </p>
-
+        <p>Dit platform is een functioneel prototype en bevindt zich momenteel in de testfase.</p>
         <p>
             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-                Geef hier feedback
+                Geef hier uw feedback op het prototype
             </a>
         </p>
-
     </section>
-
 </main>
 
 <footer>
-
     <div class="footer-content">
-
         <div class="footer-section">
-
             <h4>Wildzoekers</h4>
-
-            <p>
-                Verwilderde natuur in de stad begrijpen, waarderen en bewust laten bestaan.
-            </p>
-
+            <p>Verwilderde natuur in de stad begrijpen, waarderen en samen bewust monitoren.</p>
         </div>
-
         <div class="footer-section">
-
             <h4>Snelle links</h4>
-
             <ul>
-                <li>
-                    <a href="https://matsvandeijck.com" target="_blank">
-                        Mats van Deijck
-                    </a>
-                </li>
+                <li><a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a></li>
             </ul>
-
         </div>
-
         <div class="footer-section">
-
             <h4>Contact</h4>
-
+            <p>Dit is een academisch prototype. Jouw input is cruciaal.</p>
+            <p>m.j.j.v.deijck@student.tue.nl</p>
             <p>
-                Dit is een prototype. Feedback is welkom.
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Geef feedback</a>
             </p>
-            <p>
-                m.j.j.v.deijck@student.tue.nl
-            </p>
-            
-            <p>
-                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">
-                    Geef feedback
-                </a>
-            </p>
-
         </div>
-
     </div>
-
     <div class="footer-bottom">
-
-        <p>
-            &copy; 2026 Wildzoekers.
-            TU/e Industrial Design Final Bachelor Project — Mats van Deijck.
-        </p>
-
+        <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project — Mats van Deijck.</p>
     </div>
-
 </footer>
 
 <script src="app.js"></script>
-
 </body>
 </html>
