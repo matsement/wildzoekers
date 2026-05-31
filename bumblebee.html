@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bumblebee found! - Wildzoekers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script> const PAGE_ANIMAL = 'bumblebee'; </script>
+<style>
+  /* ── LANG TOGGLE ── */
+  .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
+  .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+
+  /* ── RETURNING subtitle tweak ── */
+  .discovery-subtitle-return { display: none; }
+
+  /* ── SEPARATED SECTIONS ── */
+  .nature-section {
+    background: #f8faf4;
+    border-radius: 20px;
+    padding: 0 0 1.8rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1.5px solid #d4e8be;
+  }
+
+  .contribution-wrap {
+    background: #fff;
+    padding: 1.4rem 1.4rem 1.2rem;
+    border-radius: 20px;
+  }
+  .contribution-wrap h2 {
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .nature-inner {
+    padding: 1.4rem;
+  }
+  .nature-inner h2 {
+    margin: 0 0 .4rem;
+    line-height: 1.2;
+  }
+  .nature-inner .section-intro {
+    margin-bottom: 1rem;
+  }
+
+  /* TU/e Quote styling */
+  .tue-quote { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 12px; 
+    background: #e0edd0; 
+    padding: 1rem; 
+    border-radius: 12px; 
+    margin-bottom: 1.5rem; 
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .tue-quote img { height: 28px; flex-shrink: 0; }
+
+  /* Info toggles */
+  .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
+  .info-content.open { display: block; }
+</style>
+</head>
+<body class="insect-page">
+<div class="forest-background"></div>
+
+<img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decorative leaves" class="deco-leaf deco-leaf-topright" aria-hidden="true">
+<img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Green leaf" class="deco-leaf deco-leaf-mid" aria-hidden="true">
+<img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Autumn leaves" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
+
+<div class="sticky-top">
+  <header>
+    <a href="index.html" class="header-logo">
+      <div class="logo">
+        <img src="media/Logo%20groen.png?raw=true" alt="Wildzoekers Logo">
+      </div>
+    </a>
+  </header>
+  <div class="feedback-banner">
+    <p>This is a prototype. Please share your <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
+  </div>
+</div>
+
+<main class="insect-main">
+
+  <section class="discovery-hero">
+    <div class="discovery-content">
+      <div class="confetti-container" id="confetti"></div>
+      <h2 class="discovery-title" id="discovery-title-new">You found a bumblebee!</h2>
+      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">Welcome back!</h2>
+      <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
+      <div class="insect-showcase">
+        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee found on TU/e campus" class="insect-image">
+      </div>
+    </div>
+  </section>
+
+  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
+    <div class="tue-quote" style="margin-bottom: 0;">
+      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
+      <span>"We want to embed sustainability into everyday student life to build a healthy, green campus community. Our goal is to protect at least <strong>100</strong> different insect species by <strong>2030</strong>; by sharing your observations, you actively help our community track and inspire this culture of change."</span>
+    </div>
+  </section>
+
+  <section class="nature-section" id="observation-anchor">
+    <div class="contribution-wrap">
+      <h2 class="contribution-title" style="display: block; line-height: 1.4;">
+        Help 
+        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 8px, 0; vertical-align: middle;" alt="TU/e logo">
+        <br>
+        with counting
+      </h2>
+      <div class="fauna-counter-card">
+        <div class="counter-card-inner">
+          <div class="counter-beetle-photo">
+            <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee" class="counter-beetle-img">
+          </div>
+          <div class="counter-grid">
+            <div class="counter-box">
+              <p class="counter-label">How many <strong>live</strong> bumblebees do you see here right now?</p>
+              <div class="counter">
+                <button onclick="decreaseCounter('bumblebee')">−</button>
+                <input type="number" id="bumblebee-counter" value="1" min="0" max="5" readonly>
+                <button onclick="increaseCounter('bumblebee')">+</button>
+              </div>
+              <p class="counter-note">Max. 5 per submission</p>
+              <button class="submit-btn" onclick="submitPersonalCount('bumblebee')">Submit observation</button>
+            </div>
+            <div class="counter-box">
+              <p class="counter-label">Total on the TU/e Campus</p>
+              <div class="community-display">
+                <p class="big-number-label">Total spotted in 2026 so far</p>
+                <p class="big-number" id="community-total">47</p>
+                <p class="big-number-unit">bumblebees seen</p>
+                <p class="spoorpark-label">on the TU/e campus!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="submit-success" class="submit-success" style="display:none;">
+          <p>✅ Thank you! Your observation has been saved and added to our research project.</p>
+        </div>
+      </div>
+
+      <div class="photo-timeline-section">
+        <h3>Shared Observations</h3>
+        <p>Photos from other Wildzoekers who spotted bumblebees</p>
+        <div class="timeline" id="photo-timeline">
+          <div class="timeline-item sample">
+            <div class="timeline-image">
+              <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Bumblebee observation by Gom" class="timeline-photo">
+            </div>
+            <p class="timeline-date">By <strong>Gom</strong> • 2 weeks ago</p>
+          </div>
+        </div>
+        <div class="photo-upload-area">
+          <h4>Share your photo</h4>
+          <div class="name-input-row">
+            <label for="uploader-name">Your first name:</label>
+            <input type="text" id="uploader-name" class="name-input">
+          </div>
+          <div class="upload-box" onclick="document.getElementById('photo-input').click()">
+            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
+              <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
+            </svg>
+            <p>Click to upload a photo</p>
+            <p class="upload-note">or drag and drop an image here</p>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
+          <div id="photo-preview" style="display:none;">
+            <img id="preview-img" src="" alt="Preview">
+            <div class="preview-actions">
+              <button type="button" class="btn-secondary" onclick="removePhoto()">Delete</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Send Photo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nature-section" id="education-section">
+    <div class="nature-inner">
+      <h2>Why is this bumblebee flying here?</h2>
+      <p class="section-intro">He was attracted to the <strong>flowers in the low vegetation</strong>...</p>
+
+      <div class="habitat-card">
+        <div class="habitat-image" style="margin-bottom: 1.2rem;">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1852.jpg?raw=true" alt="Flowers in the grass" class="habitat-photo" style="width:100%; border-radius:14px; max-height:220px; object-fit:cover;">
+        </div>
+
+        <div class="habitat-content">
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>🍯 Why is he foraging here?</h4>
+            </div>
+            <div class="info-content">
+              <p>Bumblebees eat <strong>nectar and pollen</strong> from flowers. They need a lot of energy to keep their body temperature warm.</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>🌍 What does he do for nature?</h4>
+            </div>
+            <div class="info-content">
+              <p><strong>Bumblebees help plants grow.</strong> While foraging in flowers, they carry pollen to other flowers. This helps plants and fruit grow better.</p>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>⚠️ Why not pick flowers?</h4>
+            </div>
+            <div class="info-content">
+              <p><strong>Many people pick flowers.</strong> Nice for at home, but without flowers, bumblebees cannot feed and cannot build nests...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="progress-tracker">
+    <h2>What have you found so far?</h2>
+    <div class="progress-grid">
+      <div class="progress-item" id="beetle-progress">
+        <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle silhouette" class="progress-photo silhouette" id="beetle-img">
+        </div>
+        <h3 class="progress-name blurred-name" id="beetle-name">beetle</h3>
+        <p class="progress-status" id="beetle-status">Yet to find</p>
+      </div>
+      <div class="progress-item" id="ladybug-progress">
+        <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Ladybug silhouette" class="progress-photo silhouette" id="ladybug-img">
+        </div>
+        <h3 class="progress-name blurred-name" id="ladybug-name">ladybug</h3>
+        <p class="progress-status" id="ladybug-status">Yet to find</p>
+      </div>
+      <div class="progress-item found" id="bumblebee-progress">
+        <div class="progress-photo-wrap found-wrap">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee" class="progress-photo">
+        </div>
+        <h3>bumblebee</h3>
+        <p class="progress-status">✓ Found!</p>
+      </div>
+    </div>
+    <p class="progress-message">Explore the area and collect them all!</p>
+  </section>
+
+</main>
+
+<div class="lang-toggle">
+  <a href="aardhommel.html">🇳🇱 Nederlands</a>
+</div>
+
+<div id="feedbackBookmark" class="feedback-bookmark">
+  <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Give feedback">
+    <span class="fb-icon">💬</span>
+    <span class="fb-label">Feedback</span>
+  </button>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Wildzoekers</h4>
+      <p>Understanding, appreciating, and consciously preserving wild nature in the city.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="index.html">Concept</a></li>
+        <li><a href="https://matsvandeijck.com" target="_blank">Mats van Deijck</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>This is a prototype. Feedback is welcome.</p>
+      <p>m.j.j.v.deijck@student.tue.nl</p>
+      <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Give feedback</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
+    <p class="footer-credits">External images: Zeelandnet (Gompie01)</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+(function() {
+  const KEY = 'wz_aardhommel_found_en';
+  const found = localStorage.getItem(KEY);
+  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const main = document.querySelector('.insect-main');
+  const hero = document.querySelector('.discovery-hero');
+  const education = document.getElementById('education-section');
+  const quote = document.getElementById('tue-quote-section');
+  const observation = document.getElementById('observation-anchor');
+  const progress = document.querySelector('.progress-tracker');
+  const showcase = document.querySelector('.insect-showcase');
+
+  if (!main || !hero || !education || !quote || !observation || !progress) return;
+
+  if (found) {
+    if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'none';
+    if (document.getElementById('discovery-title-return')) document.getElementById('discovery-title-return').style.display = 'block';
+    if (showcase) showcase.style.display = 'none';
+
+    main.appendChild(hero);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(education);
+    main.appendChild(progress);
+  } else {
+    localStorage.setItem(KEY, today);
+
+    if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'block';
+    if (document.getElementById('discovery-title-return')) document.getElementById('discovery-title-return').style.display = 'none';
+    if (showcase) showcase.style.display = 'block';
+
+    main.appendChild(hero);
+    main.appendChild(education);
+    main.appendChild(quote);
+    main.appendChild(observation);
+    main.appendChild(progress);
+  }
+})();
+</script>
+</body>
+</html>
