@@ -11,11 +11,22 @@ const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R
 // Detect if page is english
 const isEnglish = document.documentElement.lang === 'en';
 
-// Animal-specific storage keys — keeps each page's data separate (but shares between NL/EN if PAGE_ANIMAL is the same)
+// Helper to normalize animal names across NL/EN pages so they map to the same storage and dictionaries
+function normalizeAnimal(animal) {
+    if (!animal) return 'kever';
+    const a = animal.toLowerCase();
+    if (a === 'beetle' || a === 'kever') return 'kever';
+    if (a === 'bumblebee' || a === 'aardhommel' || a === 'hommel') return 'aardhommel';
+    if (a === 'ladybug' || a === 'lieveheersbeestje') return 'lieveheersbeestje';
+    return a;
+}
+
+// Animal-specific storage keys — shares between NL/EN by using normalized keys
 function getStorageKeys(animal) {
+    const norm = normalizeAnimal(animal);
     return {
-        communityCount: 'community-count-' + animal,
-        uploadedPhotos: 'wildzoekers-photos-' + animal
+        communityCount: 'community-count-' + norm,
+        uploadedPhotos: 'wildzoekers-photos-' + norm
     };
 }
 
@@ -40,13 +51,13 @@ function getFoundInsects() {
 // ===== PAGE INITIALIZATION =====
 
 function initializePage() {
-    const path = window.location.pathname;
+    const path = window.location.pathname.toLowerCase();
 
-    if (path.includes('kever')) {
+    if (path.includes('kever') || path.includes('beetle')) {
         markInsectAsFound(INSECTS.kever);
-    } else if (path.includes('aardhommel')) {
+    } else if (path.includes('aardhommel') || path.includes('bumblebee') || path.includes('hommel')) {
         markInsectAsFound(INSECTS.aardhommel);
-    } else if (path.includes('lieveheersbeestje')) {
+    } else if (path.includes('lieveheersbeestje') || path.includes('ladybug')) {
         markInsectAsFound(INSECTS.lieveheersbeestje);
     }
 
@@ -155,7 +166,7 @@ function updateSingleTracker(config, foundList) {
 // ===== COUNTER FUNCTIONALITY =====
 
 function initializeCounters() {
-    ['lieveheersbeestje', 'kever', 'aardhommel'].forEach(type => {
+    ['lieveheersbeestje', 'kever', 'aardhommel', 'ladybug', 'beetle', 'bumblebee'].forEach(type => {
         const counter = document.getElementById(type + '-counter');
         if (counter) counter.value = 1;
     });
@@ -181,12 +192,13 @@ function submitPersonalCount(type) {
 
     const count = parseInt(input.value);
     if (count <= 0) {
+        const normType = normalizeAnimal(type);
         const animalNames = {
             'lieveheersbeestje': isEnglish ? '🐞 Please add at least 1 ladybug first.' : '🐞 Voeg eerst minimaal 1 lieveheersbeestje toe.',
             'kever':             isEnglish ? '🪲 Please add at least 1 beetle first.'  : '🪲 Voeg eerst minimaal 1 kever toe.',
             'aardhommel':        isEnglish ? '🐝 Please add at least 1 bumblebee first.': '🐝 Voeg eerst minimaal 1 hommel toe.'
         };
-        showNotification(animalNames[type] || (isEnglish ? '🐛 Please add at least 1 animal first.' : '🐛 Voeg eerst minimaal 1 dier toe.'));
+        showNotification(animalNames[normType] || (isEnglish ? '🐛 Please add at least 1 animal first.' : '🐛 Voeg eerst minimaal 1 dier toe.'));
         return;
     }
 
@@ -214,6 +226,7 @@ function submitPersonalCount(type) {
 }
 
 function increaseCounter(type) {
+    const normType = normalizeAnimal(type);
     const messages = {
         'lieveheersbeestje': isEnglish ? '🐞 Max 5 ladybugs at a time.' : '🐞 Je kunt maximaal 5 lieveheersbeestjes tegelijk doorgeven.',
         'kever':             isEnglish ? '🪲 Max 5 beetles at a time.' : '🪲 Je kunt maximaal 5 kevers tegelijk doorgeven.',
@@ -227,7 +240,7 @@ function increaseCounter(type) {
     if (currentValue < 5) {
         input.value = currentValue + 1;
     } else {
-        const msg = messages[type] || (isEnglish ? '🐛 Max 5 at a time.' : '🐛 Je kunt maximaal 5 tegelijk doorgeven.');
+        const msg = messages[normType] || (isEnglish ? '🐛 Max 5 at a time.' : '🐛 Je kunt maximaal 5 tegelijk doorgeven.');
         showNotification(msg);
     }
 }
@@ -306,6 +319,7 @@ function submitPhoto() {
     }
 
     const selectedAnimal = typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever';
+    const normAnimal = normalizeAnimal(selectedAnimal);
     const STORAGE_KEYS = getStorageKeys(selectedAnimal);
 
     const animalLabels = {
@@ -317,14 +331,14 @@ function submitPhoto() {
     const photoData = {
         image: previewImg.src,
         name: uploaderName,
-        animal: selectedAnimal,
+        animal: normAnimal,
         timestamp: new Date().toISOString()
     };
 
     savePhotoToStorage(photoData, STORAGE_KEYS);
     addPhotoToTimeline(photoData, true);
 
-    showNotification(animalLabels[selectedAnimal] || (isEnglish ? '🌿 Photo shared successfully!' : '🌿 Jouw foto staat nu tussen de waarnemingen!'));
+    showNotification(animalLabels[normAnimal] || (isEnglish ? '🌿 Photo shared successfully!' : '🌿 Jouw foto staat nu tussen de waarnemingen!'));
 
     if (uploaderNameInput) uploaderNameInput.value = '';
     removePhoto();
