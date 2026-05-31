@@ -15,7 +15,7 @@
   /* ── RETURNING subtitle tweak ── */
   .discovery-subtitle-return { display: none; }
 
-  /* ── BIG INTEGRATED SECTION ── */
+  /* ── SEPARATED SECTIONS ── */
   .nature-section {
     background: #f8faf4;
     border-radius: 20px;
@@ -25,20 +25,19 @@
     border: 1.5px solid #d4e8be;
   }
 
-  /* observation part sits at top of nature-section */
-  .nature-section .contribution-wrap {
+  .contribution-wrap {
     background: #fff;
     padding: 1.4rem 1.4rem 1.2rem;
-    border-bottom: 1.5px solid #e0edd0;
-    margin-bottom: 1.4rem;
+    border-radius: 20px;
   }
-  .nature-section .contribution-wrap h2 {
+  .contribution-wrap h2 {
     margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
   }
 
-  /* ecology + vision content */
   .nature-inner {
-    padding: 0 1.4rem;
+    padding: 1.4rem;
   }
   .nature-inner h2 {
     margin: 0 0 .4rem;
@@ -48,90 +47,23 @@
     margin-bottom: 1rem;
   }
 
-  /* habitat photo */
-  .habitat-photo-wrap {
-    border-radius: 14px;
-    overflow: hidden;
-    margin-bottom: 1.2rem;
+  /* TU/e Quote styling */
+  .tue-quote { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    background: #e0edd0; 
+    padding: 1rem; 
+    border-radius: 12px; 
+    margin-bottom: 1.5rem; 
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
-  .habitat-photo-wrap img {
-    width: 100%; display: block; object-fit: cover; max-height: 220px;
-  }
+  .tue-quote img { height: 28px; flex-shrink: 0; }
 
-  /* TU/e vision card — integrated, not separate */
-  .tue-vision-card {
-    background: linear-gradient(135deg, #1a4d2e 0%, #2d6a2d 100%);
-    color: #fff;
-    border-radius: 16px;
-    padding: 1.2rem 1.2rem 1.4rem;
-    margin: 1.4rem 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .tue-vision-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-  .tue-vision-card .vision-badge {
-    background: rgba(255,255,255,.15);
-    border: 1px solid rgba(255,255,255,.3);
-    border-radius: 30px;
-    padding: .15rem .7rem;
-    font-size: .7rem;
-    font-weight: 600;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: .7rem;
-  }
-  .tue-vision-card h3 {
-    margin: 0 0 .6rem;
-    font-size: 1.05rem;
-    font-family: 'Poppins', sans-serif;
-  }
-  .tue-vision-card p {
-    font-size: .86rem;
-    line-height: 1.6;
-    opacity: .92;
-    margin: 0 0 .8rem;
-  }
-  .tue-vision-card p:last-child { margin-bottom: 0; }
-  .tue-authority {
-    display: flex; align-items: center; gap: .55rem;
-    background: rgba(255,255,255,.12);
-    border-radius: 10px;
-    padding: .5rem .8rem;
-    margin-bottom: .9rem;
-    font-size: .8rem;
-  }
-  .tue-authority .auth-icon { font-size: 1.3rem; }
-
-  /* video placeholder inside vision card */
-  .vision-video-wrap {
-    background: rgba(0,0,0,.2);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: .8rem;
-  }
-  .vision-video-placeholder {
-    display: flex; align-items: center; gap: .6rem;
-    padding: .9rem 1rem;
-    cursor: pointer;
-    font-size: .84rem;
-    color: rgba(255,255,255,.9);
-  }
-  .vision-video-placeholder .play-btn {
-    width: 34px; height: 34px;
-    background: rgba(255,255,255,.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-    transition: background .2s;
-  }
-  .vision-video-placeholder:hover .play-btn { background: rgba(255,255,255,.35); }
+  /* Info toggles (Fixed logic handled by app.js) */
+  .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
+  .info-content.open { display: block; }
 </style>
 </head>
 <body class="insect-page">
@@ -156,16 +88,11 @@
 
 <main class="insect-main">
 
-  <!-- ══ 1. DISCOVERY HERO — always first ══ -->
   <section class="discovery-hero">
     <div class="discovery-content">
       <div class="confetti-container" id="confetti"></div>
-      <!-- First visit title -->
       <h2 class="discovery-title" id="discovery-title-new">Je hebt een kever gevonden!</h2>
-      <!-- Return visit title (hidden until JS reveals) -->
-      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">
-        Je hebt de kever eerder gevonden, op <span id="found-date-return"></span>
-      </h2>
+      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">Welkom terug!</h2>
       <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
       <div class="insect-showcase">
         <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever gevonden op TU/e campus" class="insect-image">
@@ -173,12 +100,13 @@
     </div>
   </section>
 
-  <!-- ══ 2 + 3. BIG INTEGRATED SECTION: Observation + Ecology + TU/e Vision ══ -->
-  <section class="nature-section" id="nature-section">
-
-    <!-- OBSERVATION (always here; scrolled-to on return visits) -->
-    <div class="contribution-wrap" id="observation-anchor">
-      <h2 class="contribution-title">Help met onderzoek</h2>
+  <section class="nature-section" id="observation-anchor">
+    <div class="contribution-wrap">
+      <h2 class="contribution-title">
+        Help 
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eindhoven_University_of_Technology_logo.svg/512px-Eindhoven_University_of_Technology_logo.svg.png" style="height: 24px; margin: 0 8px;" alt="TU/e logo"> 
+        met tellen
+      </h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
           <div class="counter-beetle-photo">
@@ -186,7 +114,7 @@
           </div>
           <div class="counter-grid">
             <div class="counter-box">
-              <p class="counter-label">Hoeveel kevers zie jij hier nu?</p>
+              <p class="counter-label">Hoeveel <strong>levende</strong> kevers zie jij hier nu?</p>
               <div class="counter">
                 <button onclick="decreaseCounter('kever')">−</button>
                 <input type="number" id="kever-counter" value="1" min="0" max="5" readonly>
@@ -198,7 +126,7 @@
             <div class="counter-box">
               <p class="counter-label">Totaal op de TU/e Campus</p>
               <div class="community-display">
-                <p class="big-number-label">Totaal zijn er</p>
+                <p class="big-number-label">Totaal zijn er in 2026 tot nu toe</p>
                 <p class="big-number" id="community-total">47</p>
                 <p class="big-number-unit">kevers gezien</p>
                 <p class="spoorpark-label">op de TU/e campus!</p>
@@ -211,7 +139,6 @@
         </div>
       </div>
 
-      <!-- Shared observations -->
       <div class="photo-timeline-section">
         <h3>Gedeelde waarnemingen</h3>
         <p>Foto's van andere Wildzoekers die kevers hebben gezien</p>
@@ -252,18 +179,25 @@
           </div>
         </div>
       </div>
-    </div><!-- end contribution-wrap -->
+    </div>
+  </section>
 
-    <!-- ECOLOGY + VISION integrated -->
+  <section class="nature-section" id="education-section">
     <div class="nature-inner">
       <h2>Waarom zit deze kever hier?</h2>
       <p class="section-intro">Hij kwam af op het <strong>dode hout</strong>...</p>
 
       <div class="habitat-card">
-        <div class="habitat-photo-wrap">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1851.jpg?raw=true" alt="Dood hout op de TU/e campus">
+        <div class="habitat-video-wrap">
+            <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="border-radius: 14px; margin-bottom: 1.2rem;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+
         <div class="habitat-content">
+          <div class="tue-quote">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eindhoven_University_of_Technology_logo.svg/512px-Eindhoven_University_of_Technology_logo.svg.png" alt="TU/e Logo"> 
+            <span><strong>TU/e:</strong> "Dood hout is geen rommel. Het is een waardevol leefgebied dat we bewust laten liggen om de biodiversiteit op onze groene campus te bevorderen."</span>
+          </div>
+
           <div class="info-section">
             <div class="info-toggle" onclick="toggleInfoSection(this)">
               <span class="toggle-icon">▼</span>
@@ -273,55 +207,32 @@
               <p>Kevers eten niet zomaar hout, ze <strong>eten de schimmels</strong> die in dood hout groeien. Deze schimmels breken het hout af en maken het voedzaam.</p>
             </div>
           </div>
-          <div class="info-toggle" onclick="toggleInfoSection(this)">
-            <span class="toggle-icon">▼</span>
-            <h4>🌍 Wat doet 'ie voor de natuur?</h4>
+
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>🌍 Wat doet 'ie voor de natuur?</h4>
+            </div>
+            <div class="info-content">
+              <p>Kevers helpen schimmels verspreiden, waardoor dood hout wordt afgebroken en <strong>voedingsstoffen terugkomen in de bodem</strong>. Zo zijn ze een onmisbare schakel in het ecosysteem — en voedsel voor vogels en andere dieren.</p>
+            </div>
           </div>
-          <div class="info-content">
-            <p>Kevers helpen schimmels verspreiden, waardoor dood hout wordt afgebroken en <strong>voedingsstoffen terugkomen in de bodem</strong>. Zo zijn ze een onmisbare schakel in het ecosysteem — en voedsel voor vogels en andere dieren.</p>
+
+          <div class="info-section">
+            <div class="info-toggle" onclick="toggleInfoSection(this)">
+              <span class="toggle-icon">▼</span>
+              <h4>⚠️ Waarom dood hout niet weghalen?</h4>
+            </div>
+            <div class="info-content">
+              <p>Veel mensen willen dood hout opruimen omdat het 'rommelig' lijkt. Maar als je dit hout weghaalt, <strong>vernietig je een thuis voor duizenden organismen, inclusief kevers</strong>. De TU/e kiest er bewust voor om het te laten liggen — juist omdat het zo waardevol is.</p>
+            </div>
           </div>
+
         </div>
       </div>
-
-      <!-- TU/e vision card — integrated -->
-      <div class="tue-vision-card">
-        <span class="vision-badge">🌿 TU/e Campusvisie</span>
-        <div class="tue-authority">
-          <span class="auth-icon">🎓</span>
-          <span>Technische Universiteit Eindhoven</span>
-        </div>
-        <h3>Waarom laat de TU/e dit hout liggen?</h3>
-        <p>
-          De TU/e wil een <strong>groene en biodiverse campus</strong> zijn. Dood hout dat je hier ziet, ligt er bewust. Het is geen rommel — het is leefgebied. Dit stuk hout herbergt tientallen soorten schimmels, insecten en bacteriën die samen een mini-ecosysteem vormen.
-        </p>
-        <p>
-          De 47 kevers die Wildzoekers al hebben waargenomen, zijn voor de TU/e een concreet signaal dat de campusnatuur aanslaat. Meer waarnemingen helpen de universiteit te begrijpen welke soorten hier leven en hoe de biodiversiteit zich ontwikkelt.
-        </p>
-
-        <!-- Video complementary to the text -->
-        <div class="vision-video-wrap" id="vision-video-wrap">
-          <div class="vision-video-placeholder" onclick="playVisionVideo()">
-            <span class="play-btn">▶</span>
-            <span>Bekijk: de TU/e over hun groene campusvisie (1:10)</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Why not touch the dead wood -->
-      <div class="info-section" style="margin-top:1.2rem;">
-        <div class="info-toggle" onclick="toggleInfoSection(this)">
-          <span class="toggle-icon">▼</span>
-          <h4>⚠️ Waarom dood hout niet weghalen?</h4>
-        </div>
-        <div class="info-content">
-          <p>Veel mensen willen dood hout opruimen omdat het 'rommelig' lijkt. Maar als je dit hout weghaalt, <strong>vernietig je een thuis voor duizenden organismen, inclusief kevers</strong>. De TU/e kiest er bewust voor om het te laten liggen — juist omdat het zo waardevol is.</p>
-        </div>
-      </div>
-
-    </div><!-- end nature-inner -->
+    </div>
   </section>
 
-  <!-- ══ 4. PROGRESS TRACKER ══ -->
   <section class="progress-tracker">
     <h2>Wat heb je al gevonden?</h2>
     <div class="progress-grid">
@@ -352,12 +263,10 @@
 
 </main>
 
-<!-- LANGUAGE TOGGLE -->
 <div class="lang-toggle">
   <a href="beetle.html">🇬🇧 English</a>
 </div>
 
-<!-- FEEDBACK BOOKMARK -->
 <div id="feedbackBookmark" class="feedback-bookmark">
   <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
     <span class="fb-icon">💬</span>
@@ -393,19 +302,18 @@
 
 <script src="app.js"></script>
 <script>
-// ── RETURN VISITOR LOGIC ──
+// ── RETURN VISITOR LOGIC ONLY ──
+// Overrides and specific component logic is correctly deferred to app.js
 (function() {
   const KEY = 'wz_kever_found';
   const found = localStorage.getItem(KEY);
   const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
   if (found) {
-    // Swap title
     document.getElementById('discovery-title-new').style.display = 'none';
     const returnTitle = document.getElementById('discovery-title-return');
     returnTitle.style.display = 'block';
-    document.getElementById('found-date-return').textContent = found;
-    // Scroll observation section into view
+    
     setTimeout(() => {
       document.getElementById('observation-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 400);
@@ -413,64 +321,6 @@
     localStorage.setItem(KEY, today);
   }
 })();
-
-// ── COUNTER ──
-function decreaseCounter(animal) {
-  const el = document.getElementById(animal + '-counter');
-  if (el && +el.value > 0) el.value = +el.value - 1;
-}
-function increaseCounter(animal) {
-  const el = document.getElementById(animal + '-counter');
-  if (el && +el.value < 5) el.value = +el.value + 1;
-}
-function submitPersonalCount(animal) {
-  const successEl = document.getElementById('submit-success');
-  const totalEl   = document.getElementById('community-total');
-  const counter   = document.getElementById(animal + '-counter');
-  if (totalEl && counter) totalEl.textContent = +totalEl.textContent + +counter.value;
-  if (successEl) { successEl.style.display = 'block'; setTimeout(() => successEl.style.display = 'none', 4000); }
-}
-
-// ── VIDEO ──
-function playVisionVideo() {
-  const wrap = document.getElementById('vision-video-wrap');
-  wrap.innerHTML = '<div style="padding:.9rem 1rem; font-size:.83rem; color:rgba(255,255,255,.85);">📹 Videoplaats — koppel hier een YouTube embed of eigen video.</div>';
-}
-
-// ── INFO TOGGLES ──
-function toggleInfoSection(el) {
-  const content = el.nextElementSibling;
-  if (!content) return;
-  const isOpen = content.style.display === 'block';
-  content.style.display = isOpen ? 'none' : 'block';
-  const icon = el.querySelector('.toggle-icon');
-  if (icon) icon.textContent = isOpen ? '▼' : '▲';
-}
-
-// ── FEEDBACK ──
-function openFeedbackForm() {
-  window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u', '_blank');
-}
-
-// ── PHOTO UPLOAD ──
-function handlePhotoUpload(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById('preview-img').src = e.target.result;
-    document.getElementById('photo-preview').style.display = 'block';
-  };
-  reader.readAsDataURL(file);
-}
-function removePhoto() {
-  document.getElementById('photo-input').value = '';
-  document.getElementById('photo-preview').style.display = 'none';
-}
-function submitPhoto() {
-  alert('Foto verstuurd! (prototype)');
-  removePhoto();
-}
 </script>
 </body>
 </html>
