@@ -180,7 +180,7 @@ function submitToWallOfFame() {
     renderWallOfFame();
     
     formContainer.style.display = 'none';
-    showNotification(isEnglish ? "🎉 Your name has been added!" : "🎉 Je naam is toegevoegd aan de lijst!");
+    showNotification(isEnglish ? "🎉 Welcome to the active Wildzoekers!" : "🎉 Welkom bij de actieve Wildzoekers!");
     createMiniConfetti();
 }
 
@@ -475,7 +475,7 @@ function addPhotoToTimeline(photoData, prepend = false) {
     item.className = 'timeline-item sample';
     item.innerHTML = `
         <img src="${photoData.image}" alt="Observation" class="timeline-photo">
-        <p class="timeline-date" style="display:block !important; visibility:visible !important; opacity:1 !important; font-size:0.78rem; padding:5px 8px 7px; margin:0; color:#333; font-family:'Poppins',sans-serif; background:transparent; height:auto; overflow:visible;">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
+        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
     `;
 
     if (prepend) {
