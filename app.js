@@ -56,6 +56,7 @@ function initializePage() {
         markInsectAsFound(INSECTS.lieveheersbeestje);
     }
 
+    checkQuizState();
     updateProgressTrackers();
     initializeCounters();
     initializeFeedbackBookmark();
@@ -64,36 +65,60 @@ function initializePage() {
     initializeWallOfFame();
 }
 
-// ===== QUIZ LOGIC (Education Section) =====
+// ===== QUIZ & INFO BLOCKS =====
+
+function toggleRole(el) {
+    el.classList.toggle('active');
+}
+
+function checkQuizState() {
+    // If the quiz was already completed, immediately hide the quiz and show the info blocks
+    if (localStorage.getItem('wz_quiz_done_kever')) {
+        const quizContainer = document.getElementById('quiz-container');
+        const infoContainer = document.getElementById('info-blocks-container');
+        if (quizContainer) quizContainer.style.display = 'none';
+        if (infoContainer) infoContainer.style.display = 'block';
+    }
+}
 
 function answerQuiz(questionIndex, selectedOption, isCorrect) {
     const block = document.getElementById(`quiz-q${questionIndex}`);
     if (!block) return;
 
-    // Get buttons in this block and disable them
+    // Change button color
     const buttons = block.querySelectorAll('.quiz-btn');
     buttons.forEach(btn => {
         btn.disabled = true;
-        // Check if the button contains the selected letter text at the start
         if (btn.textContent.trim().startsWith(selectedOption)) {
             btn.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
         }
     });
 
-    // Reveal the info content (explanation)
-    const infoAns = document.getElementById(`quiz-ans-${questionIndex}`);
-    if (infoAns) {
-        infoAns.style.display = 'block';
+    // Provide short feedback notification
+    if (isCorrect) {
+        showNotification(isEnglish ? "✅ Correct!" : "✅ Helemaal goed!");
+    } else {
+        showNotification(isEnglish ? "❌ Not quite..." : "❌ Niet helemaal...");
     }
 
-    // Reveal the next question after a tiny delay for smooth experience
-    const nextQIndex = questionIndex + 1;
-    const nextBlock = document.getElementById(`quiz-q${nextQIndex}`);
-    if (nextBlock) {
-        setTimeout(() => {
+    // Delay briefly, then move to next question or show info blocks
+    setTimeout(() => {
+        block.style.display = 'none';
+        const nextQIndex = questionIndex + 1;
+        const nextBlock = document.getElementById(`quiz-q${nextQIndex}`);
+        
+        if (nextBlock) {
             nextBlock.style.display = 'block';
-        }, 500);
-    }
+        } else {
+            // End of quiz: display the info blocks and save state
+            const quizContainer = document.getElementById('quiz-container');
+            const infoContainer = document.getElementById('info-blocks-container');
+            if (quizContainer) quizContainer.style.display = 'none';
+            if (infoContainer) infoContainer.style.display = 'block';
+            
+            localStorage.setItem('wz_quiz_done_kever', 'true');
+        }
+    }, 800);
 }
 
 // ===== WALL OF FAME =====
@@ -105,7 +130,6 @@ function initializeWallOfFame() {
     const formContainer = document.getElementById('wof-form-container');
     
     // Check if the user has found all 3 and hasn't already submitted their name
-    const wofList = JSON.parse(localStorage.getItem(WALL_OF_FAME_KEY) || '[]');
     const hasSubmitted = localStorage.getItem('wz_wof_submitted') === 'true';
 
     if (foundInsects.length >= 3 && formContainer && !hasSubmitted) {
@@ -117,7 +141,7 @@ function renderWallOfFame() {
     const cloud = document.getElementById('name-cloud');
     if (!cloud) return;
 
-    // Default TU/e Base Names (matches the photo section + some extras)
+    // Default TU/e Base Names
     const defaultNames = ['Bram', 'Elena', 'Wei', 'Lars', 'Sanne', 'Ananya', 'Thomas', 'Daan', 'Lotte', 'Kevin', 'Maria'];
     
     // User added names from LocalStorage
@@ -195,7 +219,7 @@ function updateSingleTracker(config, foundList) {
         wrap.classList.remove('not-found-wrap');
         wrap.classList.add('found-wrap');
         name.classList.remove('blurred-name');
-        status.textContent = isEnglish ? '✓ Observed' : '✓ Waargenomen';
+        status.textContent = isEnglish ? '✓ Found' : '✓ Gevonden';
     } else {
         progressElement.classList.remove('found');
         image.classList.add('silhouette');
@@ -418,11 +442,13 @@ function addPhotoToTimeline(photoData, prepend = false) {
     if (!timeline) return;
 
     const byLabel = isEnglish ? 'By' : 'Door';
+    const timeLabel = isEnglish ? 'Just now' : 'Zojuist';
+    
     const item = document.createElement('div');
     item.className = 'timeline-item sample';
     item.innerHTML = `
         <img src="${photoData.image}" alt="Observation" class="timeline-photo">
-        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong></p>
+        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
     `;
 
     if (prepend) {
