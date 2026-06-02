@@ -7,11 +7,8 @@ const INSECTS = {
 };
 
 const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u';
-
-// Detect if page is english
 const isEnglish = document.documentElement.lang === 'en';
 
-// Helper to normalize animal names across NL/EN pages so they map to the same storage and dictionaries
 function normalizeAnimal(animal) {
     if (!animal) return 'kever';
     const a = animal.toLowerCase();
@@ -21,7 +18,6 @@ function normalizeAnimal(animal) {
     return a;
 }
 
-// Animal-specific storage keys — shares between NL/EN by using normalized keys
 function getStorageKeys(animal) {
     const norm = normalizeAnimal(animal);
     return {
@@ -31,8 +27,7 @@ function getStorageKeys(animal) {
 }
 
 const FOUND_INSECTS_KEY = 'foundInsects';
-
-// Track whether a photo has actually been loaded
+const WALL_OF_FAME_KEY = 'wz_wall_of_fame';
 let photoReady = false;
 
 function markInsectAsFound(insect) {
@@ -66,41 +61,101 @@ function initializePage() {
     initializeFeedbackBookmark();
     createConfetti();
     loadStoredPhotos();
+    initializeWallOfFame();
 }
 
+// ===== QUIZ LOGIC (Education Section) =====
 
-// ===== INTERACTIVE INFO CARDS =====
+function answerQuiz(questionIndex, selectedOption, isCorrect) {
+    const block = document.getElementById(`quiz-q${questionIndex}`);
+    if (!block) return;
 
-function toggleCard(card) {
-    card.classList.toggle('flipped');
-}
-
-// ===== INFO TOGGLE (accordion in habitat section) =====
-
-function toggleInfoSection(toggleEl) {
-    const content = toggleEl.nextElementSibling;
-    const icon = toggleEl.querySelector('.toggle-icon');
-    const isOpen = toggleEl.classList.contains('open');
-
-    document.querySelectorAll('.info-toggle.open').forEach(openToggle => {
-        if (openToggle !== toggleEl) {
-            openToggle.classList.remove('open');
-            const otherContent = openToggle.nextElementSibling;
-            const otherIcon = openToggle.querySelector('.toggle-icon');
-            if (otherContent) otherContent.classList.remove('open');
-            if (otherIcon) otherIcon.textContent = '▼';
+    // Get buttons in this block and disable them
+    const buttons = block.querySelectorAll('.quiz-btn');
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        // Check if the button contains the selected letter text at the start
+        if (btn.textContent.trim().startsWith(selectedOption)) {
+            btn.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
         }
     });
 
-    if (isOpen) {
-        toggleEl.classList.remove('open');
-        if (content) content.classList.remove('open');
-        if (icon) icon.textContent = '▼';
-    } else {
-        toggleEl.classList.add('open');
-        if (content) content.classList.add('open');
-        if (icon) icon.textContent = '▲';
+    // Reveal the info content (explanation)
+    const infoAns = document.getElementById(`quiz-ans-${questionIndex}`);
+    if (infoAns) {
+        infoAns.style.display = 'block';
     }
+
+    // Reveal the next question after a tiny delay for smooth experience
+    const nextQIndex = questionIndex + 1;
+    const nextBlock = document.getElementById(`quiz-q${nextQIndex}`);
+    if (nextBlock) {
+        setTimeout(() => {
+            nextBlock.style.display = 'block';
+        }, 500);
+    }
+}
+
+// ===== WALL OF FAME =====
+
+function initializeWallOfFame() {
+    renderWallOfFame();
+
+    const foundInsects = getFoundInsects();
+    const formContainer = document.getElementById('wof-form-container');
+    
+    // Check if the user has found all 3 and hasn't already submitted their name
+    const wofList = JSON.parse(localStorage.getItem(WALL_OF_FAME_KEY) || '[]');
+    const hasSubmitted = localStorage.getItem('wz_wof_submitted') === 'true';
+
+    if (foundInsects.length >= 3 && formContainer && !hasSubmitted) {
+        formContainer.style.display = 'block';
+    }
+}
+
+function renderWallOfFame() {
+    const cloud = document.getElementById('name-cloud');
+    if (!cloud) return;
+
+    // Default TU/e Base Names (matches the photo section + some extras)
+    const defaultNames = ['Bram', 'Elena', 'Wei', 'Lars', 'Sanne', 'Ananya', 'Thomas', 'Daan', 'Lotte', 'Kevin', 'Maria'];
+    
+    // User added names from LocalStorage
+    const userNames = JSON.parse(localStorage.getItem(WALL_OF_FAME_KEY) || '[]');
+    
+    // Combine and remove duplicates
+    const allNames = [...new Set([...defaultNames, ...userNames])];
+
+    cloud.innerHTML = '';
+    allNames.forEach(name => {
+        const span = document.createElement('span');
+        span.className = 'name-pill';
+        span.textContent = name;
+        cloud.appendChild(span);
+    });
+}
+
+function submitToWallOfFame() {
+    const input = document.getElementById('wof-name-input');
+    const formContainer = document.getElementById('wof-form-container');
+    if (!input || !formContainer) return;
+
+    const name = input.value.trim();
+    if (!name) {
+        showNotification(isEnglish ? "Please enter a name." : "Vul aub een naam in.");
+        return;
+    }
+
+    const currentList = JSON.parse(localStorage.getItem(WALL_OF_FAME_KEY) || '[]');
+    currentList.push(name);
+    localStorage.setItem(WALL_OF_FAME_KEY, JSON.stringify(currentList));
+    localStorage.setItem('wz_wof_submitted', 'true');
+
+    renderWallOfFame();
+    
+    formContainer.style.display = 'none';
+    showNotification(isEnglish ? "🎉 Your name has been added!" : "🎉 Je naam is toegevoegd aan de lijst!");
+    createMiniConfetti();
 }
 
 // ===== PROGRESS TRACKER =====
@@ -109,30 +164,18 @@ function updateProgressTrackers() {
     const found = getFoundInsects();
 
     updateSingleTracker({
-        insect: INSECTS.kever,
-        elementId: 'beetle-progress',
-        imgId: 'beetle-img',
-        wrapId: 'beetle-photo-wrap',
-        nameId: 'beetle-name',
-        statusId: 'beetle-status'
+        insect: INSECTS.kever, elementId: 'beetle-progress', imgId: 'beetle-img',
+        wrapId: 'beetle-photo-wrap', nameId: 'beetle-name', statusId: 'beetle-status'
     }, found);
 
     updateSingleTracker({
-        insect: INSECTS.lieveheersbeestje,
-        elementId: 'ladybug-progress',
-        imgId: 'ladybug-img',
-        wrapId: 'ladybug-photo-wrap',
-        nameId: 'ladybug-name',
-        statusId: 'ladybug-status'
+        insect: INSECTS.lieveheersbeestje, elementId: 'ladybug-progress', imgId: 'ladybug-img',
+        wrapId: 'ladybug-photo-wrap', nameId: 'ladybug-name', statusId: 'ladybug-status'
     }, found);
 
     updateSingleTracker({
-        insect: INSECTS.aardhommel,
-        elementId: 'bumblebee-progress',
-        imgId: 'bumblebee-img',
-        wrapId: 'bumblebee-photo-wrap',
-        nameId: 'bumblebee-name',
-        statusId: 'bumblebee-status'
+        insect: INSECTS.aardhommel, elementId: 'bumblebee-progress', imgId: 'bumblebee-img',
+        wrapId: 'bumblebee-photo-wrap', nameId: 'bumblebee-name', statusId: 'bumblebee-status'
     }, found);
 }
 
@@ -152,7 +195,7 @@ function updateSingleTracker(config, foundList) {
         wrap.classList.remove('not-found-wrap');
         wrap.classList.add('found-wrap');
         name.classList.remove('blurred-name');
-        status.textContent = isEnglish ? '✓ Found!' : '✓ Gevonden!';
+        status.textContent = isEnglish ? '✓ Observed' : '✓ Waargenomen';
     } else {
         progressElement.classList.remove('found');
         image.classList.add('silhouette');
@@ -255,7 +298,6 @@ function decreaseCounter(type) {
     }
 }
 
-
 // ===== PHOTO UPLOAD =====
 
 function handlePhotoUpload(input) {
@@ -350,10 +392,9 @@ function savePhotoToStorage(photoData, STORAGE_KEYS) {
         storedPhotos.unshift(photoData);
         localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
     } catch (e) {
-        // Storage full — remove oldest photo and try once more
         try {
             const storedPhotos = JSON.parse(localStorage.getItem(STORAGE_KEYS.uploadedPhotos) || '[]');
-            storedPhotos.pop(); // remove oldest
+            storedPhotos.pop();
             storedPhotos.unshift(photoData);
             localStorage.setItem(STORAGE_KEYS.uploadedPhotos, JSON.stringify(storedPhotos));
         } catch (e2) {
@@ -377,15 +418,11 @@ function addPhotoToTimeline(photoData, prepend = false) {
     if (!timeline) return;
 
     const byLabel = isEnglish ? 'By' : 'Door';
-    const justNowLabel = isEnglish ? 'Just now' : 'Zojuist';
-
     const item = document.createElement('div');
-    item.className = 'timeline-item';
+    item.className = 'timeline-item sample';
     item.innerHTML = `
-        <div class="timeline-image">
-            <img src="${photoData.image}" alt="Waarneming" class="timeline-photo">
-        </div>
-        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong> • ${justNowLabel}</p>
+        <img src="${photoData.image}" alt="Observation" class="timeline-photo">
+        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong></p>
     `;
 
     if (prepend) {
@@ -394,7 +431,6 @@ function addPhotoToTimeline(photoData, prepend = false) {
         timeline.appendChild(item);
     }
 }
-
 
 // ===== FEEDBACK FUNCTIONS =====
 
@@ -427,26 +463,17 @@ function showNotification(message) {
     const notification = document.createElement('div');
     notification.textContent = message;
     notification.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
+        position: fixed; bottom: 20px; right: 20px;
         background: linear-gradient(135deg, #4a7c2e, #6fa342);
-        color: white;
-        padding: 1rem 1.4rem;
-        border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(45, 80, 22, 0.2);
-        z-index: 1000;
-        animation: slideInUp 0.4s ease;
-        font-weight: 500;
-        font-family: 'Poppins', sans-serif;
-        max-width: 320px;
+        color: white; padding: 1rem 1.4rem; border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(45, 80, 22, 0.2); z-index: 1000;
+        animation: slideInUp 0.4s ease; font-weight: 500;
+        font-family: 'Poppins', sans-serif; max-width: 320px;
     `;
     document.body.appendChild(notification);
     setTimeout(() => {
         notification.style.animation = 'slideOutDown 0.4s ease';
-        setTimeout(() => {
-            notification.remove();
-        }, 400);
+        setTimeout(() => { notification.remove(); }, 400);
     }, 3200);
 }
 
@@ -461,12 +488,9 @@ function createConfetti() {
         const confetti = document.createElement('span');
         confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
         confetti.style.cssText = `
-            position: absolute;
-            font-size: ${Math.random() * 1.2 + 1}rem;
-            left: ${Math.random() * 100}%;
-            top: -10px;
-            animation: fall ${Math.random() * 3 + 2}s linear forwards;
-            z-index: 10;
+            position: absolute; font-size: ${Math.random() * 1.2 + 1}rem;
+            left: ${Math.random() * 100}%; top: -10px;
+            animation: fall ${Math.random() * 3 + 2}s linear forwards; z-index: 10;
         `;
         confettiContainer.appendChild(confetti);
     }
@@ -478,18 +502,12 @@ function createMiniConfetti() {
         const piece = document.createElement('div');
         piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         piece.style.cssText = `
-            position: fixed;
-            left: ${50 + (Math.random() * 20 - 10)}%;
-            top: 55%;
-            font-size: 1.2rem;
-            pointer-events: none;
-            z-index: 9999;
+            position: fixed; left: ${50 + (Math.random() * 20 - 10)}%; top: 55%;
+            font-size: 1.2rem; pointer-events: none; z-index: 9999;
             animation: burst 1.8s ease forwards;
         `;
         document.body.appendChild(piece);
-        setTimeout(() => {
-            piece.remove();
-        }, 1800);
+        setTimeout(() => { piece.remove(); }, 1800);
     }
 }
 
