@@ -475,7 +475,7 @@ function addPhotoToTimeline(photoData, prepend = false) {
     item.className = 'timeline-item sample';
     item.innerHTML = `
         <img src="${photoData.image}" alt="Observation" class="timeline-photo">
-        <p class="timeline-date" style="display:block; font-size:0.75rem; padding:4px 8px 6px; color:#444; margin:4px 0 0;">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
+        <p class="timeline-date" style="display:block !important; visibility:visible !important; opacity:1 !important; font-size:0.78rem; padding:5px 8px 7px; margin:0; color:#333; font-family:'Poppins',sans-serif; background:transparent; height:auto; overflow:visible;">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
     `;
 
     if (prepend) {
