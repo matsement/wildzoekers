@@ -47,7 +47,7 @@
   @media(min-width: 600px) { .timeline-grid { grid-template-columns: repeat(3, 1fr); } }
   .timeline-item { background: #fff; border-radius: 8px; overflow: hidden; padding-bottom: 8px; border: 1px solid #eee; }
   .timeline-photo { width: 100%; aspect-ratio: 1; object-fit: cover; }
-  .timeline-date { font-size: 0.75rem; padding: 0 8px; margin: 6px 0 0; color: #555; }
+  .timeline-date { font-size: 0.75rem; padding: 4px 8px 6px; margin: 4px 0 0; color: #444; display: block; background: transparent; }
 
   /* ── QUIZ UI ── */
   .quiz-block h4 { 
@@ -124,7 +124,7 @@
   <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2.5rem;">
     <div class="tue-quote" style="margin-bottom: 0;">
       <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
-      <span>De TU/e Campus is niet alleen voor studenten, maar ook voor de natuur! Omdat het universiteitsterrein de Dommelvallei met andere groene gebieden in Eindhoven verbindt, is het een belangrijk thuis voor veel dieren. Help jij mee om te ontdekken wie hier allemaal leven?</span>
+      <span>De TU/e Campus verandert in een <strong>open stadspark</strong> dat diep verweven is met de natuurlijke ecosystemen van de Dommelvallei. Met de Landschapsvisie 2040 leggen we wadi's, moeraszones en bosgordels aan om de biodiversiteit te maximaliseren. Door jouw waarnemingen door te geven, bouw je direct mee aan een levend campusecosysteem.</span>
     </div>
   </section>
 
@@ -170,13 +170,13 @@
         <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Foto's van campusbewoners en bezoekers.</p>
         
         <div class="timeline-grid" id="photo-timeline">
-          <div class="timeline-item sample"><img src="media/Kever 4.png" class="timeline-photo"><p class="timeline-date">Door <strong>Bram</strong> • 12 min</p></div>
-          <div class="timeline-item sample"><img src="media/Kever 1.png" class="timeline-photo"><p class="timeline-date">Door <strong>Elena</strong> • 1 uur</p></div>
-          <div class="timeline-item sample"><img src="media/Kever 6.png" class="timeline-photo"><p class="timeline-date">Door <strong>Wei</strong> • 2 uur</p></div>
-          <div class="timeline-item sample"><img src="media/Kever 2.png" class="timeline-photo"><p class="timeline-date">Door <strong>Lars</strong> • 4 uur</p></div>
-          <div class="timeline-item sample"><img src="media/Kever 7.png" class="timeline-photo"><p class="timeline-date">Door <strong>Sanne</strong> • Vandaag</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 4.png" class="timeline-photo"><p class="timeline-date">Door <strong>Bram de Vries</strong> • 12 min geleden</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 1.png" class="timeline-photo"><p class="timeline-date">Door <strong>Elena</strong> • 1 uur geleden</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 6.png" class="timeline-photo"><p class="timeline-date">Door <strong>Wei Zhang</strong> • 2 uur geleden</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 2.png" class="timeline-photo"><p class="timeline-date">Door <strong>Lars</strong> • 4 uur geleden</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 7.png" class="timeline-photo"><p class="timeline-date">Door <strong>Sanne Mulder</strong> • Vandaag</p></div>
           <div class="timeline-item sample"><img src="media/Kever 3.png" class="timeline-photo"><p class="timeline-date">Door <strong>Ananya</strong> • Vandaag</p></div>
-          <div class="timeline-item sample"><img src="media/Kever 5.png" class="timeline-photo"><p class="timeline-date">Door <strong>Thomas</strong> • Gisteren</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 5.png" class="timeline-photo"><p class="timeline-date">Door <strong>Thomas van Beek</strong> • Gisteren</p></div>
         </div>
 
         <div class="photo-upload-area">
@@ -249,19 +249,19 @@
           <div id="info-blocks-container" style="display: none;">
             <ul class="role-list">
               <li onclick="toggleRole(this)">
-                <span class="role-icon">🪦</span>
-                <strong>Dood hout leeft</strong>
-                <p class="role-details">Een omgevallen boom lijkt misschien dood, maar is juist een nieuw begin. Het biedt een cruciaal onderkomen en leefgebied aan duizenden insecten, waaronder deze kever.</p>
-              </li>
-              <li onclick="toggleRole(this)">
-                <span class="role-icon">🍄</span>
-                <strong>Schimmels als maaltijd</strong>
-                <p class="role-details">Kevers eten niet zomaar hout, ze eten de schimmels die in het dode hout groeien. Deze schimmels breken het hout af en maken het zo voedzaam.</p>
+                <span class="role-icon">🍽️</span>
+                <strong>Hij eet de schimmels in het hout</strong>
+                <p class="role-details">Deze kever voedt zich niet direct met het hout, maar met de schimmels die erin groeien. Die schimmels breken het dode hout langzaam af en maken het zo voedzaam voor de kever.</p>
               </li>
               <li onclick="toggleRole(this)">
                 <span class="role-icon">🔄</span>
-                <strong>De kringloop van het bos</strong>
-                <p class="role-details">Doordat insecten en schimmels het hout afbreken, komen belangrijke voedingsstoffen weer in de bodem terecht. Dit houdt het hele ecosysteem op de campus in balans.</p>
+                <strong>Hij brengt voedingsstoffen terug in de bodem</strong>
+                <p class="role-details">Door het dode hout af te breken samen met de schimmels, komen belangrijke voedingsstoffen weer vrij in de bodem. Dit houdt het ecosysteem op de campus in balans en geeft andere planten en dieren wat ze nodig hebben.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🪦</span>
+                <strong>Dood hout is een cruciaal leefgebied</strong>
+                <p class="role-details">Een omgevallen boom lijkt misschien waardeloos, maar is juist een nieuw begin. TU/e laat het bewust liggen omdat het een thuis vormt voor duizenden organismen — van insecten tot schimmels tot vogels die op zoek zijn naar voedsel.</p>
               </li>
             </ul>
           </div>
@@ -299,15 +299,17 @@
 
     <!-- Wall of fame -->
     <div class="wall-of-fame">
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Actieve Wildzoekers</h3>
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Actieve Wildzoekers</h3>
       <p style="font-size: 0.85rem; color: #555;">Verzamel alle diertjes om je naam toe te voegen.</p>
       <div class="name-cloud" id="name-cloud">
         <!-- Dynamically populated via JS -->
       </div>
       <div id="wof-form-container" class="wof-cta" style="display: none;">
-        <h4 style="margin: 0 0 10px;">Gefeliciteerd! Je hebt alle soorten gevonden.</h4>
-        <p style="font-size: 0.85rem; margin-bottom: 10px;">Voeg je naam toe aan de lijst van Actieve Wildzoekers.</p>
-        <input type="text" id="wof-name-input" placeholder="Jouw voornaam" maxlength="15">
+        <h4 style="margin: 0 0 10px; font-family: 'Dongle', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1;">Gefeliciteerd! Je hebt alle soorten gevonden.</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 18px;">Voeg je naam toe aan de lijst van Actieve Wildzoekers.</p>
+        <div style="margin-bottom: 14px;">
+          <input type="text" id="wof-name-input" placeholder="Jouw voornaam" maxlength="15">
+        </div>
         <button class="submit-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="submitToWallOfFame()">Toevoegen</button>
       </div>
     </div>
