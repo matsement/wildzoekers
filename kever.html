@@ -21,7 +21,7 @@
     padding: 0 0 1.8rem;
     margin-bottom: 2.5rem;
     overflow: hidden;
-    border: 1px solid #d4e8be; /* Thinner border for adult feel */
+    border: 1px solid #d4e8be; 
   }
 
   .contribution-wrap { background: #fff; padding: 2rem 1.4rem; border-radius: 20px; }
@@ -29,8 +29,7 @@
 
   .nature-inner { padding: 2rem 1.4rem; }
   .nature-inner h2 { margin: 0 0 .8rem; line-height: 1.2; font-weight: 600; }
-  .nature-inner .section-intro { margin-bottom: 1.5rem; line-height: 1.6; }
-
+  
   .tue-quote { 
     display: flex; flex-direction: column; align-items: flex-start; gap: 12px; 
     background: #e0edd0; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; 
@@ -38,7 +37,7 @@
   }
   .tue-quote img { height: 28px; flex-shrink: 0; }
 
-  /* ── TIMELINE GRID (Adult Layout) ── */
+  /* ── TIMELINE GRID ── */
   .timeline-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -51,9 +50,13 @@
   .timeline-date { font-size: 0.75rem; padding: 0 8px; margin: 6px 0 0; color: #555; }
 
   /* ── QUIZ UI ── */
-  .quiz-block { margin-bottom: 1.5rem; border-bottom: 1px solid #e0edd0; padding-bottom: 1.5rem; }
-  .quiz-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .quiz-block h4 { margin: 0 0 1rem; font-size: 1.05rem; }
+  .quiz-block h4 { 
+    margin: 0 0 1rem; 
+    font-family: 'Dongle', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: 400;
+  }
   .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
   .quiz-btn {
     background: transparent; border: 1px solid #4a7c2e; color: #4a7c2e; 
@@ -64,7 +67,17 @@
   .quiz-btn.selected-correct { background: #4a7c2e; color: #fff; border-color: #4a7c2e; }
   .quiz-btn.selected-wrong { background: #e74c3c; color: #fff; border-color: #e74c3c; }
   .quiz-btn:disabled { cursor: default; opacity: 0.8; }
-  .info-content { display: none; padding: 1rem; background: #fff; border-radius: 8px; font-size: 0.9rem; line-height: 1.6; }
+
+  /* ── POPUP INFO BLOCKS (POST-QUIZ) ── */
+  .role-list { list-style: none; padding: 0; margin: 0; }
+  .role-list li {
+    background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem;
+    cursor: pointer; transition: all 0.2s; border: 1px solid #e0edd0;
+  }
+  .role-list li:hover { background: #f8faf4; }
+  .role-list strong { display: block; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .role-details { display: none; font-size: 0.9rem; color: #555; line-height: 1.5; margin-top: 0.5rem; }
+  .role-list li.active .role-details { display: block; }
   
   /* ── WALL OF FAME ── */
   .wall-of-fame { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #ddd; }
@@ -111,16 +124,14 @@
   <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2.5rem;">
     <div class="tue-quote" style="margin-bottom: 0;">
       <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
-      <span>De TU/e Campus transformeert naar een <strong>open stadspark</strong> dat naadloos is verweven met de natuurlijke ecosystemen van de Dommelvallei. Volgens de Landschapsvisie 2040 optimaliseren we biodiversiteit door de aanleg van wadi's, moeraszones en bosgordels. Door waarnemingen te delen, dragen we gezamenlijk bij aan het in kaart brengen van ons levend campusecosysteem.</span>
+      <span>De TU/e Campus is niet alleen voor studenten, maar ook voor de natuur! Omdat het universiteitsterrein de Dommelvallei met andere groene gebieden in Eindhoven verbindt, is het een belangrijk thuis voor veel dieren. Help jij mee om te ontdekken wie hier allemaal leven?</span>
     </div>
   </section>
 
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
-      <h2 class="contribution-title" style="display: flex; line-height: 1.4;">
-        <span>Ondersteun de</span>
-        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 32px; margin: 0 10px; vertical-align: middle;" alt="TU/e logo">
-        <span>telling</span>
+      <h2 class="contribution-title" style="display: flex; align-items: center; line-height: 1.2;">
+        <span style="display: inline-block;">Help <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 32px; margin: 0 6px; vertical-align: middle;" alt="TU/e logo"><br> met observeren</span>
       </h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
@@ -159,13 +170,13 @@
         <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Foto's van campusbewoners en bezoekers.</p>
         
         <div class="timeline-grid" id="photo-timeline">
-          <div class="timeline-item sample"><img src="media/Kever 4.png" class="timeline-photo"><p class="timeline-date">Door <strong>Bram</strong></p></div>
-          <div class="timeline-item sample"><img src="media/Kever 1.png" class="timeline-photo"><p class="timeline-date">Door <strong>Elena</strong></p></div>
-          <div class="timeline-item sample"><img src="media/Kever 6.png" class="timeline-photo"><p class="timeline-date">Door <strong>Wei</strong></p></div>
-          <div class="timeline-item sample"><img src="media/Kever 2.png" class="timeline-photo"><p class="timeline-date">Door <strong>Lars</strong></p></div>
-          <div class="timeline-item sample"><img src="media/Kever 7.png" class="timeline-photo"><p class="timeline-date">Door <strong>Sanne</strong></p></div>
-          <div class="timeline-item sample"><img src="media/Kever 3.png" class="timeline-photo"><p class="timeline-date">Door <strong>Ananya</strong></p></div>
-          <div class="timeline-item sample"><img src="media/Kever 5.png" class="timeline-photo"><p class="timeline-date">Door <strong>Thomas</strong></p></div>
+          <div class="timeline-item sample"><img src="media/Kever 4.png" class="timeline-photo"><p class="timeline-date">Door <strong>Bram</strong> • 12 min</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 1.png" class="timeline-photo"><p class="timeline-date">Door <strong>Elena</strong> • 1 uur</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 6.png" class="timeline-photo"><p class="timeline-date">Door <strong>Wei</strong> • 2 uur</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 2.png" class="timeline-photo"><p class="timeline-date">Door <strong>Lars</strong> • 4 uur</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 7.png" class="timeline-photo"><p class="timeline-date">Door <strong>Sanne</strong> • Vandaag</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 3.png" class="timeline-photo"><p class="timeline-date">Door <strong>Ananya</strong> • Vandaag</p></div>
+          <div class="timeline-item sample"><img src="media/Kever 5.png" class="timeline-photo"><p class="timeline-date">Door <strong>Thomas</strong> • Gisteren</p></div>
         </div>
 
         <div class="photo-upload-area">
@@ -197,62 +208,78 @@
   <section class="nature-section" id="education-section">
     <div class="nature-inner">
       <h2>Ecologische rol op de campus</h2>
-      <p class="section-intro">Deze kever werd aangetrokken door het <strong>dode hout</strong>. Test je kennis over de functie van dit ecosysteem.</p>
 
       <div class="habitat-card">
         <div class="habitat-video-wrap">
             <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="border-radius: 14px; margin-bottom: 1.5rem;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <div class="habitat-content" id="quiz-container">
-          
-          <div class="quiz-block" id="quiz-q1">
-            <h4>🍽️ Waarom komt deze kever hier grazen?</h4>
-            <div class="quiz-options">
-              <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. Hij voedt zich direct met het dode hout.</button>
-              <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. Hij eet de schimmels die in het hout groeien.</button>
+        <div class="habitat-content">
+          <!-- QUIZ CONTAINER -->
+          <div id="quiz-container">
+            <!-- Vraag 1 -->
+            <div class="quiz-block" id="quiz-q1">
+              <h4>🍽️ Waarom komt deze kever hier grazen?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. Hij voedt zich direct met het dode hout.</button>
+                <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. Hij eet de schimmels die in het hout groeien.</button>
+              </div>
             </div>
-            <div class="info-content" id="quiz-ans-1">
-              <p><strong>Correct!</strong> Kevers eten niet zomaar hout, ze eten de schimmels die in dood hout groeien. Deze schimmels breken het hout af en maken het voedzaam voor de kever.</p>
+
+            <!-- Vraag 2 -->
+            <div class="quiz-block" id="quiz-q2" style="display: none;">
+              <h4>🌍 Wat is de voornaamste bijdrage aan het ecosysteem?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. Hij helpt voedingsstoffen terug te brengen in de bodem.</button>
+                <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. Hij jaagt op schadelijke plaaginsecten in het bos.</button>
+              </div>
+            </div>
+
+            <!-- Vraag 3 -->
+            <div class="quiz-block" id="quiz-q3" style="display: none;">
+              <h4>⚠️ Waarom kiest de TU/e ervoor dood hout te laten liggen?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. Het is logistiek te ingewikkeld om het af te voeren.</button>
+                <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. Het vormt een cruciaal leefgebied voor duizenden organismen.</button>
+              </div>
             </div>
           </div>
 
-          <div class="quiz-block" id="quiz-q2" style="display: none;">
-            <h4>🌍 Wat is de voornaamste bijdrage aan het ecosysteem?</h4>
-            <div class="quiz-options">
-              <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. Hij helpt voedingsstoffen terug te brengen in de bodem.</button>
-              <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. Hij jaagt op schadelijke plaaginsecten in het bos.</button>
-            </div>
-            <div class="info-content" id="quiz-ans-2">
-              <p><strong>Helemaal juist.</strong> Kevers helpen schimmels verspreiden, waardoor dood hout wordt afgebroken en voedingsstoffen terugkomen in de bodem. Zo zijn ze een onmisbare schakel in het ecosysteem — en dienen ze als voedselbron voor vogels.</p>
-            </div>
+          <!-- INFO BLOCKS (POST-QUIZ OR ALREADY DONE) -->
+          <div id="info-blocks-container" style="display: none;">
+            <ul class="role-list">
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🪦</span>
+                <strong>Dood hout leeft</strong>
+                <p class="role-details">Een omgevallen boom lijkt misschien dood, maar is juist een nieuw begin. Het biedt een cruciaal onderkomen en leefgebied aan duizenden insecten, waaronder deze kever.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🍄</span>
+                <strong>Schimmels als maaltijd</strong>
+                <p class="role-details">Kevers eten niet zomaar hout, ze eten de schimmels die in het dode hout groeien. Deze schimmels breken het hout af en maken het zo voedzaam.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🔄</span>
+                <strong>De kringloop van het bos</strong>
+                <p class="role-details">Doordat insecten en schimmels het hout afbreken, komen belangrijke voedingsstoffen weer in de bodem terecht. Dit houdt het hele ecosysteem op de campus in balans.</p>
+              </li>
+            </ul>
           </div>
-
-          <div class="quiz-block" id="quiz-q3" style="display: none;">
-            <h4>⚠️ Waarom kiest de TU/e ervoor dood hout te laten liggen?</h4>
-            <div class="quiz-options">
-              <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. Het is logistiek te ingewikkeld om het af te voeren.</button>
-              <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. Het vormt een cruciaal leefgebied voor duizenden organismen.</button>
-            </div>
-            <div class="info-content" id="quiz-ans-3">
-              <p><strong>Precies.</strong> Veel mensen willen dood hout opruimen omdat het 'rommelig' oogt. Maar als je dit hout weghaalt, vernietig je het leefgebied van duizenden organismen, inclusief kevers. De TU/e laat het bewust liggen vanwege de hoge ecologische waarde.</p>
-            </div>
-          </div>
-
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="progress-tracker">
-    <h2>Overzicht lokale biodiversiteit</h2>
+    <h2>Welke insecten heb je al gevonden?</h2>
     <div class="progress-grid">
       <div class="progress-item found" id="beetle-progress">
         <div class="progress-photo-wrap found-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever" class="progress-photo">
         </div>
         <h3>Kever</h3>
-        <p class="progress-status">✓ Waargenomen</p>
+        <p class="progress-status">✓ Gevonden</p>
       </div>
       <div class="progress-item" id="ladybug-progress">
         <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
@@ -269,13 +296,14 @@
         <p class="progress-status" id="bumblebee-status">Nog te vinden</p>
       </div>
     </div>
-    <p class="progress-message">Verken de campus en verzamel waarnemingen van alle sleutelsoorten.</p>
 
+    <!-- Wall of fame -->
     <div class="wall-of-fame">
       <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Actieve Wildzoekers</h3>
-      <p style="font-size: 0.85rem; color: #555;">Draag bij aan de database om je naam hier toe te voegen.</p>
+      <p style="font-size: 0.85rem; color: #555;">Verzamel alle diertjes om je naam toe te voegen.</p>
       <div class="name-cloud" id="name-cloud">
-        </div>
+        <!-- Dynamically populated via JS -->
+      </div>
       <div id="wof-form-container" class="wof-cta" style="display: none;">
         <h4 style="margin: 0 0 10px;">Gefeliciteerd! Je hebt alle soorten gevonden.</h4>
         <p style="font-size: 0.85rem; margin-bottom: 10px;">Voeg je naam toe aan de lijst van Actieve Wildzoekers.</p>
