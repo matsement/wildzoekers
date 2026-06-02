@@ -53,6 +53,73 @@
   
   .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
   .info-content.open { display: block; }
+
+  /* ── TIMELINE GRID ── */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  @media(min-width: 600px) { .timeline-grid { grid-template-columns: repeat(3, 1fr); } }
+  .timeline-item { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; position: relative; }
+  .timeline-photo { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .timeline-date {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0.72rem !important;
+    padding: 18px 7px 6px !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif !important;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.62)) !important;
+    height: auto !important;
+    overflow: visible !important;
+    z-index: 2 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* ── QUIZ UI ── */
+  .quiz-block h4 { 
+    margin: 0 0 1rem; 
+    font-family: 'Dongle', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+  .quiz-btn {
+    background: transparent; border: 1px solid #4a7c2e; color: #4a7c2e; 
+    padding: 10px 15px; border-radius: 8px; font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; cursor: pointer; text-align: left; transition: all 0.2s;
+  }
+  .quiz-btn:hover { background: #f0f7eb; }
+  .quiz-btn.selected-correct { background: #4a7c2e; color: #fff; border-color: #4a7c2e; }
+  .quiz-btn.selected-wrong { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+  .quiz-btn:disabled { cursor: default; opacity: 0.8; }
+
+  /* ── POPUP INFO BLOCKS (POST-QUIZ) ── */
+  .role-list { list-style: none; padding: 0; margin: 0; }
+  .role-list li {
+    background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem;
+    cursor: pointer; transition: all 0.2s; border: 1px solid #e0edd0;
+  }
+  .role-list li:hover { background: #f8faf4; }
+  .role-list strong { display: block; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .role-details { display: none; font-size: 0.9rem; color: #555; line-height: 1.5; margin-top: 0.5rem; }
+  .role-list li.active .role-details { display: block; }
+
+  /* ── WALL OF FAME ── */
+  .wall-of-fame { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #ddd; }
+  .name-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+  .name-pill { background: #e0edd0; color: #2d5016; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+  .wof-cta { margin-top: 1.5rem; background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .wof-cta input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; margin-right: 8px; font-family: 'Poppins', sans-serif; }
 </style>
 </head>
 <body class="insect-page">
@@ -139,19 +206,12 @@
       <div class="photo-timeline-section">
         <h3>Shared observations</h3>
         <p>Photos from other Wildzoekers who spotted beetles</p>
-        <div class="timeline" id="photo-timeline">
-          <div class="timeline-item sample">
-            <div class="timeline-image">
-              <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Beetle spotted by Mats" class="timeline-photo">
-            </div>
-            <p class="timeline-date">By <strong>Mats</strong> • 2 weeks ago</p>
-          </div>
-          <div class="timeline-item sample">
-            <div class="timeline-image">
-              <img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Beetle spotted by Natalia" class="timeline-photo">
-            </div>
-            <p class="timeline-date">By <strong>Natalia</strong> • 1 week ago</p>
-          </div>
+        <div class="timeline-grid" id="photo-timeline">
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1835.jpg?raw=true" alt="Beetle" class="timeline-photo"><p class="timeline-date">By <strong>Mats van Beek</strong> • 2 weeks ago</p></div>
+          <div class="timeline-item sample"><img src="https://thumbs.dreamstime.com/b/two-black-beetles-crawl-sand-dry-foliage-nature-two-black-beetles-crawl-white-sand-dry-foliage-nature-267490843.jpg?w=992" alt="Beetle" class="timeline-photo"><p class="timeline-date">By <strong>Natalia</strong> • 1 week ago</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%204.png?raw=true" alt="Beetle" class="timeline-photo"><p class="timeline-date">By <strong>James</strong> • 3 days ago</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%201.png?raw=true" alt="Beetle" class="timeline-photo"><p class="timeline-date">By <strong>Priya Sharma</strong> • Yesterday</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%202.png?raw=true" alt="Beetle" class="timeline-photo"><p class="timeline-date">By <strong>Tom</strong> • Today</p></div>
         </div>
         <div class="photo-upload-area">
           <h4>Share your photo</h4>
@@ -181,44 +241,64 @@
 
   <section class="nature-section" id="education-section">
     <div class="nature-inner">
-      <h2>Why is this beetle here?</h2>
-      <p class="section-intro">It was drawn to the <strong>dead wood</strong>...</p>
+      <h2>Ecological role on campus</h2>
 
       <div class="habitat-card">
         <div class="habitat-video-wrap">
-            <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="border-radius: 14px; margin-bottom: 1.2rem;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="border-radius: 14px; margin-bottom: 1.5rem;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <div class="habitat-content">
 
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>🍽️ Why does it graze here?</h4>
+          <!-- QUIZ CONTAINER -->
+          <div id="quiz-container">
+            <!-- Question 1 -->
+            <div class="quiz-block" id="quiz-q1">
+              <h4>🍽️ Why does this beetle graze here?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. It feeds directly on the dead wood itself.</button>
+                <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. It eats the fungi that grow inside the dead wood.</button>
+              </div>
             </div>
-            <div class="info-content">
-              <p>Beetles don't just eat wood — they <strong>eat the fungi</strong> that grow inside dead wood. These fungi break down the wood and make it rich in nutrients.</p>
+
+            <!-- Question 2 -->
+            <div class="quiz-block" id="quiz-q2" style="display: none;">
+              <h4>🌍 What is its main contribution to the ecosystem?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. It helps return nutrients back into the soil.</button>
+                <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. It hunts harmful pest insects in the forest.</button>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-block" id="quiz-q3" style="display: none;">
+              <h4>⚠️ Why does TU/e choose to leave dead wood in place?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. It's logistically too complicated to remove.</button>
+                <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. It forms a crucial habitat for thousands of organisms.</button>
+              </div>
             </div>
           </div>
-          
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>🌍 What does it do for nature?</h4>
-            </div>
-            <div class="info-content">
-              <p>Beetles help spread fungi, which breaks down dead wood and returns <strong>nutrients to the soil</strong>. They're also an essential food source for birds and other animals, keeping the ecosystem in balance.</p>
-            </div>
-          </div>
-          
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>⚠️ Why not remove the dead wood?</h4>
-            </div>
-            <div class="info-content">
-              <p>Dead wood can look messy, which makes people want to clear it away. But removing it <strong>destroys a home for thousands of organisms, including beetles</strong>. TU/e deliberately chooses to leave it — precisely because of how ecologically valuable it is.</p>
-            </div>
+
+          <!-- INFO BLOCKS (POST-QUIZ OR ALREADY DONE) -->
+          <div id="info-blocks-container" style="display: none;">
+            <ul class="role-list">
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🍽️</span>
+                <strong>It eats the fungi inside the wood</strong>
+                <p class="role-details">This beetle doesn't feed on the wood itself — it eats the fungi growing inside it. Those fungi slowly break down the dead wood and make it nutrient-rich for the beetle.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🔄</span>
+                <strong>It returns nutrients to the soil</strong>
+                <p class="role-details">By breaking down dead wood alongside fungi, the beetle releases important nutrients back into the soil. This keeps the campus ecosystem in balance and supports other plants and animals.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🪦</span>
+                <strong>Dead wood is a crucial habitat</strong>
+                <p class="role-details">A fallen tree may look like waste, but it's actually a new beginning. TU/e deliberately leaves it in place because it provides a home for thousands of organisms — from insects to fungi to birds in search of food.</p>
+              </li>
+            </ul>
           </div>
 
         </div>
@@ -233,25 +313,41 @@
         <div class="progress-photo-wrap found-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle" class="progress-photo">
         </div>
-        <h3>beetle</h3>
-        <p class="progress-status">✓ Found!</p>
+        <h3>Beetle</h3>
+        <p class="progress-status">✓ Found</p>
       </div>
       <div class="progress-item" id="ladybug-progress">
         <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" class="progress-photo silhouette" id="ladybug-img">
         </div>
-        <h3 class="progress-name blurred-name" id="ladybug-name">ladybug</h3>
+        <h3 class="progress-name blurred-name" id="ladybug-name">Ladybug</h3>
         <p class="progress-status" id="ladybug-status">Yet to find</p>
       </div>
       <div class="progress-item" id="bumblebee-progress">
         <div class="progress-photo-wrap not-found-wrap" id="bumblebee-photo-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee silhouette" class="progress-photo silhouette" id="bumblebee-img">
         </div>
-        <h3 class="progress-name blurred-name" id="bumblebee-name">bumblebee</h3>
+        <h3 class="progress-name blurred-name" id="bumblebee-name">Bumblebee</h3>
         <p class="progress-status" id="bumblebee-status">Yet to find</p>
       </div>
     </div>
-    <p class="progress-message">Explore the campus and collect them all!</p>
+
+    <!-- Wall of fame -->
+    <div class="wall-of-fame">
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Active Wildzoekers</h3>
+      <p style="font-size: 0.85rem; color: #555;">Collect all insects to add your name.</p>
+      <div class="name-cloud" id="name-cloud">
+        <!-- Dynamically populated via JS -->
+      </div>
+      <div id="wof-form-container" class="wof-cta" style="display: none;">
+        <h4 style="margin: 0 0 10px; font-family: 'Dongle', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1;">Congratulations, you are now part of the active Wildzoekers!</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 18px;">Add your name to the list below.</p>
+        <div style="margin-bottom: 14px;">
+          <input type="text" id="wof-name-input" placeholder="Your first name" maxlength="15">
+        </div>
+        <button class="submit-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="submitToWallOfFame()">Add</button>
+      </div>
+    </div>
   </section>
 
 </main>
