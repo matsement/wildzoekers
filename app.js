@@ -72,8 +72,10 @@ function toggleRole(el) {
 }
 
 function checkQuizState() {
+    // Determine which animal page we're on
+    const animal = typeof PAGE_ANIMAL !== 'undefined' ? normalizeAnimal(PAGE_ANIMAL) : 'kever';
     // If the quiz was already completed, immediately hide the quiz and show the info blocks
-    if (localStorage.getItem('wz_quiz_done_kever')) {
+    if (localStorage.getItem('wz_quiz_done_' + animal)) {
         const quizContainer = document.getElementById('quiz-container');
         const infoContainer = document.getElementById('info-blocks-container');
         if (quizContainer) quizContainer.style.display = 'none';
@@ -116,7 +118,7 @@ function answerQuiz(questionIndex, selectedOption, isCorrect) {
             if (quizContainer) quizContainer.style.display = 'none';
             if (infoContainer) infoContainer.style.display = 'block';
             
-            localStorage.setItem('wz_quiz_done_kever', 'true');
+            localStorage.setItem('wz_quiz_done_' + normalizeAnimal(typeof PAGE_ANIMAL !== 'undefined' ? PAGE_ANIMAL : 'kever'), 'true');
         }
     }, 800);
 }
@@ -142,7 +144,7 @@ function renderWallOfFame() {
     if (!cloud) return;
 
     // Default TU/e Base Names
-    const defaultNames = ['Bram', 'Elena', 'Wei', 'Lars', 'Sanne', 'Ananya', 'Thomas', 'Daan', 'Lotte', 'Kevin', 'Maria'];
+    const defaultNames = ['Bram de Vries', 'Elena', 'Wei Zhang', 'Lars', 'Sanne Mulder', 'Ananya', 'Thomas van Beek', 'Daan', 'Lotte Jacobs', 'Kevin', 'Maria Santos'];
     
     // User added names from LocalStorage
     const userNames = JSON.parse(localStorage.getItem(WALL_OF_FAME_KEY) || '[]');
@@ -442,13 +444,38 @@ function addPhotoToTimeline(photoData, prepend = false) {
     if (!timeline) return;
 
     const byLabel = isEnglish ? 'By' : 'Door';
-    const timeLabel = isEnglish ? 'Just now' : 'Zojuist';
+    
+    // Format the timestamp into a readable label
+    let timeLabel;
+    if (prepend) {
+        timeLabel = isEnglish ? 'Just now' : 'Zojuist';
+    } else if (photoData.timestamp) {
+        const date = new Date(photoData.timestamp);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        if (diffMins < 60) {
+            timeLabel = isEnglish ? `${diffMins} min ago` : `${diffMins} min geleden`;
+        } else if (diffHours < 24) {
+            timeLabel = isEnglish ? `${diffHours} hour${diffHours > 1 ? 's' : ''} ago` : `${diffHours} uur geleden`;
+        } else if (diffDays === 1) {
+            timeLabel = isEnglish ? 'Yesterday' : 'Gisteren';
+        } else {
+            timeLabel = isEnglish
+                ? date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+                : date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+        }
+    } else {
+        timeLabel = isEnglish ? 'Recently' : 'Recent';
+    }
     
     const item = document.createElement('div');
     item.className = 'timeline-item sample';
     item.innerHTML = `
         <img src="${photoData.image}" alt="Observation" class="timeline-photo">
-        <p class="timeline-date">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
+        <p class="timeline-date" style="display:block; font-size:0.75rem; padding:4px 8px 6px; color:#444; margin:4px 0 0;">${byLabel} <strong>${photoData.name}</strong> • ${timeLabel}</p>
     `;
 
     if (prepend) {
