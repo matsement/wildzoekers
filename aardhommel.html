@@ -12,7 +12,6 @@
   .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
   .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
 
-  /* ── RETURNING subtitle tweak ── */
   .discovery-subtitle-return { display: none; }
 
   /* ── SEPARATED SECTIONS ── */
@@ -20,51 +19,90 @@
     background: #f8faf4;
     border-radius: 20px;
     padding: 0 0 1.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     overflow: hidden;
-    border: 1.5px solid #d4e8be;
+    border: 1px solid #d4e8be;
   }
 
-  .contribution-wrap {
-    background: #fff;
-    padding: 1.4rem 1.4rem 1.2rem;
-    border-radius: 20px;
-  }
-  .contribution-wrap h2 {
-    margin: 0 0 1rem;
-    display: flex;
-    align-items: center;
-  }
+  .contribution-wrap { background: #fff; padding: 2rem 1.4rem; border-radius: 20px; }
+  .contribution-wrap h2 { margin: 0 0 1.5rem; display: flex; align-items: center; font-weight: 600; }
 
-  .nature-inner {
-    padding: 1.4rem;
-  }
-  .nature-inner h2 {
-    margin: 0 0 .4rem;
-    line-height: 1.2;
-  }
-  .nature-inner .section-intro {
-    margin-bottom: 1rem;
-  }
+  .nature-inner { padding: 2rem 1.4rem; }
+  .nature-inner h2 { margin: 0 0 .8rem; line-height: 1.2; font-weight: 600; }
 
-  /* TU/e Quote styling */
-  .tue-quote { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 12px; 
-    background: #e0edd0; 
-    padding: 1rem; 
-    border-radius: 12px; 
-    margin-bottom: 1.5rem; 
-    font-size: 0.9rem;
-    line-height: 1.4;
+  .tue-quote {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+    background: #e0edd0; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;
+    font-size: 0.95rem; line-height: 1.6;
   }
   .tue-quote img { height: 28px; flex-shrink: 0; }
 
-  /* Info toggles */
-  .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
-  .info-content.open { display: block; }
+  /* ── TIMELINE GRID ── */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  @media(min-width: 600px) { .timeline-grid { grid-template-columns: repeat(3, 1fr); } }
+  .timeline-item { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; position: relative; }
+  .timeline-photo { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .timeline-date {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0.72rem !important;
+    padding: 18px 7px 6px !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif !important;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.62)) !important;
+    height: auto !important;
+    overflow: visible !important;
+    z-index: 2 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* ── QUIZ UI ── */
+  .quiz-block h4 {
+    margin: 0 0 1rem;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+  .quiz-btn {
+    background: transparent; border: 1px solid #4a7c2e; color: #4a7c2e;
+    padding: 10px 15px; border-radius: 8px; font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; cursor: pointer; text-align: left; transition: all 0.2s;
+  }
+  .quiz-btn:hover { background: #f0f7eb; }
+  .quiz-btn.selected-correct { background: #4a7c2e; color: #fff; border-color: #4a7c2e; }
+  .quiz-btn.selected-wrong { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+  .quiz-btn:disabled { cursor: default; opacity: 0.8; }
+
+  /* ── POPUP INFO BLOCKS (POST-QUIZ) ── */
+  .role-list { list-style: none; padding: 0; margin: 0; }
+  .role-list li {
+    background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem;
+    cursor: pointer; transition: all 0.2s; border: 1px solid #e0edd0;
+  }
+  .role-list li:hover { background: #f8faf4; }
+  .role-list strong { display: block; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .role-details { display: none; font-size: 0.9rem; color: #555; line-height: 1.5; margin-top: 0.5rem; }
+  .role-list li.active .role-details { display: block; }
+
+  /* ── WALL OF FAME ── */
+  .wall-of-fame { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #ddd; }
+  .name-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+  .name-pill { background: #e0edd0; color: #2d5016; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+  .wof-cta { margin-top: 1.5rem; background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .wof-cta input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; margin-right: 8px; font-family: 'Poppins', sans-serif; }
 </style>
 </head>
 <body class="insect-page">
@@ -92,7 +130,7 @@
   <section class="discovery-hero">
     <div class="discovery-content">
       <div class="confetti-container" id="confetti"></div>
-      <h2 class="discovery-title" id="discovery-title-new">Je hebt een aardhommel gevonden!</h2>
+      <h2 class="discovery-title" id="discovery-title-new">Aardhommel gespot!</h2>
       <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">Welkom terug!</h2>
       <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
       <div class="insect-showcase">
@@ -101,20 +139,17 @@
     </div>
   </section>
 
-  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
+  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2.5rem;">
     <div class="tue-quote" style="margin-bottom: 0;">
-      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
+      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo">
       <span>De TU/e Campus verandert in een <strong>open stadspark</strong> dat diep verweven is met de natuurlijke ecosystemen van de Dommelvallei. Met de Landschapsvisie 2040 leggen we wadi's, moeraszones en bosgordels aan om de biodiversiteit te maximaliseren. Door jouw waarnemingen door te geven, bouw je direct mee aan een levend campusecosysteem.</span>
     </div>
   </section>
 
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
-      <h2 class="contribution-title" style="display: block; line-height: 1.4;">
-        Help 
-        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 8px, 0; vertical-align: middle;" alt="TU/e logo">
-        <br>
-        met tellen
+      <h2 class="contribution-title" style="display: flex; align-items: center; line-height: 1.2;">
+        <span style="display: inline-block;">Help <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 32px; margin: 0 6px; vertical-align: middle;" alt="TU/e logo"><br> met observeren</span>
       </h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
@@ -123,46 +158,47 @@
           </div>
           <div class="counter-grid">
             <div class="counter-box">
-              <p class="counter-label">Hoeveel <strong>levende</strong> aardhommels zie jij hier nu?</p>
+              <p class="counter-label">Hoeveel <strong>levende</strong> aardhommels observeer je momenteel?</p>
               <div class="counter">
                 <button onclick="decreaseCounter('aardhommel')">−</button>
                 <input type="number" id="aardhommel-counter" value="1" min="0" max="5" readonly>
                 <button onclick="increaseCounter('aardhommel')">+</button>
               </div>
-              <p class="counter-note">Max. 5 per keer</p>
+              <p class="counter-note">Max. 5 per registratie</p>
               <button class="submit-btn" onclick="submitPersonalCount('aardhommel')">Verstuur waarneming</button>
             </div>
             <div class="counter-box">
-              <p class="counter-label">Totaal op de TU/e Campus</p>
+              <p class="counter-label">Campusbrede registraties</p>
               <div class="community-display">
-                <p class="big-number-label">Totaal zijn er in 2026 tot nu toe</p>
+                <p class="big-number-label">In 2026 zijn er tot dusver</p>
                 <p class="big-number" id="community-total">47</p>
-                <p class="big-number-unit">aardhommels gezien</p>
-                <p class="spoorpark-label">op de TU/e campus!</p>
+                <p class="big-number-unit">aardhommels geregistreerd</p>
+                <p class="spoorpark-label">op het TU/e terrein.</p>
               </div>
             </div>
           </div>
         </div>
         <div id="submit-success" class="submit-success" style="display:none;">
-          <p>✅ Dank je wel! Je waarneming is opgeslagen en bijgedragen aan ons onderzoek.</p>
+          <p>✅ Bedankt. De waarneming is succesvol opgeslagen voor onderzoek.</p>
         </div>
       </div>
 
       <div class="photo-timeline-section">
-        <h3>Gedeelde waarnemingen</h3>
-        <p>Foto's van andere Wildzoekers die aardhommels hebben gezien</p>
-        <div class="timeline" id="photo-timeline">
-          <div class="timeline-item sample">
-            <div class="timeline-image">
-              <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Aardhommel waarneming door Gom" class="timeline-photo">
-            </div>
-            <p class="timeline-date">Door <strong>Gom</strong> • 2 weken geleden</p>
-          </div>
+        <h3>Recente waarnemingen</h3>
+        <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Foto's van campusbewoners en bezoekers.</p>
+
+        <div class="timeline-grid" id="photo-timeline">
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%201.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Gom</strong> • 2 weken geleden</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%202.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Ananya</strong> • 1 week geleden</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%203.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Wei Zhang</strong> • 3 dagen geleden</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%204.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Sanne Mulder</strong> • Gisteren</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%205.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Lars</strong> • Vandaag</p></div>
         </div>
+
         <div class="photo-upload-area">
-          <h4>Deel jouw foto</h4>
+          <h4>Deel een eigen waarneming</h4>
           <div class="name-input-row">
-            <label for="uploader-name">Jouw voornaam:</label>
+            <label for="uploader-name">Voornaam:</label>
             <input type="text" id="uploader-name" class="name-input">
           </div>
           <div class="upload-box" onclick="document.getElementById('photo-input').click()">
@@ -170,14 +206,14 @@
               <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
             </svg>
             <p>Klik om een foto te uploaden</p>
-            <p class="upload-note">of sleep hier een afbeelding naartoe</p>
+            <p class="upload-note">of sleep een afbeelding in dit vak</p>
           </div>
           <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
           <div id="photo-preview" style="display:none;">
             <img id="preview-img" src="" alt="Preview">
             <div class="preview-actions">
               <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
-              <button type="button" class="submit-btn" onclick="submitPhoto()">Foto versturen</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Versturen</button>
             </div>
           </div>
         </div>
@@ -187,75 +223,112 @@
 
   <section class="nature-section" id="education-section">
     <div class="nature-inner">
-      <h2>Waarom vliegt deze aardhommel hier?</h2>
-      <p class="section-intro">Hij kwam af op de <strong>bloemen in de lage begroeiing</strong>...</p>
+      <h2>Ecologische rol op de campus</h2>
 
       <div class="habitat-card">
-        <div class="habitat-image" style="margin-bottom: 1.2rem;">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1852.jpg?raw=true" alt="Bloemen in het gras" class="habitat-photo" style="width:100%; border-radius:14px; max-height:220px; object-fit:cover;">
+        <div class="habitat-video-wrap">
+          <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="border-radius: 14px; margin-bottom: 1.5rem;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <div class="habitat-content">
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>🍯 Waarom komt 'ie hier grazen?</h4>
+          <!-- QUIZ CONTAINER -->
+          <div id="quiz-container">
+            <!-- Vraag 1 -->
+            <div class="quiz-block" id="quiz-q1">
+              <h4>🍯 Waarom foerageer deze aardhommel hier?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. Hij jaagt op kleine insecten in de bloemen.</button>
+                <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. Hij verzamelt nectar en stuifmeel als voedsel.</button>
+              </div>
             </div>
-            <div class="info-content">
-              <p>Aardhommels eten <strong>nectar en stuifmeel</strong> uit bloemen. Ze hebben veel energie nodig om hun lichaamstemperatuur warm te houden.</p>
+
+            <!-- Vraag 2 -->
+            <div class="quiz-block" id="quiz-q2" style="display: none;">
+              <h4>🌍 Wat is zijn voornaamste bijdrage aan het ecosysteem?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. Hij bestuift planten door stuifmeel over te dragen.</button>
+                <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. Hij beschermt planten tegen schadelijke insecten.</button>
+              </div>
+            </div>
+
+            <!-- Vraag 3 -->
+            <div class="quiz-block" id="quiz-q3" style="display: none;">
+              <h4>⚠️ Waarom kiest de TU/e ervoor bloemen niet te maaien?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. Het is te kostbaar om het hele terrein regelmatig te maaien.</button>
+                <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. De bloemen vormen een onmisbare voedselbron voor bestuivers zoals de aardhommel.</button>
+              </div>
             </div>
           </div>
 
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>🌍 Wat doet 'ie voor de natuur?</h4>
-            </div>
-            <div class="info-content">
-              <p><strong>Aardhommels helpen planten groeien.</strong> Terwijl ze voedsel zoeken in bloemen, nemen ze stuifmeel mee naar andere bloemen. Zo kunnen planten en fruit beter groeien.</p>
-            </div>
-          </div>
-
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>⚠️ Waarom bloemen niet plukken?</h4>
-            </div>
-            <div class="info-content">
-              <p><strong>Veel mensen plukken bloemen.</strong> Mooi voor thuis, maar zonder bloemen kunnen aardhommels zich niet voeden en kunnen ze geen nesten bouwen...</p>
-            </div>
+          <!-- INFO BLOCKS (POST-QUIZ OR ALREADY DONE) -->
+          <div id="info-blocks-container" style="display: none;">
+            <ul class="role-list">
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🍯</span>
+                <strong>Hij verzamelt nectar en stuifmeel</strong>
+                <p class="role-details">De aardhommel heeft veel energie nodig om zijn lichaamstemperatuur op peil te houden. Daarvoor bezoekt hij tientallen bloemen per dag om nectar en stuifmeel te verzamelen — energie voor zichzelf én voedsel voor de jongen in het nest.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🌸</span>
+                <strong>Hij bestuift de campusvegetatie</strong>
+                <p class="role-details">Terwijl de aardhommel van bloem naar bloem vliegt, draagt hij stuifmeel over. Dit is essentieel voor de voortplanting van planten op de campus. Zonder bestuivers als de aardhommel zouden veel planten- en diersoorten verdwijnen.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🌼</span>
+                <strong>Bloemen niet maaien is bewust beleid</strong>
+                <p class="role-details">De TU/e laat bepaalde grasvelden en bermen bewust onbeheerd als onderdeel van de Landschapsvisie 2040. De bloemen die daar groeien zijn een cruciale voedselbron voor de aardhommel en tientallen andere bestuivende insecten.</p>
+              </li>
+            </ul>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="progress-tracker">
-    <h2>Wat heb je al gevonden?</h2>
+    <h2>Welke insecten heb je al gevonden?</h2>
     <div class="progress-grid">
       <div class="progress-item" id="beetle-progress">
         <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
         </div>
-        <h3 class="progress-name blurred-name" id="beetle-name">kever</h3>
+        <h3 class="progress-name blurred-name" id="beetle-name">Kever</h3>
         <p class="progress-status" id="beetle-status">Nog te vinden</p>
       </div>
       <div class="progress-item" id="ladybug-progress">
         <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Lieveheersbeestje silhouet" class="progress-photo silhouette" id="ladybug-img">
         </div>
-        <h3 class="progress-name blurred-name" id="ladybug-name">lieveheersbeestje</h3>
+        <h3 class="progress-name blurred-name" id="ladybug-name">Lieveheersbeestje</h3>
         <p class="progress-status" id="ladybug-status">Nog te vinden</p>
       </div>
       <div class="progress-item found" id="bumblebee-progress">
         <div class="progress-photo-wrap found-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="progress-photo">
         </div>
-        <h3>aardhommel</h3>
-        <p class="progress-status">✓ Gevonden!</p>
+        <h3>Aardhommel</h3>
+        <p class="progress-status">✓ Gevonden</p>
       </div>
     </div>
-    <p class="progress-message">Ga in de buurt op zoek en verzamel ze allemaal!</p>
+
+    <!-- Wall of fame -->
+    <div class="wall-of-fame">
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Actieve Wildzoekers</h3>
+      <p id="wof-subtitle" style="font-size: 0.85rem; color: #555;">Verzamel alle insecten om je naam toe te voegen.</p>
+      <div class="name-cloud" id="name-cloud">
+        <!-- Dynamically populated via JS -->
+      </div>
+      <div id="wof-form-container" class="wof-cta" style="display: none;">
+        <h4 style="margin: 0 0 10px; font-family: 'Dongle', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1;">Gefeliciteerd, je hoort nu bij de andere actieve wildzoekers!</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 18px;">Voeg je naam toe aan de lijst hieronder.</p>
+        <div style="margin-bottom: 14px;">
+          <input type="text" id="wof-name-input" placeholder="Jouw voornaam" maxlength="15">
+        </div>
+        <button class="submit-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="submitToWallOfFame()">Toevoegen</button>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -293,7 +366,7 @@
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
-    <p class="footer-credits">Externe afbeeldingen: Zeelandnet (Gompie01)</p>
+    <p class="footer-credits">Externe afbeeldingen: Generatieve AI</p>
   </div>
 </footer>
 
