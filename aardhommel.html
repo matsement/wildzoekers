@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bumblebee found! - Wildzoekers</title>
+<title>Aardhommel gevonden! - Wildzoekers</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script> const PAGE_ANIMAL = 'aardhommel'; </script>
 <style>
+  /* ── LANG TOGGLE ── */
   .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
   .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
 
@@ -18,35 +19,21 @@
     background: #f8faf4;
     border-radius: 20px;
     padding: 0 0 1.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     overflow: hidden;
-    border: 1.5px solid #d4e8be;
+    border: 1px solid #d4e8be;
   }
-  .contribution-wrap {
-    background: #fff;
-    padding: 1.4rem 1.4rem 1.2rem;
-    border-radius: 20px;
-  }
-  .contribution-wrap h2 {
-    margin: 0 0 1rem;
-    display: flex;
-    align-items: center;
-  }
-  .nature-inner { padding: 1.4rem; }
-  .nature-inner h2 { margin: 0 0 .4rem; line-height: 1.2; }
-  .nature-inner .section-intro { margin-bottom: 1rem; }
+
+  .contribution-wrap { background: #fff; padding: 2rem 1.4rem; border-radius: 20px; }
+  .contribution-wrap h2 { margin: 0 0 1.5rem; display: flex; align-items: center; font-weight: 600; }
+
+  .nature-inner { padding: 2rem 1.4rem; }
+  .nature-inner h2 { margin: 0 0 .8rem; line-height: 1.2; font-weight: 600; }
 
   .tue-quote {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    background: #e0edd0;
-    padding: 1rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+    background: #e0edd0; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;
+    font-size: 0.95rem; line-height: 1.6;
   }
   .tue-quote img { height: 28px; flex-shrink: 0; }
 
@@ -121,20 +108,20 @@
 <body class="insect-page">
 <div class="forest-background"></div>
 
-<img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decorative leaves" class="deco-leaf deco-leaf-topright" aria-hidden="true">
-<img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Green leaf" class="deco-leaf deco-leaf-mid" aria-hidden="true">
-<img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Autumn leaves" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
+<img src="https://www.pngall.com/wp-content/uploads/2016/03/Leaves-PNG-File.png" alt="Decoratieve bladeren" class="deco-leaf deco-leaf-topright" aria-hidden="true">
+<img src="https://static.vecteezy.com/system/resources/previews/053/177/605/non_2x/detailed-and-vibrant-leaf-with-intricate-texture-and-green-color-free-png.png" alt="Groen blad" class="deco-leaf deco-leaf-mid" aria-hidden="true">
+<img src="https://www.pngall.com/wp-content/uploads/13/Fall-Leaves-PNG-Image-HD.png" alt="Herfstbladeren" class="deco-leaf deco-leaf-bottom" aria-hidden="true">
 
 <div class="sticky-top">
   <header>
     <a href="index.html" class="header-logo">
       <div class="logo">
-        <img src="media/Logo%20groen.png?raw=true" alt="Wildzoekers logo">
+        <img src="media/Logo%20groen.png?raw=true" alt="Logo wildzoekers">
       </div>
     </a>
   </header>
   <div class="feedback-banner">
-    <p>This is a prototype. Please <a href="#" onclick="openFeedbackForm(); return false;">give feedback</a></p>
+    <p>Dit is een prototype. Geef alstublieft <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
   </div>
 </div>
 
@@ -143,91 +130,90 @@
   <section class="discovery-hero">
     <div class="discovery-content">
       <div class="confetti-container" id="confetti"></div>
-      <h2 class="discovery-title" id="discovery-title-new">You found a bumblebee!</h2>
-      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">Welcome back!</h2>
+      <h2 class="discovery-title" id="discovery-title-new">Aardhommel gespot!</h2>
+      <h2 class="discovery-title discovery-subtitle-return" id="discovery-title-return">Welkom terug!</h2>
       <p class="location-inline">📍 TU/e Campus, Eindhoven</p>
       <div class="insect-showcase">
-        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee found on TU/e campus" class="insect-image">
+        <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel gevonden op TU/e campus" class="insect-image">
       </div>
     </div>
   </section>
 
-  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
+  <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2.5rem;">
     <div class="tue-quote" style="margin-bottom: 0;">
       <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo">
-      <span>The TU/e Campus is evolving into an <strong>open city park</strong> deeply integrated with the natural ecosystems of the Dommel valley. Through the Landscape Vision 2040, we are creating wadis, swamp zones, and forest belts to maximize biodiversity. By logging your findings, you become an active contributor to our living campus ecosystem.</span>
+      <span>De TU/e Campus verandert in een <strong>open stadspark</strong> dat diep verweven is met de natuurlijke ecosystemen van de Dommelvallei. Met de Landschapsvisie 2040 leggen we wadi's, moeraszones en bosgordels aan om de biodiversiteit te maximaliseren. Door jouw waarnemingen door te geven, bouw je direct mee aan een levend campusecosysteem.</span>
     </div>
   </section>
 
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
-      <h2 class="contribution-title" style="display: block; line-height: 1.4;">
-        Help
-        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 0 8px; vertical-align: middle;" alt="TU/e logo">
-        <br>
-        with counting
+      <h2 class="contribution-title" style="display: flex; align-items: center; line-height: 1.2;">
+        <span style="display: inline-block;">Help <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 32px; margin: 0 6px; vertical-align: middle;" alt="TU/e logo"><br> met observeren</span>
       </h2>
       <div class="fauna-counter-card">
         <div class="counter-card-inner">
           <div class="counter-beetle-photo">
-            <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee" class="counter-beetle-img">
+            <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="counter-beetle-img">
           </div>
           <div class="counter-grid">
             <div class="counter-box">
-              <p class="counter-label">How many <strong>living</strong> bumblebees do you see right now?</p>
+              <p class="counter-label">Hoeveel <strong>levende</strong> aardhommels observeer je momenteel?</p>
               <div class="counter">
                 <button onclick="decreaseCounter('aardhommel')">−</button>
                 <input type="number" id="aardhommel-counter" value="1" min="0" max="5" readonly>
                 <button onclick="increaseCounter('aardhommel')">+</button>
               </div>
-              <p class="counter-note">Max. 5 at a time</p>
-              <button class="submit-btn" onclick="submitPersonalCount('aardhommel')">Submit observation</button>
+              <p class="counter-note">Max. 5 per registratie</p>
+              <button class="submit-btn" onclick="submitPersonalCount('aardhommel')">Verstuur waarneming</button>
             </div>
             <div class="counter-box">
-              <p class="counter-label">Total on TU/e Campus</p>
+              <p class="counter-label">Campusbrede registraties</p>
               <div class="community-display">
-                <p class="big-number-label">In total, so far in 2026</p>
+                <p class="big-number-label">In 2026 zijn er tot dusver</p>
                 <p class="big-number" id="community-total">47</p>
-                <p class="big-number-unit">bumblebees spotted</p>
-                <p class="spoorpark-label">on TU/e campus!</p>
+                <p class="big-number-unit">aardhommels geregistreerd</p>
+                <p class="spoorpark-label">op het TU/e terrein.</p>
               </div>
             </div>
           </div>
         </div>
         <div id="submit-success" class="submit-success" style="display:none;">
-          <p>✅ Thank you! Your observation has been saved and contributed to our research.</p>
+          <p>✅ Bedankt. De waarneming is succesvol opgeslagen voor onderzoek.</p>
         </div>
       </div>
 
       <div class="photo-timeline-section">
-        <h3>Shared observations</h3>
-        <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Photos from campus visitors and residents.</p>
+        <h3>Recente waarnemingen</h3>
+        <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Foto's van campusbewoners en bezoekers.</p>
+
         <div class="timeline-grid" id="photo-timeline">
-          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%201.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Gom</strong> • 2 weeks ago</p></div>
-          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%202.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Ananya</strong> • 1 week ago</p></div>
-          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%203.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Wei Zhang</strong> • 3 days ago</p></div>
-          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%204.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Sanne Mulder</strong> • Yesterday</p></div>
-          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%205.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Lars</strong> • Today</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%201.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Gom</strong> • 2 weken geleden</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%202.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Ananya</strong> • 1 week geleden</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%203.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Wei Zhang</strong> • 3 dagen geleden</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%204.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Sanne Mulder</strong> • Gisteren</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%205.jpg?raw=true" alt="Aardhommel" class="timeline-photo"><p class="timeline-date">Door <strong>Lars</strong> • Vandaag</p></div>
         </div>
+
         <div class="photo-upload-area">
-          <h4>Share your photo</h4>
+          <h4>Deel een eigen waarneming</h4>
           <div class="name-input-row">
-            <label for="uploader-name">Your first name:</label>
+            <label for="uploader-name">Voornaam:</label>
             <input type="text" id="uploader-name" class="name-input">
           </div>
           <div class="upload-box" onclick="document.getElementById('photo-input').click()">
             <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#4a7c2e" stroke-width="2">
               <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
             </svg>
-            <p>Click to upload a photo</p>
-            <p class="upload-note">or drag an image here</p>
+            <p>Klik om een foto te uploaden</p>
+            <p class="upload-note">of sleep een afbeelding in dit vak</p>
           </div>
           <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
           <div id="photo-preview" style="display:none;">
             <img id="preview-img" src="" alt="Preview">
             <div class="preview-actions">
-              <button type="button" class="btn-secondary" onclick="removePhoto()">Remove</button>
-              <button type="button" class="submit-btn" onclick="submitPhoto()">Send photo</button>
+              <button type="button" class="btn-secondary" onclick="removePhoto()">Verwijderen</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Versturen</button>
             </div>
           </div>
         </div>
@@ -237,7 +223,7 @@
 
   <section class="nature-section" id="education-section">
     <div class="nature-inner">
-      <h2>Ecological role on campus</h2>
+      <h2>Ecologische rol op de campus</h2>
 
       <div class="habitat-card">
         <div class="habitat-video-wrap">
@@ -245,33 +231,32 @@
         </div>
 
         <div class="habitat-content">
-
           <!-- QUIZ CONTAINER -->
           <div id="quiz-container">
-            <!-- Question 1 -->
+            <!-- Vraag 1 -->
             <div class="quiz-block" id="quiz-q1">
-              <h4>🍯 Why is this bumblebee foraging here?</h4>
+              <h4>🍯 Waarom foerageer deze aardhommel hier?</h4>
               <div class="quiz-options">
-                <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. It hunts small insects hiding in the flowers.</button>
-                <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. It collects nectar and pollen as food.</button>
+                <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. Hij jaagt op kleine insecten in de bloemen.</button>
+                <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. Hij verzamelt nectar en stuifmeel als voedsel.</button>
               </div>
             </div>
 
-            <!-- Question 2 -->
+            <!-- Vraag 2 -->
             <div class="quiz-block" id="quiz-q2" style="display: none;">
-              <h4>🌍 What is its main contribution to the ecosystem?</h4>
+              <h4>🌍 Wat is zijn voornaamste bijdrage aan het ecosysteem?</h4>
               <div class="quiz-options">
-                <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. It pollinates plants by transferring pollen between flowers.</button>
-                <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. It protects plants from harmful insects.</button>
+                <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. Hij bestuift planten door stuifmeel over te dragen.</button>
+                <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. Hij beschermt planten tegen schadelijke insecten.</button>
               </div>
             </div>
 
-            <!-- Question 3 -->
+            <!-- Vraag 3 -->
             <div class="quiz-block" id="quiz-q3" style="display: none;">
-              <h4>⚠️ Why does TU/e choose not to mow certain areas?</h4>
+              <h4>⚠️ Waarom kiest de TU/e ervoor bloemen niet te maaien?</h4>
               <div class="quiz-options">
-                <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. It's too costly to mow the entire campus regularly.</button>
-                <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. The flowers are a vital food source for pollinators like the bumblebee.</button>
+                <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. Het is te kostbaar om het hele terrein regelmatig te maaien.</button>
+                <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. De bloemen vormen een onmisbare voedselbron voor bestuivers zoals de aardhommel.</button>
               </div>
             </div>
           </div>
@@ -281,67 +266,67 @@
             <ul class="role-list">
               <li onclick="toggleRole(this)">
                 <span class="role-icon">🍯</span>
-                <strong>It collects nectar and pollen</strong>
-                <p class="role-details">The bumblebee needs a lot of energy to maintain its body temperature. To do this, it visits dozens of flowers each day to collect nectar and pollen — fuel for itself and food for the young in its nest.</p>
+                <strong>Hij verzamelt nectar en stuifmeel</strong>
+                <p class="role-details">De aardhommel heeft veel energie nodig om zijn lichaamstemperatuur op peil te houden. Daarvoor bezoekt hij tientallen bloemen per dag om nectar en stuifmeel te verzamelen — energie voor zichzelf én voedsel voor de jongen in het nest.</p>
               </li>
               <li onclick="toggleRole(this)">
                 <span class="role-icon">🌸</span>
-                <strong>It pollinates the campus vegetation</strong>
-                <p class="role-details">As the bumblebee moves from flower to flower, it transfers pollen — essential for plant reproduction on campus. Without pollinators like the bumblebee, many plant and animal species would disappear from the ecosystem.</p>
+                <strong>Hij bestuift de campusvegetatie</strong>
+                <p class="role-details">Terwijl de aardhommel van bloem naar bloem vliegt, draagt hij stuifmeel over. Dit is essentieel voor de voortplanting van planten op de campus. Zonder bestuivers als de aardhommel zouden veel planten- en diersoorten verdwijnen.</p>
               </li>
               <li onclick="toggleRole(this)">
                 <span class="role-icon">🌼</span>
-                <strong>Not mowing is deliberate policy</strong>
-                <p class="role-details">TU/e deliberately leaves certain meadows and verges unmanaged as part of its Landscape Vision 2040. The flowers that grow there are a crucial food source for the bumblebee and dozens of other pollinating insects.</p>
+                <strong>Bloemen niet maaien is bewust beleid</strong>
+                <p class="role-details">De TU/e laat bepaalde grasvelden en bermen bewust onbeheerd als onderdeel van de Landschapsvisie 2040. De bloemen die daar groeien zijn een cruciale voedselbron voor de aardhommel en tientallen andere bestuivende insecten.</p>
               </li>
             </ul>
           </div>
-
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="progress-tracker">
-    <h2>What have you found so far?</h2>
+    <h2>Welke insecten heb je al gevonden?</h2>
     <div class="progress-grid">
       <div class="progress-item" id="beetle-progress">
         <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle silhouette" class="progress-photo silhouette" id="beetle-img">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Kever silhouet" class="progress-photo silhouette" id="beetle-img">
         </div>
-        <h3 class="progress-name blurred-name" id="beetle-name">Beetle</h3>
-        <p class="progress-status" id="beetle-status">Yet to find</p>
+        <h3 class="progress-name blurred-name" id="beetle-name">Kever</h3>
+        <p class="progress-status" id="beetle-status">Nog te vinden</p>
       </div>
       <div class="progress-item" id="ladybug-progress">
         <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Ladybug silhouette" class="progress-photo silhouette" id="ladybug-img">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Lieveheersbeestje silhouet" class="progress-photo silhouette" id="ladybug-img">
         </div>
-        <h3 class="progress-name blurred-name" id="ladybug-name">Ladybug</h3>
-        <p class="progress-status" id="ladybug-status">Yet to find</p>
+        <h3 class="progress-name blurred-name" id="ladybug-name">Lieveheersbeestje</h3>
+        <p class="progress-status" id="ladybug-status">Nog te vinden</p>
       </div>
       <div class="progress-item found" id="bumblebee-progress">
         <div class="progress-photo-wrap found-wrap">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee" class="progress-photo">
+          <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Aardhommel" class="progress-photo">
         </div>
-        <h3>Bumblebee</h3>
-        <p class="progress-status">✓ Found</p>
+        <h3>Aardhommel</h3>
+        <p class="progress-status">✓ Gevonden</p>
       </div>
     </div>
 
     <!-- Wall of fame -->
     <div class="wall-of-fame">
-      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Active Wildzoekers</h3>
-      <p id="wof-subtitle" style="font-size: 0.85rem; color: #555;">Collect all insects to add your name.</p>
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Actieve Wildzoekers</h3>
+      <p id="wof-subtitle" style="font-size: 0.85rem; color: #555;">Verzamel alle insecten om je naam toe te voegen.</p>
       <div class="name-cloud" id="name-cloud">
         <!-- Dynamically populated via JS -->
       </div>
       <div id="wof-form-container" class="wof-cta" style="display: none;">
-        <h4 style="margin: 0 0 10px; font-family: 'Dongle', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1;">Congratulations, you are now part of the active Wildzoekers!</h4>
-        <p style="font-size: 0.85rem; margin-bottom: 18px;">Add your name to the list below.</p>
+        <h4 style="margin: 0 0 10px; font-family: 'Dongle', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1;">Gefeliciteerd, je hoort nu bij de andere actieve wildzoekers!</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 18px;">Voeg je naam toe aan de lijst hieronder.</p>
         <div style="margin-bottom: 14px;">
-          <input type="text" id="wof-name-input" placeholder="Your first name" maxlength="15">
+          <input type="text" id="wof-name-input" placeholder="Jouw voornaam" maxlength="15">
         </div>
-        <button class="submit-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="submitToWallOfFame()">Add</button>
+        <button class="submit-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="submitToWallOfFame()">Toevoegen</button>
       </div>
     </div>
   </section>
@@ -349,11 +334,11 @@
 </main>
 
 <div class="lang-toggle">
-  <a href="aardhommel.html">🇳🇱 Nederlands</a>
+  <a href="bumblebee.html">🇬🇧 English</a>
 </div>
 
 <div id="feedbackBookmark" class="feedback-bookmark">
-  <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Give feedback">
+  <button onclick="openFeedbackForm()" class="feedback-bookmark-btn" id="feedbackBtn" title="Feedback geven">
     <span class="fb-icon">💬</span>
     <span class="fb-label">Feedback</span>
   </button>
@@ -363,7 +348,7 @@
   <div class="footer-content">
     <div class="footer-section">
       <h4>Wildzoekers</h4>
-      <p>Understanding, appreciating and consciously letting rewilded urban nature exist.</p>
+      <p>Verwilderde natuur in de stad begrijpen, waarderen en bewust laten bestaan.</p>
     </div>
     <div class="footer-section">
       <h4>Links</h4>
@@ -374,23 +359,23 @@
     </div>
     <div class="footer-section">
       <h4>Contact</h4>
-      <p>This is a prototype. Feedback is welcome.</p>
+      <p>Dit is een prototype. Feedback is welkom.</p>
       <p>m.j.j.v.deijck@student.tue.nl</p>
-      <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Give feedback</a></p>
+      <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u" target="_blank">Geef feedback</a></p>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
-    <p class="footer-credits">External images: Generative AI</p>
+    <p class="footer-credits">Externe afbeeldingen: Generatieve AI</p>
   </div>
 </footer>
 
 <script src="app.js"></script>
 <script>
 (function() {
-  const KEY = 'wz_aardhommel_found_en';
+  const KEY = 'wz_aardhommel_found';
   const found = localStorage.getItem(KEY);
-  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const today = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const main = document.querySelector('.insect-main');
   const hero = document.querySelector('.discovery-hero');
@@ -400,10 +385,7 @@
   const progress = document.querySelector('.progress-tracker');
   const showcase = document.querySelector('.insect-showcase');
 
-  if (!main || !hero || !education || !quote || !observation || !progress) {
-    console.error("Wildzoekers Debug: One of the sections is missing in bumblebee.html or has an incorrect ID.");
-    return;
-  }
+  if (!main || !hero || !education || !quote || !observation || !progress) return;
 
   if (found) {
     if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'none';
