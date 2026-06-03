@@ -6,13 +6,11 @@
 <title>Bumblebee found! - Wildzoekers</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<script> const PAGE_ANIMAL = 'bumblebee'; </script>
+<script> const PAGE_ANIMAL = 'aardhommel'; </script>
 <style>
-  /* ── LANG TOGGLE ── */
   .lang-toggle { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; }
   .lang-toggle a { display: inline-block; background: #fff; border: 2px solid #4a7c2e; color: #4a7c2e; border-radius: 30px; padding: .35rem .9rem; font-size: .78rem; font-weight: 600; text-decoration: none; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
 
-  /* ── RETURNING subtitle tweak ── */
   .discovery-subtitle-return { display: none; }
 
   /* ── SEPARATED SECTIONS ── */
@@ -24,7 +22,6 @@
     overflow: hidden;
     border: 1.5px solid #d4e8be;
   }
-
   .contribution-wrap {
     background: #fff;
     padding: 1.4rem 1.4rem 1.2rem;
@@ -35,36 +32,90 @@
     display: flex;
     align-items: center;
   }
+  .nature-inner { padding: 1.4rem; }
+  .nature-inner h2 { margin: 0 0 .4rem; line-height: 1.2; }
+  .nature-inner .section-intro { margin-bottom: 1rem; }
 
-  .nature-inner {
-    padding: 1.4rem;
-  }
-  .nature-inner h2 {
-    margin: 0 0 .4rem;
-    line-height: 1.2;
-  }
-  .nature-inner .section-intro {
-    margin-bottom: 1rem;
-  }
-
-  /* TU/e Quote styling */
-  .tue-quote { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 12px; 
-    background: #e0edd0; 
-    padding: 1rem; 
-    border-radius: 12px; 
-    margin-bottom: 1.5rem; 
+  .tue-quote {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    background: #e0edd0;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
     font-size: 0.9rem;
     line-height: 1.4;
   }
   .tue-quote img { height: 28px; flex-shrink: 0; }
 
-  /* Info toggles */
-  .info-content { display: none; overflow: hidden; padding-bottom: 1rem; }
-  .info-content.open { display: block; }
+  /* ── TIMELINE GRID ── */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  @media(min-width: 600px) { .timeline-grid { grid-template-columns: repeat(3, 1fr); } }
+  .timeline-item { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; position: relative; }
+  .timeline-photo { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .timeline-date {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0.72rem !important;
+    padding: 18px 7px 6px !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif !important;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.62)) !important;
+    height: auto !important;
+    overflow: visible !important;
+    z-index: 2 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* ── QUIZ UI ── */
+  .quiz-block h4 {
+    margin: 0 0 1rem;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+  .quiz-btn {
+    background: transparent; border: 1px solid #4a7c2e; color: #4a7c2e;
+    padding: 10px 15px; border-radius: 8px; font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem; cursor: pointer; text-align: left; transition: all 0.2s;
+  }
+  .quiz-btn:hover { background: #f0f7eb; }
+  .quiz-btn.selected-correct { background: #4a7c2e; color: #fff; border-color: #4a7c2e; }
+  .quiz-btn.selected-wrong { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+  .quiz-btn:disabled { cursor: default; opacity: 0.8; }
+
+  /* ── POPUP INFO BLOCKS (POST-QUIZ) ── */
+  .role-list { list-style: none; padding: 0; margin: 0; }
+  .role-list li {
+    background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem;
+    cursor: pointer; transition: all 0.2s; border: 1px solid #e0edd0;
+  }
+  .role-list li:hover { background: #f8faf4; }
+  .role-list strong { display: block; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .role-details { display: none; font-size: 0.9rem; color: #555; line-height: 1.5; margin-top: 0.5rem; }
+  .role-list li.active .role-details { display: block; }
+
+  /* ── WALL OF FAME ── */
+  .wall-of-fame { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #ddd; }
+  .name-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+  .name-pill { background: #e0edd0; color: #2d5016; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+  .wof-cta { margin-top: 1.5rem; background: #fff; padding: 1.2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .wof-cta input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; margin-right: 8px; font-family: 'Poppins', sans-serif; }
 </style>
 </head>
 <body class="insect-page">
@@ -78,12 +129,12 @@
   <header>
     <a href="index.html" class="header-logo">
       <div class="logo">
-        <img src="media/Logo%20groen.png?raw=true" alt="Wildzoekers Logo">
+        <img src="media/Logo%20groen.png?raw=true" alt="Wildzoekers logo">
       </div>
     </a>
   </header>
   <div class="feedback-banner">
-    <p>This is a prototype. Please share your <a href="#" onclick="openFeedbackForm(); return false;">feedback</a></p>
+    <p>This is a prototype. Please <a href="#" onclick="openFeedbackForm(); return false;">give feedback</a></p>
   </div>
 </div>
 
@@ -103,7 +154,7 @@
 
   <section id="tue-quote-section" style="padding: 0 1rem; margin-bottom: 2rem;">
     <div class="tue-quote" style="margin-bottom: 0;">
-      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo"> 
+      <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" alt="TU/e Logo">
       <span>The TU/e Campus is evolving into an <strong>open city park</strong> deeply integrated with the natural ecosystems of the Dommel valley. Through the Landscape Vision 2040, we are creating wadis, swamp zones, and forest belts to maximize biodiversity. By logging your findings, you become an active contributor to our living campus ecosystem.</span>
     </div>
   </section>
@@ -111,8 +162,8 @@
   <section class="nature-section" id="observation-anchor">
     <div class="contribution-wrap">
       <h2 class="contribution-title" style="display: block; line-height: 1.4;">
-        Help 
-        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 8px, 0; vertical-align: middle;" alt="TU/e logo">
+        Help
+        <img src="media/eindhoven-university-of-technology-tue-vector-logo-cropped.svg" style="height: 36px; margin: 0 8px; vertical-align: middle;" alt="TU/e logo">
         <br>
         with counting
       </h2>
@@ -123,41 +174,40 @@
           </div>
           <div class="counter-grid">
             <div class="counter-box">
-              <p class="counter-label">How many <strong>live</strong> bumblebees do you see here right now?</p>
+              <p class="counter-label">How many <strong>living</strong> bumblebees do you see right now?</p>
               <div class="counter">
-                <button onclick="decreaseCounter('bumblebee')">−</button>
-                <input type="number" id="bumblebee-counter" value="1" min="0" max="5" readonly>
-                <button onclick="increaseCounter('bumblebee')">+</button>
+                <button onclick="decreaseCounter('aardhommel')">−</button>
+                <input type="number" id="aardhommel-counter" value="1" min="0" max="5" readonly>
+                <button onclick="increaseCounter('aardhommel')">+</button>
               </div>
-              <p class="counter-note">Max. 5 per submission</p>
-              <button class="submit-btn" onclick="submitPersonalCount('bumblebee')">Submit observation</button>
+              <p class="counter-note">Max. 5 at a time</p>
+              <button class="submit-btn" onclick="submitPersonalCount('aardhommel')">Submit observation</button>
             </div>
             <div class="counter-box">
-              <p class="counter-label">Total on the TU/e Campus</p>
+              <p class="counter-label">Total on TU/e Campus</p>
               <div class="community-display">
-                <p class="big-number-label">Total spotted in 2026 so far</p>
+                <p class="big-number-label">In total, so far in 2026</p>
                 <p class="big-number" id="community-total">47</p>
-                <p class="big-number-unit">bumblebees seen</p>
-                <p class="spoorpark-label">on the TU/e campus!</p>
+                <p class="big-number-unit">bumblebees spotted</p>
+                <p class="spoorpark-label">on TU/e campus!</p>
               </div>
             </div>
           </div>
         </div>
         <div id="submit-success" class="submit-success" style="display:none;">
-          <p>✅ Thank you! Your observation has been saved and added to our research project.</p>
+          <p>✅ Thank you! Your observation has been saved and contributed to our research.</p>
         </div>
       </div>
 
       <div class="photo-timeline-section">
-        <h3>Shared Observations</h3>
-        <p>Photos from other Wildzoekers who spotted bumblebees</p>
-        <div class="timeline" id="photo-timeline">
-          <div class="timeline-item sample">
-            <div class="timeline-image">
-              <img src="https://www.zeelandnet.nl/foto/assets/foto/extra_large/32/332119.jpg" alt="Bumblebee observation by Gom" class="timeline-photo">
-            </div>
-            <p class="timeline-date">By <strong>Gom</strong> • 2 weeks ago</p>
-          </div>
+        <h3>Shared observations</h3>
+        <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Photos from campus visitors and residents.</p>
+        <div class="timeline-grid" id="photo-timeline">
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%201.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Gom</strong> • 2 weeks ago</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%202.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Ananya</strong> • 1 week ago</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%203.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Wei Zhang</strong> • 3 days ago</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%204.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Sanne Mulder</strong> • Yesterday</p></div>
+          <div class="timeline-item sample"><img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%205.jpg?raw=true" alt="Bumblebee" class="timeline-photo"><p class="timeline-date">By <strong>Lars</strong> • Today</p></div>
         </div>
         <div class="photo-upload-area">
           <h4>Share your photo</h4>
@@ -170,14 +220,14 @@
               <path d="M8 40h32M24 4v24M16 16l8-8 8 8"/>
             </svg>
             <p>Click to upload a photo</p>
-            <p class="upload-note">or drag and drop an image here</p>
+            <p class="upload-note">or drag an image here</p>
           </div>
           <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(this)">
           <div id="photo-preview" style="display:none;">
             <img id="preview-img" src="" alt="Preview">
             <div class="preview-actions">
-              <button type="button" class="btn-secondary" onclick="removePhoto()">Delete</button>
-              <button type="button" class="submit-btn" onclick="submitPhoto()">Send Photo</button>
+              <button type="button" class="btn-secondary" onclick="removePhoto()">Remove</button>
+              <button type="button" class="submit-btn" onclick="submitPhoto()">Send photo</button>
             </div>
           </div>
         </div>
@@ -187,44 +237,66 @@
 
   <section class="nature-section" id="education-section">
     <div class="nature-inner">
-      <h2>Why is this bumblebee flying here?</h2>
-      <p class="section-intro">He was attracted to the <strong>flowers in the low vegetation</strong>...</p>
+      <h2>Ecological role on campus</h2>
 
       <div class="habitat-card">
-        <div class="habitat-image" style="margin-bottom: 1.2rem;">
-          <img src="https://github.com/matsement/wildzoekers/blob/main/media/IMG_1852.jpg?raw=true" alt="Flowers in the grass" class="habitat-photo" style="width:100%; border-radius:14px; max-height:220px; object-fit:cover;">
+        <div class="habitat-video-wrap">
+          <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="border-radius: 14px; margin-bottom: 1.5rem;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <div class="habitat-content">
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>🍯 Why is he foraging here?</h4>
+
+          <!-- QUIZ CONTAINER -->
+          <div id="quiz-container">
+            <!-- Question 1 -->
+            <div class="quiz-block" id="quiz-q1">
+              <h4>🍯 Why is this bumblebee foraging here?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(1, 'A', false)">A. It hunts small insects hiding in the flowers.</button>
+                <button class="quiz-btn" onclick="answerQuiz(1, 'B', true)">B. It collects nectar and pollen as food.</button>
+              </div>
             </div>
-            <div class="info-content">
-              <p>Bumblebees eat <strong>nectar and pollen</strong> from flowers. They need a lot of energy to keep their body temperature warm.</p>
+
+            <!-- Question 2 -->
+            <div class="quiz-block" id="quiz-q2" style="display: none;">
+              <h4>🌍 What is its main contribution to the ecosystem?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(2, 'A', true)">A. It pollinates plants by transferring pollen between flowers.</button>
+                <button class="quiz-btn" onclick="answerQuiz(2, 'B', false)">B. It protects plants from harmful insects.</button>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-block" id="quiz-q3" style="display: none;">
+              <h4>⚠️ Why does TU/e choose not to mow certain areas?</h4>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="answerQuiz(3, 'A', false)">A. It's too costly to mow the entire campus regularly.</button>
+                <button class="quiz-btn" onclick="answerQuiz(3, 'B', true)">B. The flowers are a vital food source for pollinators like the bumblebee.</button>
+              </div>
             </div>
           </div>
 
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>🌍 What does he do for nature?</h4>
-            </div>
-            <div class="info-content">
-              <p><strong>Bumblebees help plants grow.</strong> While foraging in flowers, they carry pollen to other flowers. This helps plants and fruit grow better.</p>
-            </div>
+          <!-- INFO BLOCKS (POST-QUIZ OR ALREADY DONE) -->
+          <div id="info-blocks-container" style="display: none;">
+            <ul class="role-list">
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🍯</span>
+                <strong>It collects nectar and pollen</strong>
+                <p class="role-details">The bumblebee needs a lot of energy to maintain its body temperature. To do this, it visits dozens of flowers each day to collect nectar and pollen — fuel for itself and food for the young in its nest.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🌸</span>
+                <strong>It pollinates the campus vegetation</strong>
+                <p class="role-details">As the bumblebee moves from flower to flower, it transfers pollen — essential for plant reproduction on campus. Without pollinators like the bumblebee, many plant and animal species would disappear from the ecosystem.</p>
+              </li>
+              <li onclick="toggleRole(this)">
+                <span class="role-icon">🌼</span>
+                <strong>Not mowing is deliberate policy</strong>
+                <p class="role-details">TU/e deliberately leaves certain meadows and verges unmanaged as part of its Landscape Vision 2040. The flowers that grow there are a crucial food source for the bumblebee and dozens of other pollinating insects.</p>
+              </li>
+            </ul>
           </div>
 
-          <div class="info-section">
-            <div class="info-toggle" onclick="toggleInfoSection(this)">
-              <span class="toggle-icon">▼</span>
-              <h4>⚠️ Why not pick flowers?</h4>
-            </div>
-            <div class="info-content">
-              <p><strong>Many people pick flowers.</strong> Nice for at home, but without flowers, bumblebees cannot feed and cannot build nests...</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -237,25 +309,41 @@
         <div class="progress-photo-wrap not-found-wrap" id="beetle-photo-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Kever%20transparant.png?raw=true" alt="Beetle silhouette" class="progress-photo silhouette" id="beetle-img">
         </div>
-        <h3 class="progress-name blurred-name" id="beetle-name">beetle</h3>
+        <h3 class="progress-name blurred-name" id="beetle-name">Beetle</h3>
         <p class="progress-status" id="beetle-status">Yet to find</p>
       </div>
       <div class="progress-item" id="ladybug-progress">
         <div class="progress-photo-wrap not-found-wrap" id="ladybug-photo-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Lieveheersbeestje%20transparant.png?raw=true" alt="Ladybug silhouette" class="progress-photo silhouette" id="ladybug-img">
         </div>
-        <h3 class="progress-name blurred-name" id="ladybug-name">ladybug</h3>
+        <h3 class="progress-name blurred-name" id="ladybug-name">Ladybug</h3>
         <p class="progress-status" id="ladybug-status">Yet to find</p>
       </div>
       <div class="progress-item found" id="bumblebee-progress">
         <div class="progress-photo-wrap found-wrap">
           <img src="https://github.com/matsement/wildzoekers/blob/main/media/Hommel%20transparant.png?raw=true" alt="Bumblebee" class="progress-photo">
         </div>
-        <h3>bumblebee</h3>
-        <p class="progress-status">✓ Found!</p>
+        <h3>Bumblebee</h3>
+        <p class="progress-status">✓ Found</p>
       </div>
     </div>
-    <p class="progress-message">Explore the area and collect them all!</p>
+
+    <!-- Wall of fame -->
+    <div class="wall-of-fame">
+      <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Active Wildzoekers</h3>
+      <p id="wof-subtitle" style="font-size: 0.85rem; color: #555;">Collect all insects to add your name.</p>
+      <div class="name-cloud" id="name-cloud">
+        <!-- Dynamically populated via JS -->
+      </div>
+      <div id="wof-form-container" class="wof-cta" style="display: none;">
+        <h4 style="margin: 0 0 10px; font-family: 'Dongle', sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.1;">Congratulations, you are now part of the active Wildzoekers!</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 18px;">Add your name to the list below.</p>
+        <div style="margin-bottom: 14px;">
+          <input type="text" id="wof-name-input" placeholder="Your first name" maxlength="15">
+        </div>
+        <button class="submit-btn" style="padding: 8px 16px; font-size: 0.85rem;" onclick="submitToWallOfFame()">Add</button>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -275,7 +363,7 @@
   <div class="footer-content">
     <div class="footer-section">
       <h4>Wildzoekers</h4>
-      <p>Understanding, appreciating, and consciously preserving wild nature in the city.</p>
+      <p>Understanding, appreciating and consciously letting rewilded urban nature exist.</p>
     </div>
     <div class="footer-section">
       <h4>Links</h4>
@@ -293,7 +381,7 @@
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Wildzoekers. TU/e Industrial Design Final Bachelor Project.</p>
-    <p class="footer-credits">External images: Zeelandnet (Gompie01)</p>
+    <p class="footer-credits">External images: Generative AI</p>
   </div>
 </footer>
 
@@ -312,7 +400,10 @@
   const progress = document.querySelector('.progress-tracker');
   const showcase = document.querySelector('.insect-showcase');
 
-  if (!main || !hero || !education || !quote || !observation || !progress) return;
+  if (!main || !hero || !education || !quote || !observation || !progress) {
+    console.error("Wildzoekers Debug: One of the sections is missing in bumblebee.html or has an incorrect ID.");
+    return;
+  }
 
   if (found) {
     if (document.getElementById('discovery-title-new')) document.getElementById('discovery-title-new').style.display = 'none';
