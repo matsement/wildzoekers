@@ -130,7 +130,13 @@ function initializeWallOfFame() {
 
     const foundInsects = getFoundInsects();
     const formContainer = document.getElementById('wof-form-container');
+    const wofSubtitle = document.getElementById('wof-subtitle');
     
+    // Update subtitle text when all insects have been found
+    if (foundInsects.length >= 3 && wofSubtitle) {
+        wofSubtitle.textContent = isEnglish ? 'You\'ve found all the insects!' : 'Je hebt alle insecten gevonden!';
+    }
+
     // Check if the user has found all 3 and hasn't already submitted their name
     const hasSubmitted = localStorage.getItem('wz_wof_submitted') === 'true';
 
@@ -180,6 +186,10 @@ function submitToWallOfFame() {
     renderWallOfFame();
     
     formContainer.style.display = 'none';
+    const wofSubtitle = document.getElementById('wof-subtitle');
+    if (wofSubtitle) {
+        wofSubtitle.textContent = isEnglish ? 'You\'ve found all the insects!' : 'Je hebt alle insecten gevonden!';
+    }
     showNotification(isEnglish ? "🎉 Welcome to the active Wildzoekers!" : "🎉 Welkom bij de actieve Wildzoekers!");
     createMiniConfetti();
 }
