@@ -6,7 +6,7 @@ const INSECTS = {
     lieveheersbeestje: 'lieveheersbeestje'
 };
 
-const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UM0s4N0pMT0hBU1hYM0RLQTNCOThRM0k5SS4u';
+const FEEDBACK_FORM_URL = 'https://forms.office.com/Pages/ResponsePage.aspx?id=R_J9zM5gD0qddXBM9g78ZJTwctMrzKVHkxkU7UCuRk9UMlhRMDFKSEpIOFVUWjJRWFcxQTdGMUVUNS4u';
 const isEnglish = document.documentElement.lang === 'en';
 
 function normalizeAnimal(animal) {
